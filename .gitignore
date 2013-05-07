@@ -1,4 +1,6 @@
-#git ignore
-#fichier pdf
+#fichier .gitignore
 
+# Fichier pdf
 *.pdf
+
+
