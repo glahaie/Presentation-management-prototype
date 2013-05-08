@@ -16,3 +16,4 @@ Projet : Système note de cours
 
 Description : Logiciel qui génère des présentations (acétates) à partir de documents rédigés dans un format très simple.
 
+------------------------------------------------------------------------------------------------------------------------
