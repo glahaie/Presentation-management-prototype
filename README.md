@@ -28,7 +28,7 @@ Transition entre formats : Client desktop | interface web
 
 ****************************************
 
-Fonctionnalités : 
+Fonctionnalités : (Pour créateur)
 
 Creer nouvelles notes | créer nouveau cours (contient des notes)
 
@@ -39,6 +39,22 @@ Ajouter section/chapitre / résumé de chapitre/section
 Generer documentations de sortie (pdf,impress ? , html ) pour un cours complet | pour une section/chapitre seulement.
 
 Donner accès à un/des groupe(s) | retirer accès (ban) utilisateur(s) et/ou groupe(s)
+
+****************************************
+
+Fonctionnalités : (Pour utilisateur)
+
+Consulter note de cours dont l'accès est permis.
+
+Telecharger une copie des notes / chapitre/section ou complètement.
+
+Proposer une modification des notes. 
+
+Demander une mise à jour des notes d'un cours. 
+
+Noter (Rating) les notes de cours disponibles.
+
+.....
 
 ****************************************
 
