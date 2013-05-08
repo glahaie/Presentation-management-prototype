@@ -19,6 +19,7 @@ Description : Logiciel qui génère des présentations (acétates) à partir de 
 ****************************************
 
 Brainstorm : 
+-----------
 
 Format final = .pdf ou impress ou .html (Selon l'utilisateur [prof | étudiant] ?)
 
@@ -29,6 +30,7 @@ Transition entre formats : Client desktop | interface web
 ****************************************
 
 Fonctionnalités : (Pour créateur)
+--------------------------------
 
 Creer nouvelles notes | créer nouveau cours (contient des notes)
 
@@ -43,6 +45,7 @@ Donner accès à un/des groupe(s) | retirer accès (ban) utilisateur(s) et/ou gr
 ****************************************
 
 Fonctionnalités : (Pour utilisateur)
+------------------------------------
 
 Consulter note de cours dont l'accès est permis.
 
@@ -59,6 +62,7 @@ Noter (Rating) les notes de cours disponibles.
 ****************************************
 
 Languages de programmations : 
+----------------------------
 
 Python/django + Awk ? 
 Javascript/node 
