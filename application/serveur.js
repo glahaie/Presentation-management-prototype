@@ -1,16 +1,17 @@
 var http = require('http');
 var url = require('url');
 
-function start(route) {
-  http.createServer(function (req, res) {
-    var pathname = url.parse(req.url).pathname;
-    console.log("Request received : " + pathname);
+function start(route, handle) {
+  
+  function surRequete (requete, reponse) {
+    var pathname = url.parse(requete.url).pathname;
+    console.log("Requete recue : " + pathname);
     
-    route(pathname);
+    route(handle, pathname, reponse);
     
-    res.writeHead(200, {'Content-Type': 'text/plain'});
-    res.end('Hello World\n');
-  }).listen(8888);
+  }
+  
+  http.createServer(surRequete).listen(8888);
   console.log("Server started");
 }
 

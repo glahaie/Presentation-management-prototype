@@ -1,4 +1,10 @@
 var serveur = require("./serveur");
 var routeur = require("./routeur");
+var gestReq = require("./gestionneursRequetes");
 
-serveur.start(routeur.route);
+var handle = {}
+handle["/"] = gestReq.editer;
+handle["/editer/"] = gestReq.editer;
+handle["/visionner/"] = gestReq.visionner;
+
+serveur.start(routeur.route, handle);
