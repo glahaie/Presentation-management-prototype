@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Notes de Cours = interface</title>
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Bootstrap: http://twitter.github.io/bootstrap/ -->
+        <link href="media/css/bootstrap.min.css" rel="stylesheet" media="screen">
+        
+    </head>
+    <body>
+        
+         <div class="container">
+            <div class="row">
+                <div class="span12 navbar">
+                    <div class="navbar-inner">
+                        <div class="container">
+                            <a class="brand" href="#">Note de cours</a>
+                            <ul class="nav">
+                                <li><a href="#">Interface</a></li>
+                                <li><a href="#">Lien</a></li>
+                            </ul>
+                            <form class="navbar-search pull-left">
+                                <input type="text" class="search-query" placeholder="Search">
+                            </form>
+                            <ul class="nav pull-right">
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                        M. Enseignant
+                                        <b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Logout</a></li>
+                                        <li><a href="#">Config</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#" class="text-warning">Couler tous étudiants</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        
+            <div class="row">
+                <nav id="presentations" class="span3">
+                    <ul class="nav nav-list">
+                        <li class="nav-header">Présentations</li>
+                        <li><a href="#">Dossier 1</a></li>
+                        <li class="active"><a href="#">Dossier 2</a>
+                            <ul class="nav nav-list">
+                                <li><a href="#">Présentation 2.1</a></li>
+                                <li class="active"><a href="#">Présentation 2.2</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="">Présentation 1</a>
+                        </li>
+                        <li>
+                            <a href="">Présentation 2</a>
+                        </li>
+                        <li class="ajouter">
+                            <a href="">Nouvelle présentation</a>
+                        </li>
+                    </ul>
+                </nav>
+                
+                <section id="interface" class="span9">
+                    <div class="row">
+                        <div id="primaire" class="span6">
+                            <ul class="breadcrumb">
+                                <li><a href="#">Présentation 2.2</a> <span class="divider">/</span></li>
+                                <li><a href="#">Acétate 3</a> <span class="divider">/</span></li>
+                            </ul>
+                            <form action="">  
+                                <ul class="nav inline">
+                                    <li><a href="#"><i class="icon-bold"></i></a></li>
+                                    <li><a href="#"><i class="icon-italic"></i></a></li>
+                                    <li><a href="#"><i class="icon-font"></i></a></li>
+                                    <li><a href="#"><i class="icon-align-left"></i></a></li>
+                                    <li><a href="#"><i class="icon-align-center"></i></a></li>
+                                    <li><a href="#"><i class="icon-align-justify"></i></a></li>
+                                    <li><a href="#"><i class="icon-align-right"></i></a></li>
+                                </ul>
+                                
+                                <div class="well" style="height: 200px;">Hello Jello</div>
+                                <p class="muted">Indice: Drag et drop pour inserer des images.</p>
+                                
+                                <div class="form-actions">
+                                    <button type="submit" class="btn btn-primary">Sauvegarde</button>
+                                    <button type="button" class="btn">Annuler</button>
+                                </div>
+                            </form>
+                            <ul class="inline">
+                                <li><a href="">Tag 1</a></li>
+                                <li><a href="">Tag 2</a></li>
+                                <li><a href="" class="ajouter">+</a></li>
+                            </ul>
+                        </div>
+                        <div id="acetates" class="span3" style="height:600px; overflow-y: scroll;">
+                            <ul class="unstyled">
+                                <li><a href="" class="thumbnail"><img src="media/images/1-INF4375-XML.png"></a></li>
+                                <li><a href="" class="thumbnail"><img src="media/images/2-INF4375-XML.png"></a></li>
+                                <li><a href="" class="thumbnail"><img src="media/images/3-INF4375-XML.png"></a></li>
+                                <li><a href="" class="thumbnail"><img src="media/images/4-INF4375-XML.png"></a></li>
+                                <li><a href="" class="thumbnail"><img src="media/images/1-INF4375-XML.png"></a></li>
+                                <li><a href="" class="thumbnail"><img src="media/images/2-INF4375-XML.png"></a></li>
+                                <li><a href="" class="thumbnail"><img src="media/images/3-INF4375-XML.png"></a></li>
+                                <li><a href="" class="thumbnail"><img src="media/images/4-INF4375-XML.png"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <script src="media/js/jquery-1.10.1.min.js"></script>
+        <script src="media/js/bootstrap.min.js"></script>
+    </body>
+
+</html>
