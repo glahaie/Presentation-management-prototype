@@ -1,5 +1,128 @@
-extends layout
-
-block content
-  h1= title
-  p Welcome to #{title}
+﻿!!! 5
+html
+  head
+    meta(charset='utf-8')
+    title Notes de Cours = interface
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    link(href='./stylesheets/bootstrap.min.css', rel='stylesheet', media='screen')
+    link(href='./stylesheets/bootstrap-responsive.min.css', rel='stylesheet', media='screen')
+    script(src='javascripts/jquery-1.10.1.min.js')
+    script(src='javascripts/bootstrap.min.js')
+  body
+    .container
+      .row
+        .span12.navbar
+          .navbar-inner
+            .container
+              a.brand(href='#') Note de cours
+              ul.nav
+                li
+                  a(href='#') Interface
+                li
+                  a(href='#') Lien
+              form.navbar-search.pull-left
+                input.search-query(type='text', placeholder='Search')
+              ul.nav.pull-right
+                li.dropdown
+                  a.dropdown-toggle(data-toggle='dropdown', href='#')
+                    | M. Enseignant
+                    b.caret
+                  ul.dropdown-menu
+                    li
+                      a(href='#') Logout
+                    li
+                      a(href='#') Config
+                    li.divider
+                    li
+                      a.text-warning(href='#') Couler tous étudiants
+      .row
+        nav#presentations.span3
+          ul.nav.nav-list
+            li.nav-header Présentations
+            li
+              a(href='#') Dossier 1
+            li.active
+              a(href='#') Dossier 2
+              ul.nav.nav-list
+                li
+                  a(href='#') Présentation 2.1
+                li.active
+                  a(href='#') Préntation 2.2
+            li
+              a(href='') Présentation 1
+            li
+              a(href='') Préntation 2
+            li.ajouter
+              a(href='') Nouvelle préntation
+        section#interface.span9
+          .row
+            #primaire.span6
+              ul.breadcrumb
+                li
+                  a(href='#') Présentation 2.2
+                  span.divider /
+                li
+                  a(href='#') Acétate 3
+                  span.divider /
+              form(action='')
+                ul.nav.inline
+                  li
+                    a(href='#')
+                      i.icon-bold
+                  li
+                    a(href='#')
+                      i.icon-italic
+                  li
+                    a(href='#')
+                      i.icon-font
+                  li
+                    a(href='#')
+                      i.icon-align-left
+                  li
+                    a(href='#')
+                      i.icon-align-center
+                  li
+                    a(href='#')
+                      i.icon-align-justify
+                  li
+                    a(href='#')
+                      i.icon-align-right
+                .well(style='height: 200px;') Hello Jello
+                p.muted Indice: Drag et drop pour inserer des images.
+                .form-actions
+                  button.btn.btn-primary(type='submit') Sauvegarde
+                  button.btn(type='button') Annuler
+              ul.inline
+                li
+                  a(href='') Tag 1
+                li
+                  a(href='') Tag 2
+                li
+                  a.ajouter(href='') +
+            #acetates.span3(style='height: 600px; overflow-y: scroll;')
+              ul.unstyled
+                li
+                  a.thumbnail(href='')
+                    img(src='images/1-INF4375-XML.png')
+                li
+                  a.thumbnail(href='')
+                    img(src='images/2-INF4375-XML.png')
+                li
+                  a.thumbnail(href='')
+                    img(src='images/3-INF4375-XML.png')
+                li
+                  a.thumbnail(href='')
+                    img(src='images/4-INF4375-XML.png')
+                li
+                  a.thumbnail(href='')
+                    img(src='images/1-INF4375-XML.png')
+                li
+                  a.thumbnail(href='')
+                    img(src='images/2-INF4375-XML.png')
+                li
+                  a.thumbnail(href='')
+                    img(src='images/3-INF4375-XML.png')
+                li
+                  a.thumbnail(href='')
+                    img(src='images/4-INF4375-XML.png')
+  
