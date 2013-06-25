@@ -5,10 +5,9 @@ html
     title Notes de Cours = interface
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     link(href='./stylesheets/bootstrap.min.css', rel='stylesheet', media='screen')
-    link(href='./stylesheets/bootstrap-responsive.min.css', rel='stylesheet', media='screen')
-    script(src='javascripts/jquery-1.10.1.min.js')
-    script(src='javascripts/bootstrap.min.js')
+    //-link(href='./stylesheets/bootstrap-responsive.min.css', rel='stylesheet', media='screen')
     script(src='javascripts/index.js') 
+  body
     .container
       .row
         .span12.navbar
@@ -54,75 +53,74 @@ html
               a(href='') Préntation 2
             li.ajouter
               a(href='') Nouvelle préntation
-        section#interface.span9
-          .row
-            #primaire.span6
-              ul.breadcrumb
-                li
-                  a(href='#') Présentation 2.2
-                  span.divider /
-                li
-                  a(href='#') Acétate 3
-                  span.divider /
-              form(action='')
-                ul.nav.inline
-                  li
-                    a(href='#')
-                      i.icon-bold
-                  li
-                    a(href='#')
-                      i.icon-italic
-                  li
-                    a(href='#')
-                      i.icon-font
-                  li
-                    a(href='#')
-                      i.icon-align-left
-                  li
-                    a(href='#')
-                      i.icon-align-center
-                  li
-                    a(href='#')
-                      i.icon-align-justify
-                  li
-                    a(href='#')
-                      i.icon-align-right
-                .well(style='height: 200px;') Hello Jello
-                p.muted Indice: Drag et drop pour inserer des images.
-                .form-actions
-                  button.btn.btn-primary(type='submit') Sauvegarde
-                  button.btn(type='button') Annuler
-              ul.inline
-                li
-                  a(href='') Tag 1
-                li
-                  a(href='') Tag 2
-                li
-                  a.ajouter(href='') +
-            #acetates.span3(style='height: 600px; overflow-y: scroll;')
-              ul.unstyled
-                li
-                  a.thumbnail(href='')
-                    img(src='images/1-INF4375-XML.png')
-                li
-                  a.thumbnail(href='')
-                    img(src='images/2-INF4375-XML.png')
-                li
-                  a.thumbnail(href='')
-                    img(src='images/3-INF4375-XML.png')
-                li
-                  a.thumbnail(href='')
-                    img(src='images/4-INF4375-XML.png')
-                li
-                  a.thumbnail(href='')
-                    img(src='images/1-INF4375-XML.png')
-                li
-                  a.thumbnail(href='')
-                    img(src='images/2-INF4375-XML.png')
-                li
-                  a.thumbnail(href='')
-                    img(src='images/3-INF4375-XML.png')
-                li
-                  a.thumbnail(href='')
-                    img(src='images/4-INF4375-XML.png')
-  
+        section#interface-primaire.span6
+          ul.breadcrumb
+            li
+              a(href='#') Présentation 2.2
+              span.divider /
+            li
+              a(href='#') Acétate 3
+              span.divider /
+          form(action='')
+            ul.nav.inline
+              li
+                a(href='#')
+                  i.icon-bold
+              li
+                a(href='#')
+                  i.icon-italic
+              li
+                a(href='#')
+                  i.icon-font
+              li
+                a(href='#')
+                  i.icon-align-left
+              li
+                a(href='#')
+                  i.icon-align-center
+              li
+                a(href='#')
+                  i.icon-align-justify
+              li
+                a(href='#')
+                  i.icon-align-right
+            .well(style='height: 200px;') Hello Jello
+            p.muted Indice: Drag et drop pour inserer des images.
+            .form-actions
+              button.btn.btn-primary(type='submit') Sauvegarde
+              button.btn(type='button') Annuler
+          ul.inline
+            li
+              a(href='') Tag 1
+            li
+              a(href='') Tag 2
+            li
+              a.ajouter(href='') +
+        #acetates.span3(style='height: 600px; overflow-y: scroll;')
+          ul.unstyled
+            li
+              a.thumbnail(href='')
+                img(src='images/1-INF4375-XML.png')
+            li
+              a.thumbnail(href='')
+                img(src='images/2-INF4375-XML.png')
+            li
+              a.thumbnail(href='')
+                img(src='images/3-INF4375-XML.png')
+            li
+              a.thumbnail(href='')
+                img(src='images/4-INF4375-XML.png')
+            li
+              a.thumbnail(href='')
+                img(src='images/1-INF4375-XML.png')
+            li
+              a.thumbnail(href='')
+                img(src='images/2-INF4375-XML.png')
+            li
+              a.thumbnail(href='')
+                img(src='images/3-INF4375-XML.png')
+            li
+              a.thumbnail(href='')
+                img(src='images/4-INF4375-XML.png')
+    script(src='javascripts/jquery-1.10.1.min.js')
+    script(src='javascripts/bootstrap.min.js')
