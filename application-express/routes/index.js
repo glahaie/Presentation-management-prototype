@@ -4,13 +4,10 @@ exports.index = function(req, res){
 };
 
 exports.editeur = function(req, res) {
-  console.log("Request handler 'editer' w");
-  res.end('Hello Editeur\n');
-}
+  res.render('editer-page');
+};
 
 exports.vision = function(req, res) {
   console.log("Request handler 'visionner' w");
   res.end('Hello Vision\n');
-}
-
-
+};

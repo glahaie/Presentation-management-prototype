@@ -1,0 +1,18 @@
+extends index
+// IF-1.3-E :: Interface pour editer une page
+
+block primaire
+  form(action='')
+    ul.nav.inline
+      li: a(href='#'): i.icon-bold
+      li: a(href='#'): i.icon-italic
+      li: a(href='#'): i.icon-font
+      li: a(href='#'): i.icon-align-left
+      li: a(href='#'): i.icon-align-center
+      li: a(href='#'): i.icon-align-justify
+      li: a(href='#'): i.icon-align-right
+    .well(style='height: 200px;') Hello Jello
+    p.muted Indice: Drag et drop pour inserer des images.
+    .form-actions
+      button.btn.btn-primary(type='submit') Sauvegarde
+      button.btn(type='button') Annuler
