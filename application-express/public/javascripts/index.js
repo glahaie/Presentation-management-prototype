@@ -1,6 +1,9 @@
 
 $(document).ready(function(){
-
- //stuff...  
-
+  $(function(){
+    $( "#sortable" ).sortable({
+        axis: "y",
+      });
+    $( "#sortable" ).disableSelection();
+  });
 });
