@@ -42,22 +42,17 @@
 
 -->
 
-<html lang="en">
+<html lang="fr">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=1024" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
+    
     <title>Présentation Exemple (impress.js) | Paradigme d'échanges | by Jacques Berger @jberger</title>
     
     <meta name="description" content="LA description de la présentation." /><!-- TODO: ajouter ça au UC d'édition -->
     <meta name="author" content="Jacques Berger" />
-
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
-
-    <!--link href="css/impress-demo.css" rel="stylesheet" />
     
-    <link rel="shortcut icon" href="favicon.png" />
-    <link rel="apple-touch-icon" href="apple-touch-icon.png" /-->
 </head>
 
 <body class="impress-not-supported">
@@ -217,41 +212,18 @@
 
 </div>
 
-<!--
-    
-    Hint is not related to impress.js in any way.
-    
-    But it can show you how to use impress.js features in creative way.
-    
-    When the presentation step is shown (selected) its element gets the class of "active" and the body element
-    gets the class based on active step id `impress-on-ID` (where ID is the step's id)... It may not be
-    so clear because of all these "ids" in previous sentence, so for example when the first step (the one with
-    the id of `bored`) is active, body element gets a class of `impress-on-bored`.
-    
-    This class is used by this hint below. Check CSS file to see how it's shown with delayed CSS animation when
-    the first step of presentation is visible for a couple of seconds.
-    
-    ...
-    
-    And when it comes to this piece of JavaScript below ... kids, don't do this at home ;)
-    It's just a quick and dirty workaround to get different hint text for touch devices.
-    In a real world it should be at least placed in separate JS file ... and the touch content should be
-    probably just hidden somewhere in HTML - not hard-coded in the script.
-    
-    Just sayin' ;)
-    
--->
+<!-- Ceci va etre superimpose' par l'application ... en plus sa va etre un
+     paneau de controle au lieu d'un hint
 <div class="hint">
     <p>Use a spacebar or arrow keys to navigate</p>
 </div>
-<script>
-if ("ontouchstart" in document.documentElement) { 
-    document.querySelector(".hint").innerHTML = "<p>Tap on the left or right to navigate</p>";
-}
-</script>
+
+-->
 
 <!--
-    
+    TODO: Il faut decider quoi faire avec ca ... on devrait probablement 
+          enlever les scripts des documents sources completement
+           
     Last, but not least.
     
     To make all described above really work, you need to include impress.js in the page.
@@ -265,8 +237,8 @@ if ("ontouchstart" in document.documentElement) {
     Of course you can wrap it in any kind of "DOM ready" event, but I was too lazy to do so ;)
     
 -->
-<script src="js/impress.js"></script><!-- TODO! Where to put this? -->
-<script>impress().init();</script>
+<!--script src="js/impress.js"></script>
+<script>impress().init();</script-->
 
 <!--
     
