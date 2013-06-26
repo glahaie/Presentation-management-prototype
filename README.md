@@ -17,3 +17,13 @@ Projet : Système note de cours
 Description : Logiciel qui génère des présentations (acétates) à partir de documents rédigés dans un format très simple.
 
 ------------------------------------------------------------------------------------------------------------------------
+
+Comment installer le prototype
+
+il faut avoir node et npm installés sur votre ordi
+
+$ cd application-express
+$ npm install
+$ node app.js
+
+ou l'equivalent sur windows

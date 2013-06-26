@@ -6,7 +6,9 @@ html
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     link(href='./stylesheets/bootstrap.min.css', rel='stylesheet', media='screen')
     //-link(href='./stylesheets/bootstrap-responsive.min.css', rel='stylesheet', media='screen')
-    script(src='javascripts/index.js') 
+    script(src='javascripts/index.js')
+    script(src='javascripts/jquery-1.10.1.min.js')
+    script(src='javascripts/bootstrap.min.js')
   body
     .container
       .row
@@ -34,62 +36,5 @@ html
                     li.divider
                     li
                       a.text-warning(href='#') Couler tous étudiants
-      .row
-        nav#presentations.span3
-          ul.nav.nav-list
-            li.nav-header Présentations
-            li
-              a(href='#') Dossier 1
-            li.active
-              a(href='#') Dossier 2
-              ul.nav.nav-list
-                li
-                  a(href='#') Présentation 2.1
-                li.active
-                  a(href='#') Préntation 2.2
-            li
-              a(href='') Présentation 1
-            li
-              a(href='') Préntation 2
-            li.ajouter
-              a(href='') Nouvelle préntation
-        section#interface-primaire.span6
-          ul.breadcrumb
-            li
-              a(href='#') Présentation 2.2
-              span.divider /
-            li
-              a(href='#') Acétate 3
-              span.divider /
-          
-          block primaire
-            p hello
-          
-        #acetates.span3(style='height: 600px; overflow-y: scroll;')
-          ul.unstyled
-            li
-              a.thumbnail(href='')
-                img(src='images/1-INF4375-XML.png')
-            li
-              a.thumbnail(href='')
-                img(src='images/2-INF4375-XML.png')
-            li
-              a.thumbnail(href='')
-                img(src='images/3-INF4375-XML.png')
-            li
-              a.thumbnail(href='')
-                img(src='images/4-INF4375-XML.png')
-            li
-              a.thumbnail(href='')
-                img(src='images/1-INF4375-XML.png')
-            li
-              a.thumbnail(href='')
-                img(src='images/2-INF4375-XML.png')
-            li
-              a.thumbnail(href='')
-                img(src='images/3-INF4375-XML.png')
-            li
-              a.thumbnail(href='')
-                img(src='images/4-INF4375-XML.png')
-    script(src='javascripts/jquery-1.10.1.min.js')
-    script(src='javascripts/bootstrap.min.js')
+      #contenu.row
+        block contenu

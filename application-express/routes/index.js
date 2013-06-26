@@ -1,10 +1,14 @@
 ﻿
 exports.index = function(req, res){
-  res.render('index');
+  res.render('presentations');
 };
 
-exports.editeur = function(req, res) {
-  res.render('editer-page');
+exports.presentation = function(req, res) {
+  res.render('consulter-presentation')
+};
+
+exports.page = function(req, res) {
+  res.render('consulter-page');
 };
 
 exports.vision = function(req, res) {
