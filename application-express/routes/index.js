@@ -15,3 +15,8 @@ exports.vision = function(req, res) {
   console.log("Request handler 'visionner' w");
   res.end('Hello Vision\n');
 };
+
+exports.ecran = function(req, res){
+  var id = req.params.id;
+  res.send("presentation : "+id);
+};
