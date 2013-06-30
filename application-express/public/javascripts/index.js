@@ -7,11 +7,8 @@ $(document).ready(function(){
     $( "#sortable" ).disableSelection();
   });
 
- // $('#start').click(function(){
-
- 
-
-/*    var ident = document.getElementById('presentationID').textContent; 
+  $('#start').click(function(){
+    var ident = document.getElementById('presentationID').textContent; 
     var url = "/presentation/"+ident;
     $.ajax({
        type: "GET",
@@ -25,11 +22,11 @@ $(document).ready(function(){
           alert("Response: "+ response);
        },
       });
-*/    
+   
 
-   //});
+   });
 
-   $(".group1").colorbox({rel:'group1', transition:"fade"});
+//   $(".group1").colorbox({rel:'group1', transition:"fade"});
 
- 
-});
+}); 
+
