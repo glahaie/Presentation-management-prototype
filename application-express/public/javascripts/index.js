@@ -12,7 +12,6 @@ $(document).ready(function(){
     var url = "/presentation/"+ident;
     $.ajax({
        type: "GET",
-       dataType: "html",
        url: url,
        error: function(error){
         if(error){
@@ -20,8 +19,8 @@ $(document).ready(function(){
          }
        },
        success: function(response){
-	alert(response);
-        },
+          alert("Response: "+ response);
+       },
       });
      
       

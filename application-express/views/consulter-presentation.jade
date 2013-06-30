@@ -4,12 +4,12 @@ block breadcrumb
   li
     p Présentation 
      a#presentationID(href='') 2.2
-    span.divider 
+    span.divider#presentstart 
 
 block primaire
   p Bienvenue!
-  input#start(type='button', value='Démarrer la présentation')
-  
+  a.various(data-fancybox-type='iframe' , href='') Demarrer présentation
+
 block acetates
  div#presentatioEnCours
    ul.unstyled#sortable

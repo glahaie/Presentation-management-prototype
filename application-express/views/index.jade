@@ -5,11 +5,11 @@ html
     meta(charset='utf-8')
     title Notes de Cours = interface
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
-    link(href='/static/stylesheets/bootstrap.min.css', rel='stylesheet', media='screen')
-    //-link(href='stylesheets/bootstrap-responsive.min.css', rel='stylesheet', media='screen')
+    link(href='./static/stylesheets/bootstrap.min.css', rel='stylesheet', media='screen')
     script(src='/static/javascripts/jquery-1.10.1.min.js')
     script(src='/static/javascripts/jquery-ui.min.js')
     script(src='/static/javascripts/bootstrap.min.js')
+    script(src='./static/javascripts/jquery.fancybox-1.3.4.pack.js')
     script(src='/static/javascripts/index.js')
   body
     .container
@@ -24,7 +24,7 @@ html
                 li
                   a(href='#') Lien
               form.navbar-search.pull-left
-                input.search-query(type='text', placeholder='Search')
+                input.search-query(type='text', placeholder='Recherche')
               ul.nav.pull-right
                 li.dropdown
                   a.dropdown-toggle(data-toggle='dropdown', href='#')
