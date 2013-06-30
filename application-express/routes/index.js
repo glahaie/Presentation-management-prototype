@@ -24,7 +24,8 @@ exports.ecran = function(req, res){
 	fs.readFile(link, 'utf8', function(err, data) {
 		if (err) throw err;
 		console.log('OK: ' + link);
-		console.log(data)
+		console.log(data);
+                console.log(data);
 		res.send(data);
 	});
 };

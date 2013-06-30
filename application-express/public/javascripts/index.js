@@ -7,7 +7,6 @@ $(document).ready(function(){
     $( "#sortable" ).disableSelection();
   });
 
-  $('#start').click(function(){
     var ident = document.getElementById('presentationID').textContent; 
     var url = "/presentation/"+ident;
     $.ajax({
@@ -19,14 +18,13 @@ $(document).ready(function(){
          }
        },
        success: function(response){
-          alert("Response: "+ response);
+         $('#test-popup').html = response; 
        },
       });
-   
 
-   });
-
-//   $(".group1").colorbox({rel:'group1', transition:"fade"});
-
-}); 
+    $('.open-popup-link').magnificPopup({
+       type:'inline',
+       midClick: true  
+       }); 
+      }); 
 
