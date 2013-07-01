@@ -11,8 +11,10 @@
   position: relative;
   background: #FFF;
   padding: 20px;
-  width:auto;
-  max-width: 500px;
+  width:940px;
+  height: 500px;
+  /*max-height: 800px;*/
+ /* max-width: 970px;*/
   margin: 20px auto;
 }
 #remplir {
