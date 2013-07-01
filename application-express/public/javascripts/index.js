@@ -20,17 +20,24 @@ $(document).ready(function(){
          }
        },
        success: function(response){
-         $('#remplir').html('<iframe name="test-popup" id="test-popup" class="white-popup.mfp-hide" srcdoc="'+response+'"> </iframe> '); 
+     //    $('#remplir').html('<iframe name="test-popup" id="test-popup" class="white-popup.mfp-hide" srcdoc="'+response+'"> </iframe> '); 
+          $('#remplir').html('<div id="test-popup" class="white-popup mfp-hide" >'+response+'</div>');
           console.log($('#test-popup').html());
          },
       });
 
-  $('.open-popup-link').magnificPopup({
+$('.open-popup-link').magnificPopup({
+	type:'inline',
+	midClick: true 
+});
+
+
+  /*$('.open-popup-link').magnificPopup({
      items: {
         src: '#test-popup'
        },
      type: 'iframe'
-   });
+   });*/
 
 
 }); 
