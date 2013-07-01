@@ -1,4 +1,6 @@
 
+var bob = "";
+
 $(document).ready(function(){
   $(function(){
     $( "#sortable" ).sortable({
@@ -18,13 +20,18 @@ $(document).ready(function(){
          }
        },
        success: function(response){
-         $('#test-popup').html = response; 
-       },
+         $('#remplir').html('<iframe name="test-popup" id="test-popup" class="white-popup.mfp-hide" srcdoc="'+response+'"> </iframe> '); 
+          console.log($('#test-popup').html());
+         },
       });
 
-    $('.open-popup-link').magnificPopup({
-       type:'inline',
-       midClick: true  
-       }); 
-      }); 
+  $('.open-popup-link').magnificPopup({
+     items: {
+        src: '#test-popup'
+       },
+     type: 'iframe'
+   });
+
+
+}); 
 

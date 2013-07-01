@@ -25,7 +25,6 @@ exports.ecran = function(req, res){
 		if (err) throw err;
 		console.log('OK: ' + link);
 		console.log(data);
-                console.log(data);
 		res.send(data);
 	});
 };
