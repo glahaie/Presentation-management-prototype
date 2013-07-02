@@ -4,36 +4,37 @@ block breadcrumb
   li
     p Présentation 
      a#presentationID(href='') 2.2
-    span.divider 
-
+    span.divider#presentstart 
+     
 block primaire
   p Bienvenue!
-  input#start(type='button', value='Démarrer la présentation')
-  
+  a.open-popup-link(href="#test-popup") Démarrer la présentation 
+  div#remplir
+ 
 block acetates
- div#presentatioEnCours
+ div.presentationEnCours
    ul.unstyled#sortable
      li
-       a.thumbnail(href='/presentation/page')
-         img(src='/static/images/1-INF4375-XML.png')
+       a.thumbnail(href='')
+         img.group1.cboxElement(src='/static/images/1-INF4375-XML.png')
      li
-       a.thumbnail(href='/presentation/page')
-         img(src='/static/images/2-INF4375-XML.png')
+       a.thumbnail(href='')
+         img.group1.cboxElement(src='/static/images/2-INF4375-XML.png')
      li
-       a.thumbnail(href='/presentation/page')
-         img(src='/static/images/3-INF4375-XML.png')
+       a.thumbnail(href='')
+         img.group1.cboxElement(src='/static/images/3-INF4375-XML.png')
      li
-       a.thumbnail(href='/presentation/page')
-         img(src='/static/images/4-INF4375-XML.png')
+       a.thumbnail(href='')
+         img.group1.cboxElement(src='/static/images/4-INF4375-XML.png')
      li
-       a.thumbnail(href='/presentation/page')
-         img(src='/static/images/1-INF4375-XML.png')
+       a.thumbnail(href='')
+         img.group1.cboxElement(src='/static/images/1-INF4375-XML.png')
      li
-       a.thumbnail(href='/presentation/page')
-         img(src='/static/images/2-INF4375-XML.png')
+       a.thumbnail(href='')
+         img.group1.cboxElement(src='/static/images/2-INF4375-XML.png')
      li
-       a.thumbnail(href='/presentation/page')
-         img(src='/static/images/3-INF4375-XML.png')
+       a.thumbnail(href='')
+         img.group1.cboxElement(src='/static/images/3-INF4375-XML.png')
      li
-       a.thumbnail(href='/presentation/page')
-         img(src='/static/images/4-INF4375-XML.png')
+       a.thumbnail(href='')
+         img.group1.cboxElement(src='/static/images/4-INF4375-XML.png')
