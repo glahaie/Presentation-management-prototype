@@ -25,12 +25,15 @@ $(document).ready(function(){
           console.log($('#test-popup').html());
          },
       });
-}); 
+
 	  
-$('.open-popup-link').magnificPopup({
-	type:'inline',
-	midClick: true 
-});
+	$('.open-popup-link').magnificPopup({
+		type:'inline',
+		midClick: true 
+	});
+	  
+}); 
+
 
 function protoRechercheSupprimer() {
     document.getElementById("supprimerNom").value = "Gratton";
