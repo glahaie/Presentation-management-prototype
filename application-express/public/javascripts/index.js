@@ -25,7 +25,8 @@ $(document).ready(function(){
           console.log($('#test-popup').html());
          },
       });
-
+}); 
+	  
 $('.open-popup-link').magnificPopup({
 	type:'inline',
 	midClick: true 
@@ -79,13 +80,11 @@ function activerOptions(tabIndex) {
     liste[tabIndex].className = "active";
 }
 
-  /*$('.open-popup-link').magnificPopup({
-     items: {
-        src: '#test-popup'
-       },
-     type: 'iframe'
-   });*/
+/*$('.open-popup-link').magnificPopup({
+ items: {
+	src: '#test-popup'
+   },
+ type: 'iframe'
+});*/
 
-
-}); 
 
