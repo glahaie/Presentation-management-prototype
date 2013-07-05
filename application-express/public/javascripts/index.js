@@ -1,38 +1,38 @@
-
-var bob = "";
-
 $(document).ready(function(){
-  $(function(){
-    $( "#sortable" ).sortable({
-        axis: "y",
-      });
-    $( "#sortable" ).disableSelection();
-  });
+  
+    // Permettre le click & drag des thumbnails
+    $(function(){
+        $( "#sortable" ).sortable({ axis: "y" });
+        $( "#sortable" ).disableSelection();
+    });
 
-    var ident = document.getElementById('presentationID').textContent; 
-    var url = "/presentation/"+ident;
-    $.ajax({
-       type: "GET",
-       url: url,
-       error: function(error){
-        if(error){
-  	  console.log("Erreur");
-         }
-       },
-       success: function(response){
-     //    $('#remplir').html('<iframe name="test-popup" id="test-popup" class="white-popup.mfp-hide" srcdoc="'+response+'"> </iframe> '); 
-          $('#remplir').html('<div id="test-popup" class="white-popup mfp-hide" >'+response+'</div>');
-          console.log($('#test-popup').html());
-         },
-      });
-
-	  
+    // Créer les paramètres de la requête
+    /*var ident = document.getElementById('presentationID').textContent; 
+    var ajaxObject = {
+        type: "Get",
+        url: "/presentation/" + ident,
+        error: function(error) {
+            if (error) {
+                console.log("Erreur");
+            }
+        },
+        success: function(response) {
+            //$('#remplir').html('<iframe name="test-popup" id="test-popup" class="white-popup.mfp-hide" srcdoc="'+response+'"> </iframe> '); 
+            $('#remplir').html('<div id="test-popup" class="white-popup mfp-hide" >'+response+'</div>');
+            console.log($('#test-popup').html());
+        }
+    };
+    
+    // Envoyé la requête.
+    $.ajax(ajaxObject);
+  
+    // Lancer une porésentation fullscreen
 	$('.open-popup-link').magnificPopup({
 		type:'inline',
 		midClick: true 
-	});
-	  
-}); 
+	});*/
+	 
+});
 
 
 function protoRechercheSupprimer() {

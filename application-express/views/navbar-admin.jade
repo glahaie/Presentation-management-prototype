@@ -1,0 +1,23 @@
+extends index
+
+block navbar
+  #navbar.span12.navbar
+    .navbar-inner
+      ul.nav.pull-left
+      
+        if menuGestionUtilisateur
+          li.active
+            a(href='/gestion-admin') Gestion Utilisateur
+        else
+          li
+            a(href='/gestion-admin') Gestion Utilisateur
+          
+      ul.nav.pull-right
+        li.dropdown
+          a.dropdown-toggle(data-toggle='dropdown', href='#')
+            | Mr. Admin
+            b.caret
+          ul.dropdown-menu
+            li
+              a(href='/logout') Déconnecter
+      

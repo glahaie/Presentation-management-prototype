@@ -1,40 +1,23 @@
 extends presentations
 
+block arborescence
+  include arborescence
+
 block breadcrumb
-  li
-    p Présentation 
-     a#presentationID(href='') 2.2
-    span.divider#presentstart 
+  ul.breadcrumb
+    li
+      span Présentation 
+        a#presentationID(href='') 2.2
      
 block primaire
-  p Bienvenue!
-  a.open-popup-link(href="#test-popup") Démarrer la présentation 
+  ul.inline
+    if userType === 'prof'
+      li
+        a(href='/editer-presentation') Mode Editeur
+    li
+      a.open-popup-link(href="#test-popup") Démarrer la présentation 
+  p (à faire, visualiser la présentation dans la page)
   div#remplir
  
 block acetates
- div.presentationEnCours
-   ul.unstyled#sortable
-     li
-       a.thumbnail(href='')
-         img.group1.cboxElement(src='/static/images/1-INF4375-XML.png')
-     li
-       a.thumbnail(href='')
-         img.group1.cboxElement(src='/static/images/2-INF4375-XML.png')
-     li
-       a.thumbnail(href='')
-         img.group1.cboxElement(src='/static/images/3-INF4375-XML.png')
-     li
-       a.thumbnail(href='')
-         img.group1.cboxElement(src='/static/images/4-INF4375-XML.png')
-     li
-       a.thumbnail(href='')
-         img.group1.cboxElement(src='/static/images/1-INF4375-XML.png')
-     li
-       a.thumbnail(href='')
-         img.group1.cboxElement(src='/static/images/2-INF4375-XML.png')
-     li
-       a.thumbnail(href='')
-         img.group1.cboxElement(src='/static/images/3-INF4375-XML.png')
-     li
-       a.thumbnail(href='')
-         img.group1.cboxElement(src='/static/images/4-INF4375-XML.png')
+  include acetates

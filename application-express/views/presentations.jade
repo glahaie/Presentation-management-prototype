@@ -1,33 +1,11 @@
-extends index
-
 block contenu
   nav#presentations.span3
-    ul.nav.nav-list
-      li.nav-header 
-       h4 Présentations
-      li
-        a(href='#') Dossier 1
-      li.active
-        a(href='#') Dossier 2
-        ul.nav.nav-list
-          li
-            a(href='/presentation') Présentation 2.1
-          li.active
-            a(href='/presentation') Présentation 2.2
-      li
-        a(href='/presentation') Présentation 1
-      li
-        a(href='/presentation') Présentation 2
-      li.ajouter
-        a(href='/presentation') Nouvelle présentation
+    block arborescence
   
   section#interface-primaire.span6
-    ul.breadcrumb
-      block breadcrumb
-        li: /
-    
+    block breadcrumb
+
     block primaire
-      p Bienvenue!
     
   #acetates.span3(style='height: 600px; overflow-y: scroll;')
     block acetates

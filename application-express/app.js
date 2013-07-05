@@ -9,6 +9,9 @@ var express = require('express')
 
 var app = express();
 
+app.use(express.cookieParser());
+app.use(express.session({secret: 'z4ywvtbq734tvqneh'}));
+
 // all environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
@@ -29,9 +32,12 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.get('/presentation/:id', routes.ecran);
 app.get('/presentation/:id/page', routes.page);
-app.get('/admin', routes.admin);
 app.get('/presentation', routes.presentation);
-app.get('/vision', routes.vision);
+app.get('/editer-presentation', routes.editPresentation);
+app.get('/admin', routes.admin);
+app.get('/contactez-nous', routes.contactez);
+app.post('/login', routes.login);
+app.get('/logout', routes.logout);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

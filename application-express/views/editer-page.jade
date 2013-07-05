@@ -1,18 +1,39 @@
-extends consulter-presentation
-// IF-1.3-E :: Interface pour editer une page
+extends index
+extends navbar-professeur
+// IF-1.3-E :: Interface pour éditer une page
 
-block primaire
-  form(action='')
-    ul.nav.inline
-      li: a(href='#'): i.icon-bold
-      li: a(href='#'): i.icon-italic
-      li: a(href='#'): i.icon-font
-      li: a(href='#'): i.icon-align-left
-      li: a(href='#'): i.icon-align-center
-      li: a(href='#'): i.icon-align-justify
-      li: a(href='#'): i.icon-align-right
-    .well(style='height: 200px;') Hello Jello
-    p.muted Indice: Drag et drop pour inserer des images.
-    .form-actions
-      button.btn.btn-primary(type='submit') Sauvegarde
-      button.btn(type='button') Annuler
+block contenu
+  nav#presentations.span3
+    include arborescence
+  
+  section#interface-primaire.span6
+    ul.breadcrumb
+      li
+        span Présentation 
+          a#presentationID(href='') 2.2
+    ul.inline
+      li
+        a(href='/presentation') Mode Consulter
+      li
+        a.open-popup-link(href="#test-popup") Démarrer la présentation 
+
+    div#remplir
+      form(action='')
+        ul.nav.inline
+          li: a(href='#'): i.icon-bold
+          li: a(href='#'): i.icon-italic
+          li: a(href='#'): i.icon-font
+          li: a(href='#'): i.icon-align-left
+          li: a(href='#'): i.icon-align-center
+          li: a(href='#'): i.icon-align-justify
+          li: a(href='#'): i.icon-align-right
+        .well(style='height: 200px;') Hello Jello
+        p.muted Indice: Drag et drop pour insérer des images.
+        .form-actions
+          button.btn.btn-primary(type='submit') Sauvegarder
+          button.btn(type='button') Annuler
+    
+  #acetates.span3(style='height: 600px; overflow-y: scroll;')
+    include acetates
+
+

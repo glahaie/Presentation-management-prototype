@@ -15,30 +15,7 @@ html
   body
     .container
       .row
-        .span12.navbar
-          .navbar-inner
-            .container
-              a.brand(href='#') Note de cours
-              ul.nav
-                li
-                  a(href='#') Interface
-                li
-                  a(href='#') Lien
-              form.navbar-search.pull-left
-                input.search-query(type='text', placeholder='Rechercher')
-              ul.nav.pull-right
-                li.dropdown
-                  a.dropdown-toggle(data-toggle='dropdown', href='#')
-                    | M. Enseignant
-                    b.caret
-                  ul.dropdown-menu
-                    li
-                      a(href='#') Logout
-                    li
-                      a(href='#') Config
-                    li.divider
-                    li
-                      a.text-warning(href='#') Couler tous étudiants
+        block navbar
       #contenu.row
         block contenu
 
