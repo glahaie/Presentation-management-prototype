@@ -5,7 +5,7 @@
     res.render('accueil-professeur-layout', { pretty: true, menuAccueil: true, loggedIn: true, userType: user});
   } else if (user === 'etudiant') {
     res.render('accueil-etudiant-layout', { pretty: true, menuAccueil: true, loggedIn: true, userType: user});
-  }else {
+  } else {
     res.render('accueil-visiteur-layout', { pretty: true, menuAccueil: true, loggedIn: false });
   }
   
@@ -16,9 +16,9 @@ exports.editPresentation = function(req, res){
   
   if (user === 'prof') {
     res.render('editer-page', { pretty: true, menuPresentation: true, userType: user});
+  } else {
+    res.render('404.jade', { pretty: true, menuAccueil: true});
   }
-
-  //else à faire
   
 };
 
@@ -26,10 +26,10 @@ exports.admin = function(req, res){
 
   if (req.session.userType === 'admin') {
     res.render('gestion-admin', { pretty: true, menuGestionUtilisateur: true });
+  } else {
+    res.render('404.jade', { pretty: true, menuAccueil: true});
   }
 
-  //else à faire
-  
 };
 
 exports.presentation = function(req, res) {
@@ -39,7 +39,10 @@ exports.presentation = function(req, res) {
     res.render('consulter-presentations-professeur-layout', { pretty: true, menuPresentation: true, userType: user});
   } else if (user === 'etudiant') {
     res.render('consulter-presentations-etudiant-layout', { pretty: true, menuPresentation: true, userType: user});
+  } else {
+    res.render('404.jade', { pretty: true, menuAccueil: true});
   }
+  
 };
 
 exports.page = function(req, res) {
@@ -66,7 +69,7 @@ exports.contactez = function(req, res){
     res.render('contactez-nous-professeur-layout', { pretty: true, menuContactezNous: true, loggedIn: true, userType: user});
   } else if (user === 'etudiant') {
     res.render('contactez-nous-etudiant-layout', { pretty: true, menuContactezNous: true, loggedIn: true, userType: user});
-  }else {
+  } else {
     res.render('contactez-nous-visiteur-layout', { pretty: true, menuContactezNous: true, loggedIn: false });
   }
 
@@ -86,11 +89,10 @@ exports.login = function(req, res) {
   } else if (login === 'etudiant' && password === 'etudiant') {
     req.session.userType = 'etudiant';
     res.render('accueil-etudiant-layout', { pretty: true, menuAccueil: true, loggedIn: true, userType: 'etudiant' })
+  } else {
+    res.render('accueil-visiteur-layout', { pretty: true, menuAccueil: true, loggedIn: false });
   }
-  
-  // En cas d'erreur (a faire)
-  
-  console.log(req.session.userType);
+
 };
 
 exports.logout = function(req, res) {

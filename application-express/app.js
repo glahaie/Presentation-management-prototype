@@ -42,3 +42,7 @@ app.get('/logout', routes.logout);
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
+
+app.use(function(req,res){
+  res.render('404', { pretty: true});
+});

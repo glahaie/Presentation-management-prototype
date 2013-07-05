@@ -26,7 +26,7 @@ $(document).ready(function(){
     // Envoyé la requête.
     $.ajax(ajaxObject);
   
-    // Lancer une porésentation fullscreen
+    // Lancer une présentation fullscreen
 	$('.open-popup-link').magnificPopup({
 		type:'inline',
 		midClick: true 

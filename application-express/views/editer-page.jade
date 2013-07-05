@@ -13,9 +13,13 @@ block contenu
           a#presentationID(href='') 2.2
     ul.inline
       li
-        a(href='/presentation') Mode Consulter
+        form(action='/presentation')
+          button.btn(type='submit') Mode Consulter
       li
         a.open-popup-link(href="#test-popup") Démarrer la présentation 
+      li
+        form(action='#')
+          button.btn(type='submit') Partager
 
     div#remplir
       form(action='')

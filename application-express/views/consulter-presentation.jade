@@ -13,9 +13,11 @@ block primaire
   ul.inline
     if userType === 'prof'
       li
-        a(href='/editer-presentation') Mode Editeur
+        form(action='/editer-presentation')
+          button.btn(type='submit') Mode Editeur
     li
       a.open-popup-link(href="#test-popup") Démarrer la présentation 
+      
   p (à faire, visualiser la présentation dans la page)
   div#remplir
  
