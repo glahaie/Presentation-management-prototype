@@ -4,6 +4,7 @@ block arborescence
   include arborescence
 
 block breadcrumb
+  script(src='/static/javascripts/pres.js')
   ul.breadcrumb
     li
       span Présentation 
@@ -16,10 +17,12 @@ block primaire
         form(action='/editer-presentation')
           button.btn(type='submit') Mode Editeur
     li
-      a.open-popup-link(href="#test-popup") Démarrer la présentation 
+      a.open-popup-link(href="#test-popup") 
+        button.btn Démarrer la présentation 
       
   p (à faire, visualiser la présentation dans la page)
   div#remplir
+  div#saveEditor
  
 block acetates
   include acetates

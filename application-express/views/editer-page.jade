@@ -10,13 +10,15 @@ block contenu
     ul.breadcrumb
       li
         span Présentation 
+          script(src='/static/javascripts/pres.js')
           a#presentationID(href='') 2.2
     ul.inline
       li
         form(action='/presentation')
           button.btn(type='submit') Mode Consulter
       li
-        a.open-popup-link(href="#test-popup") Démarrer la présentation 
+        a.open-popup-link(href="#test-popup") 
+          button.btn Démarrer la présentation 
       li
         form(action='#')
           button.btn(type='submit') Partager
@@ -36,6 +38,7 @@ block contenu
         .form-actions
           button.btn.btn-primary(type='submit') Sauvegarder
           button.btn(type='button') Annuler
+    div#saveEditor 
     
   #acetates.span3(style='height: 600px; overflow-y: scroll;')
     include acetates
