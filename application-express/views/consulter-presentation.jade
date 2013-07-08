@@ -5,6 +5,8 @@ block arborescence
 
 block breadcrumb
   script(src='/static/javascripts/pres.js')
+  script(src='/static/javascripts/jquery.jmslideshow.js')
+  script(src='/static/javascripts/jmpress.js')
   ul.breadcrumb
     li
       span Présentation 
@@ -18,11 +20,11 @@ block primaire
           button.btn(type='submit') Mode Editeur
     li
       a.open-popup-link(href="#test-popup") 
-        button.btn Démarrer la présentation 
+        button.btn#pres-button Démarrer la présentation 
       
-  p (à faire, visualiser la présentation dans la page)
   div#remplir
   div#saveEditor
+    
  
 block acetates
   include acetates
