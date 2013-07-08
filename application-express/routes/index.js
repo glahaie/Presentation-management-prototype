@@ -17,7 +17,18 @@ exports.editPresentation = function(req, res){
   if (user === 'prof') {
     res.render('editer-page', { pretty: true, menuPresentation: true, userType: user});
   } else {
-    res.render('404.jade', { pretty: true, menuAccueil: true});
+    res.render('404.jade', { pretty: true});
+  }
+  
+};
+
+exports.partagerPresentation = function(req, res){
+  var user = req.session.userType;
+  
+  if (user === 'prof') {
+    res.render('partager-presentations-professeur-layout', { pretty: true, menuPresentation: true, userType: user});
+  } else {
+    res.render('404.jade', { pretty: true});
   }
   
 };
@@ -27,7 +38,7 @@ exports.admin = function(req, res){
   if (req.session.userType === 'admin') {
     res.render('gestion-admin', { pretty: true, menuGestionUtilisateur: true });
   } else {
-    res.render('404.jade', { pretty: true, menuAccueil: true});
+    res.render('404.jade', { pretty: true});
   }
 
 };
@@ -40,7 +51,7 @@ exports.presentation = function(req, res) {
   } else if (user === 'etudiant') {
     res.render('consulter-presentations-etudiant-layout', { pretty: true, menuPresentation: true, userType: user});
   } else {
-    res.render('404.jade', { pretty: true, menuAccueil: true});
+    res.render('404.jade', { pretty: true});
   }
   
 };

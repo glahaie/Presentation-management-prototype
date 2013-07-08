@@ -1,0 +1,41 @@
+extends presentations
+
+block arborescence
+  include arborescence
+
+block breadcrumb
+  ul.breadcrumb
+    li
+      span Présentation 
+        a#presentationID(href='') 2.2
+  
+block primaire 
+  ul.inline
+    li
+      form(action='/presentation')
+        button.btn(type='submit') Mode Consulter
+    li
+      form(action='/editer-presentation')
+        button.btn(type='submit') Mode Éditer
+    li
+      form(action='/partager-presentation')
+        button.btn(type='submit') Partager
+        
+    form
+      label.radio Priver
+        input(type='radio', name='partage', value='priver', onclick='enableGroupeSelect("priver")', checked)
+      label.radio Groupe
+        input(type='radio', name='partage', value='groupe', onclick='enableGroupeSelect("groupe")')
+      label.radio Public
+        input(type='radio', name='partage', value='public', onclick='enableGroupeSelect("public")')
+      label Groupe
+      div.form-inline
+        select#selectGroupe(name='groupes', disabled)
+          option(value='inf2005') inf2005
+          option(value='inf4375') inf4375
+          option(value='inm5151') inm5151
+        button.btn(type='button') Créer un Groupe
+
+        
+block acetates
+  include acetates

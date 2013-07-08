@@ -83,6 +83,15 @@ function activerOptions(tabIndex) {
     liste[tabIndex].className = "active";
 }
 
+function enableGroupeSelect(option) {
+
+    if (option === 'groupe') {
+        document.getElementById("selectGroupe").disabled = false;
+    } else {
+        document.getElementById("selectGroupe").disabled = true;
+    }
+} 
+
 /*$('.open-popup-link').magnificPopup({
  items: {
 	src: '#test-popup'
