@@ -20,12 +20,6 @@ block navbar
             li
               a(href='/contactez-nous') Contactez-nous
         
-        if !loggedIn
-          form(method='post', action='/login').navbar-form.pull-right
-            input.input-small(type='text', placeholder='Identifiant', name='login')
-            input.input-small(type='password', placeholder='Mot de Passe', name='password')
-            button.btn(type='submit') Connecter
-        else
           if userType === 'prof'
             ul.nav.pull-right
               li.dropdown
