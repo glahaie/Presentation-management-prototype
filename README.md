@@ -22,8 +22,8 @@ Comment installer le prototype
 
 il faut avoir node et npm installés sur votre ordi
 
-$ cd application-express
-$ npm install
-$ node app.js
+* $ cd application-express
+* $ npm install
+* $ node app.js
 
 ou l'equivalent sur windows
