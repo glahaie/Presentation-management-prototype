@@ -1,6 +1,5 @@
 #fichier .gitignore
 *~
-/application-express/node_modules
 
 # Fichier pdf
 *.pdf
