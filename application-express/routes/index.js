@@ -85,12 +85,12 @@ exports.login = function(req, res) {
     res.render('gestion-admin', { pretty: true, menuGestionUtilisateur: true, loggedIn: true, userType: 'admin'})
   } else if (login === 'prof' && password === 'prof') {
     req.session.userType = 'prof';
-    res.render('accueil-professeur-layout', { pretty: true, menuAccueil: true, loggedIn: true, userType: 'professeur' })
+    res.render('accueil-professeur-layout', { pretty: true, menuAccueil: true, loggedIn: true, userType: 'prof' })
   } else if (login === 'etudiant' && password === 'etudiant') {
     req.session.userType = 'etudiant';
     res.render('accueil-etudiant-layout', { pretty: true, menuAccueil: true, loggedIn: true, userType: 'etudiant' })
   } else {
-    res.render('accueil-visiteur-layout', { pretty: true, menuAccueil: true, loggedIn: false });
+    res.render('accueil-visiteur-layout', { pretty: true, menuAccueil: true, loggedIn: false, logginError: true});
   }
 
 };
