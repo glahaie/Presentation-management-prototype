@@ -10,12 +10,8 @@
 	min-width: 350px;
 	height: 240px;
 	box-shadow: 0 2px 6px rgba(0, 0, 0, .2);
-	-webkit-background-clip: padding;
-	-moz-background-clip: padding;     
-	background-clip: padding-box;
 	border: 10px solid #fff;
 	border: 10px solid rgba(255, 255, 255, 0.9);
-	outline: none;
     background: #002E5C;
 	font: 16px "Arial";
 	color : white;
@@ -31,10 +27,7 @@
 	color : white;
 }
 
-.step { 
-	width:auto; 
-	margin:auto; 
-}
+
 
 
 

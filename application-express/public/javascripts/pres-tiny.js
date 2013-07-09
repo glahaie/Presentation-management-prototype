@@ -1,6 +1,6 @@
     var ident = $('#presentationID').text(); 
     var ajaxObject = {
-        type: "Get",
+        type: "GET",
         url: "/presentation/" + ident,
         error: function(error) {
             if (error) {
@@ -8,20 +8,16 @@
             }
         },
         success: function(response) {
-            $('#saveEditor').html('<div id="test-popup" class="white-popup" >'+response+'</div>');
+            $('#saveEditor').html('<div id="test-popup" class="white-popup.mfp-hide" >'+response+'</div>');
             console.log($('#test-popup').html());
         }
     };
-    
-	$.ajax(ajaxObject);
-	
-	
+		$.ajax(ajaxObject);
+		
 		$('.open-popup-link').magnificPopup({
-		type:'inline',
-		callbacks:{
-			beforeOpen: function() {
-                $('.white-popup').removeAttr('id');
-			    $('.white-popup').attr('id', 'test-popup');
-            }
-		}
-	});
+  		  type:'inline',
+		    gallery: {
+				// options for gallery
+				enabled: true
+			  }
+		});
