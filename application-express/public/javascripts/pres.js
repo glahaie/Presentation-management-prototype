@@ -1,5 +1,6 @@
-
+var R = "";
 var ident = $('#presentationID').text(); 
+
     var ajaxObject = {
         type: "GET",
         url: "/presentation/" + ident,
@@ -9,8 +10,9 @@ var ident = $('#presentationID').text();
             }
         },
         success: function(response) {
+		R = '<div id="tiny-pres" class="white-popup" >'+response+'</div>';
 		$('#saveEditor').html('<div id="tiny-pres" class="white-popup" >'+response+'</div>');
-            console.log($('#test-popup').html());
+          console.log($('#test-popup').html()); 
         }
     };
     
@@ -23,7 +25,9 @@ var ident = $('#presentationID').text();
                 $('.white-popup').removeAttr('id');
 			    $('.white-popup').attr('id', 'test-popup');
             },
-		    beforeClose: function(){
+		    close: function(){
+			    $('#saveEditor').html("");
+			    $('#saveEditor').html(R);
 				$('.white-popup').removeAttr('id');
 				$('.white-popup').attr('id', 'tiny-pres');
 			}
