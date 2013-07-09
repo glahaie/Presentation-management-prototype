@@ -4,34 +4,7 @@ $(document).ready(function(){
     $(function(){
         $( "#sortable" ).sortable({ axis: "y" });
         $( "#sortable" ).disableSelection();
-    });
-
-    // Créer les paramètres de la requête
-    /*var ident = document.getElementById('presentationID').textContent; 
-    var ajaxObject = {
-        type: "Get",
-        url: "/presentation/" + ident,
-        error: function(error) {
-            if (error) {
-                console.log("Erreur");
-            }
-        },
-        success: function(response) {
-            //$('#remplir').html('<iframe name="test-popup" id="test-popup" class="white-popup.mfp-hide" srcdoc="'+response+'"> </iframe> '); 
-            $('#remplir').html('<div id="test-popup" class="white-popup mfp-hide" >'+response+'</div>');
-            console.log($('#test-popup').html());
-        }
-    };
-    
-    // Envoyé la requête.
-    $.ajax(ajaxObject);
-  
-    // Lancer une présentation fullscreen
-	$('.open-popup-link').magnificPopup({
-		type:'inline',
-		midClick: true 
-	});*/
-	 
+    }); 
 });
 
 
@@ -91,12 +64,5 @@ function enableGroupeSelect(option) {
         document.getElementById("selectGroupe").disabled = true;
     }
 } 
-
-/*$('.open-popup-link').magnificPopup({
- items: {
-	src: '#test-popup'
-   },
- type: 'iframe'
-});*/
 
 
