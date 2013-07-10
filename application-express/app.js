@@ -6,7 +6,7 @@ var express = require('express')
   , routes = require('./routes')
   , http = require('http')
   , path = require('path');
-
+var browserify = require('browserify-middleware')
 var app = express();
 
 app.use(express.cookieParser());
@@ -22,6 +22,8 @@ app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(app.router);
+// un cas special pour le js editeurpresentation.js
+app.get('/static/editeurpresentation.js', browserify('./presentations/editeurpresentation.js'));
 app.use('/static', express.static(path.join(__dirname, 'public')));
 
 // development only
