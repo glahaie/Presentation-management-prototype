@@ -12,13 +12,14 @@
 };
 
 exports.editPresentation = function(req, res){
-  var user = req.session.userType;
+  res.render('editer-page'); //TODO: reactivate login
+  /*var user = req.session.userType;
   
   if (user === 'prof') {
     res.render('editer-page', { pretty: true, menuPresentation: true, userType: user});
   } else {
     res.render('404.jade', { pretty: true});
-  }
+  }*/
   
 };
 
