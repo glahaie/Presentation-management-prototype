@@ -34,6 +34,7 @@ app.get('/presentation/:id', routes.ecran);
 app.get('/presentation/:id/page', routes.page);
 app.get('/presentation', routes.presentation);
 app.get('/editer-presentation', routes.editPresentation);
+app.get('/partager-presentation', routes.partagerPresentation);
 app.get('/admin', routes.admin);
 app.get('/contactez-nous', routes.contactez);
 app.post('/login', routes.login);

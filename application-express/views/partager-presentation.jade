@@ -1,0 +1,110 @@
+extends presentations
+
+block arborescence
+  include arborescence
+
+block breadcrumb
+  ul.breadcrumb
+    li
+      span Présentation 
+        a#presentationID(href='') 2.2
+  
+block primaire 
+  ul.inline
+    li
+      form(action='/presentation')
+        button.btn(type='submit') Mode Consulter
+    li
+      form(action='/editer-presentation')
+        button.btn(type='submit') Mode Éditer
+        
+  form
+    label.radio Priver
+      input(type='radio', name='partage', value='priver', onclick='enableGroupeSelect("priver")', checked)
+    label.radio Groupe
+      input(type='radio', name='partage', value='groupe', onclick='enableGroupeSelect("groupe")')
+    label.radio Public
+      input(type='radio', name='partage', value='public', onclick='enableGroupeSelect("public")')
+    label Groupe
+    div.form-inline
+      select#selectGroupe.span2(name='groupes', disabled)
+        option(value='inf2005') inf2005
+        option(value='inf4375') inf4375
+        option(value='inm5151') inm5151
+      div.btn-group(dataToggle='buttons-checkbox')
+        button#btnModifier.btn.btn-info(type='button', onclick='afficherModifierGroupe()') Modifier
+        button.btn.btn-info(type='button', onclick='afficherCreerGroupe()') Créer
+        button.btn.btn-info(type='button', onclick='afficherSupprimerGroupe()') Supprimer
+    br
+  
+    div#creerGroupe(style='display:none')
+      div.alert.alert-info
+        span Créer un Groupe
+        
+      div.form-inline
+        label(style='width: 110px') Nom du Groupe
+        input#nomGroupeCreer(type='text', placeholder='Groupe', onchange='activerBtnCreerPartage()')
+      
+      br
+      div.form-inline
+        label(style='width: 110px') Membre
+        input#ajoutMembre(list='membre', placeholder='Nom/Prénom/Id')
+        datalist#membre
+          option(value='Bob Gratton')
+          option(value='Eric')
+          option(value='Guillaume')
+          option(value='Maxime')
+          option(value='Marco')
+        button.btn(type='button', onclick='ajouterMembrePartage("ajoutMembre", "creerTextarea")') Ajouter
+        
+      br
+      label Membre du Groupe
+      textarea#creerTextarea.span3(style='resize: none', name='membreGroupe', rows='10', readonly)
+      
+      div.form-inline
+        button.btn(type='button') Importer Liste
+        button#btnCreerGroupe.btn.btn-primary(type='button', onclick='ajouterGroupePartage()', disabled) Créer Groupe
+    
+    div#modifierGroupe(style='display:none')
+      div.alert.alert-info
+        span Modifier un Groupe
+
+      div.form-inline
+        label(style='width: 110px') Nom du Groupe
+        input#nomGroupeModifier(type='text', placeholder='Groupe', onchange='activerBtnModifierPartage()')
+         
+      br
+      div.form-inline
+        label(style='width: 110px') Membre
+        input#ajouterSuppMembre.span2(list='membre', placeholder='Nom/Prénom/Id')
+        datalist#membre
+          option(value='Bob Gratton')
+          option(value='Eric')
+          option(value='Guillaume')
+          option(value='Maxime')
+          option(value='Marco')
+        div.btn-group(dataToggle='buttons-checkbox')
+          button.btn(type='button', onclick='ajouterMembrePartage("ajouterSuppMembre", "modifierTextarea")') Ajouter
+          button.btn(type='button', onclick='supprimerMembrePartage("ajouterSuppMembre", "modifierTextarea")') Supprimer
+        
+      br
+      label Membre du Groupe
+      textarea#modifierTextarea.span3(style='resize: none', rows='10', readonly) Bob Gratton
+      
+      div.form-inline
+        button#btnModifierGroupe.btn.btn-primary(type='button', onclick='modifierGroupePartage()', disabled) Modifier Groupe
+        
+    div#supprimerGroupe(style='display:none')
+      div.alert.alert-info
+        span Supprimer un Groupe
+
+      div.form-inline
+        label(style='width: 110px') Nom du Groupe
+        select#selectGroupeSupprimer.span2(name='groupesModifier')
+          option(value='inf2005') inf2005
+          option(value='inf4375') inf4375
+          option(value='inm5151') inm5151
+        button.btn.btn-primary(type='button', onclick='supprimerGroupePartage()') Supprimer
+        
+block acetates
+  include acetates
