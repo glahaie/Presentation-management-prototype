@@ -12,7 +12,9 @@
 };
 
 exports.editPresentation = function(req, res){
-  res.render('editer-page'); //TODO: reactivate login
+  var data = require('../presentations').chargerPresentation();
+  
+  res.render('editer-page', { pretty: true, menuPresentation: true, presData: data } ); //TODO: reactivate login stuff
   /*var user = req.session.userType;
   
   if (user === 'prof') {

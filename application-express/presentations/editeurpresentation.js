@@ -1,6 +1,7 @@
 var htmlparser = require('htmlparser2');
 var util = require('util');
-var pageID = 2;
+// `pageID` va etre lie' 'a l'evennement onClick des thumbnail des pages ('a droite)
+var pageID = 3;
 
 $(document).ready(function() {
   update();
@@ -47,13 +48,11 @@ var presentation = ''
   + '    <p>and <b>tiny</b> ideas</p>'
   + '</div>';
 
-/*var page1 = ''
-  + '<div class="step slide" data-x="-1000" data-y="-1500">'
-  + '    <h1>INF4375 - Paradigmes des échanges internet</h1>'
-  + '    <h2>Introduction au XML</h2>'
-  + '    <p>Jacques Berger</p>'
-  + '</div>';*/
-
+/*
+ * Affiche le code source d'une page dans l'editeur.
+ * Declanche' par le onClick des thumbnails de pages.
+ * UC-E3-20 Afficher et modifier le code source
+ */
 function display(obj, pageID) {
   function fixup(obj) {
     if (Array.isArray(obj)) return obj.map(fixup);
@@ -66,6 +65,20 @@ function display(obj, pageID) {
   //output.setValue(util.inspect(fixup(obj), false, 10, false));
   $("#editeur-page").val(util.inspect(fixup(obj[pageID-1]), false, 10, false));
 }
+
+/* Sauvegarde l'objet DOM contenant le code source de la page dans le code
+ * source de la presentation.
+ * Declanche' par onClick du bouton sauvegarder:
+ * Cas D'utilisation: UC-E3-09 Sauvegarder une présentation ... I guess
+ */
+function sauvegarder(obj, pageID) {}
+
+/* 
+ * Change l'ordonnencement d'une page dans le doc source de la presentation
+ *
+ * UC-E3-06 Changer l’ordre d’une page dans la présentation
+ */
+function ordonne(pageID, page) {}
 
 function update() {
   var dom;
