@@ -1,0 +1,45 @@
+.span3
+    include authentification
+    include arborescence
+
+.span8
+    .alert.alert-info
+        span
+        h4 Modification de votre profil
+
+
+    form
+        table
+            tr
+                td
+                    span Nom
+                td
+                    input#conModNom(type='text', name='nom', value='Gratton',onchange=' onchangeConsulterModifier()')
+            tr
+                td
+                    span Prénom
+                td
+                    input#conModPrenom(type='text', name='prenom', value='Bob', onchange=' onchangeConsulterModifier()')
+            tr
+                td
+                    span Courriel
+                td
+                    input#conModCourriel(type='text', name='courriel', value='bob.gratton@canada.ca',onchange=' onchangeConsulterModifier()')
+            tr
+                td
+                    span Identifiant
+                td
+                    input#conModID(type='text', name='identifiant', value='amaricain',disabled, onchange=' onchangeConsulterModifier()')
+            tr
+                td
+                    span Nouveau Mot de Passe
+                td
+                    input#conModPassword(type='password', name='password', onchange=' onchangeConsulterModifier()')
+            tr
+                td
+                    span Confirmer Mot de Passe
+                td
+                    input#conModPassword(type='password', name='password_confirm', onchange=' onchangeConsulterModifier()')
+            tr
+                td
+                    input#btnModifier.btn.btn-primary(type='submit',value='Modifier votre profil',)
