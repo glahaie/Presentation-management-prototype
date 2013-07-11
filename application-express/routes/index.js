@@ -42,6 +42,17 @@ exports.admin = function(req, res){
   }
 
 };
+//Tentative d'ajout de la page de compte.
+exports.profil = function(req, res) {
+    var user = req.session.userType;
+    if(user === 'etudiant') {
+        res.render('gestion-profil-etudiant-layout', {pretty:true, menuGestionProfil:true, loggedIn:true, userType: user});
+    } else if (user === 'prof') {
+        res.render('gestion-profil-professeur-layout', {pretty:true, menuGestionProfil:true, loggedIn:true, userType: user});
+    } else {
+        res.render('404.jade', {pretty: true});
+    }
+};
 
 exports.presentation = function(req, res) {
   var user = req.session.userType;

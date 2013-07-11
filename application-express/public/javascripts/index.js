@@ -22,10 +22,9 @@ function protoRechercheConMod() {
     document.getElementById("conModPrenom").value = "Bob";
     document.getElementById("conModCourriel").value = "bob.gratton@canada.ca";
     document.getElementById("conModID").value = "amaricain";
-    document.getElementById("conModPassword").value = "thinkbig";
     document.getElementById("conModProf").checked = true;
     document.getElementById("conModActive").checked = true;
-    document.getElementById("btnModifier").disabled = true;
+    document.getElementById("btnModifier").disabled = false;
 }
 
 function onchangeConsulterModifier() {
@@ -206,4 +205,8 @@ function activerBtnCreerPartage() {
     } else {
         document.getElementById('btnCreerGroupe').disabled = true;
     }
+}
+
+//Essai pour que les boutons admin n'amènent pas à 404
+function myFunction() {
 }
