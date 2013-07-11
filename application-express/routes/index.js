@@ -12,9 +12,16 @@
 };
 
 exports.editPresentation = function(req, res){
-  var data = require('../presentations').chargerPresentation();
+  var fs = require('fs');
+  var path = require('path');
+  //var data;
+  var filepath = path.join(__dirname, '../espace-utilisateur/enseignants/jberger/presentation-demo.html');
+  fs.readFile(filepath, 'utf8', function(err, data) {
+    if (err) throw err;
+    res.locals.presentationObj = data;
+    res.render('editer-page', { pretty: true, menuPresentation: true} ); //TODO: reactivate login stuff
+  });
   
-  res.render('editer-page', { pretty: true, menuPresentation: true, presData: data } ); //TODO: reactivate login stuff
   /*var user = req.session.userType;
   
   if (user === 'prof') {

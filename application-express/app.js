@@ -5,7 +5,6 @@
 var express = require('express')
   , routes = require('./routes')
   , http = require('http')
-  , path = require('path');
 var browserify = require('browserify-middleware')
 var app = express();
 
@@ -22,7 +21,13 @@ app.use(express.favicon());
 app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(app.router);
-app.use('/static', express.static(path.join(__dirname, 'public')));
+app.use('/static', express.static(__dirname + '/public'));
+/*app.use('/editer-presentation', function(req, res, next) {
+    var obj = { title : "Test pres" };
+    res.locals.presentationObj = obj;
+    
+    next();
+});*/
 
 // development only
 if ('development' == app.get('env')) {
