@@ -1,5 +1,4 @@
-var htmlparser = require('htmlparser2');
-var util = require('util');
+// le code utilisé pour l'edition des presentations dans le fureteur
 
 $(document).ready(function() {
   display(1);
@@ -18,11 +17,6 @@ $(document).ready(function() {
   //});
   
 });
-
-function chargerPres() {
-  var presentation = $("#source-presentation").text();
-  $("#presentation").html(presentation);
-}
 
 function display(pageID) {
   // Affiche le code source d'une page dans l'editeur.
@@ -75,7 +69,7 @@ function ordonne(pageID, page) {
    */
 }
 
-// NOTES ---- for later?
+// NOTES pour plus tards peut-etre.
 // https://github.com/fb55/htmlparser2 ou
 // https://github.com/tautologistics/node-htmlparser 
 // live htmlparser2 demo: https://github.com/ForbesLindesay/htmlparser-demo

@@ -5,7 +5,6 @@
 var express = require('express')
   , routes = require('./routes')
   , http = require('http')
-var browserify = require('browserify-middleware')
 var app = express();
 
 app.use(express.cookieParser());
@@ -22,12 +21,6 @@ app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(app.router);
 app.use('/static', express.static(__dirname + '/public'));
-/*app.use('/editer-presentation', function(req, res, next) {
-    var obj = { title : "Test pres" };
-    res.locals.presentationObj = obj;
-    
-    next();
-});*/
 
 // development only
 if ('development' == app.get('env')) {
@@ -35,7 +28,6 @@ if ('development' == app.get('env')) {
 }
 
 // un cas special pour le js editeurpresentation.js
-app.get('/static/editeurpresentation.js', browserify('./presentations/editeurpresentation.js'));
 app.get('/', routes.index);
 app.get('/presentation/:id', routes.ecran);
 app.get('/presentation/:id/page', routes.page);
