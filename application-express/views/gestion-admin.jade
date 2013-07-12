@@ -53,11 +53,6 @@ block contenu
                     input(type='text', name='identifiant')
                 tr
                   td
-                    span Mot de Passe
-                  td
-                    input(type='password', name='password')
-                tr
-                  td
                     span Type
                   td
                     label.radio Professeur
@@ -66,11 +61,11 @@ block contenu
                       input(type='radio', name='type', value='etudiant')
                 tr(colspan='2')
                   td 
-                    input.btn.btn-primary(type='submit', value='Inscrire Utilisateur')
+                    input.btn.btn-primary(type='submit', value='Inscrire Utilisateur', onclick='myFunction(); return false;')
           div#importer.tab-pane.fade
             form
               input.btn.btn-file(type='file')
-              input.btn.btn-primary(type='submit', value='Importer Liste')
+              input.btn.btn-primary(type='submit', value='Importer Liste', onclick='myFunction(); return false;')
                       div#importer.tab-pane.fade
           div#supprimer.tab-pane.fade
             form.form-search
@@ -108,7 +103,7 @@ block contenu
                       input#supprimerEtudiant(type='radio', name='type', value='etudiant', disabled)
                 tr(colspan='2')
                   td 
-                    input#btnSupprimer.btn.btn-primary(type='submit', value='Supprimer Utilisateur', disabled)
+                    input#btnSupprimer.btn.btn-primary(type='submit', value='Supprimer Utilisateur', disabled,  onclick='myFunction(); return false;')
           div#consulterModifier.tab-pane.fade
             form.form-search
               input.input-medium.search-query(type='text')
@@ -137,9 +132,14 @@ block contenu
                     input#conModID(type='text', name='identifiant', onchange=' onchangeConsulterModifier()')
                 tr
                   td
-                    span Mot de Passe
+                    span Nouveau mot de passe
                   td
                     input#conModPassword(type='password', name='password', onchange=' onchangeConsulterModifier()')
+                tr
+                  td
+                    span Confirmer mot de passe
+                  td
+                    input#conModPassword(type='password', name='confirmer_password', onchange=' onchangeConsulterModifier()')
                 tr
                   td
                     span Type
@@ -158,4 +158,4 @@ block contenu
                       input#conModDesactive(type='radio', name='statut', value='desactive', onchange=' onchangeConsulterModifier()')
                 tr(colspan='2')
                   td 
-                    input#btnModifier.btn.btn-primary(type='submit', value='Modifier Utilisateur', disabled)
+                    input#btnModifier.btn.btn-primary(type='submit', value='Modifier Utilisateur', disabled,  onclick='myFunction(); return false;')

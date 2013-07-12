@@ -1,6 +1,7 @@
 #fichier .gitignore
 *~
 /application-express/node_modules
+npm-debug.log
 
 # Fichier pdf
 *.pdf

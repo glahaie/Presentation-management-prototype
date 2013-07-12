@@ -15,5 +15,6 @@ if userType === 'prof' || userType === 'etudiant'
       a(href='/presentation') Présentation 1
     li
       a(href='/presentation') Présentation 2
-    li.ajouter
-      a(href='/presentation') Nouvelle présentation
+    if userType === 'prof'
+        li.ajouter
+            a(href='/presentation') Nouvelle présentation
