@@ -11,8 +11,12 @@ block contenu
   section#interface-primaire.span6
     ul.breadcrumb
       li
-        span Présentation 
-          a#presentationID(href='') 2.2
+        a#presentationID(href='') Présentation 2.2
+        span.divider /
+      li
+        span Page 
+          span#page-id 1
+          
     ul.inline
       li
         form(action='/presentation')
@@ -38,10 +42,10 @@ block contenu
         textarea#editeur-page(style='height: 200px; width:100%')
         p.muted Indice: Drag et drop pour insérer des images.
         .form-actions
-          button.btn.btn-primary(type='submit') Sauvegarder
+          button#bouton-sauvegarder.btn.btn-primary(type='submit') Sauvegarder
           button.btn(type='button') Annuler
-      #presentation
-      #source-presentation.well #{presentationObj}
+      #source-presentation !{presentationObj}
+      //#source-presentation(style="display:none") !{presentationObj}
     
   #acetates.span3(style='height: 600px; overflow-y: scroll;')
     include acetates

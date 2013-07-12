@@ -14,7 +14,6 @@
 exports.editPresentation = function(req, res){
   var fs = require('fs');
   var path = require('path');
-  //var data;
   var filepath = path.join(__dirname, '../espace-utilisateur/enseignants/jberger/presentation-demo.html');
   fs.readFile(filepath, 'utf8', function(err, data) {
     if (err) throw err;
@@ -130,4 +129,16 @@ exports.login = function(req, res) {
 exports.logout = function(req, res) {
   req.session.userType = '';
   res.render('accueil-visiteur-layout', { pretty: true, menuAccueil: true })
+};
+
+exports.servicesPresentation = function(req, res) {
+  var htmlPres = req.body.htmlPres;
+  var fs = require('fs');
+  var path = require('path');
+  var filepath = path.join(__dirname, '../espace-utilisateur/enseignants/jberger/presentation-demo.html');
+  fs.writeFile(filepath, htmlPres, function (err) {
+    if (err) throw err;
+    res.send(htmlPres);
+  });
+  
 };
