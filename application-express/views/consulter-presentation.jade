@@ -4,7 +4,7 @@ block arborescence
   include arborescence
 
 block breadcrumb
-  script#toRemove(src='/static/javascripts/pres.js')
+  
   ul.breadcrumb
     li
       span Présentation 
@@ -20,12 +20,20 @@ block primaire
         form(action='/partager-presentation')
           button.btn(type='submit') Partager
     li
-      a.open-popup-link(href="#test-popup") 
-        button.btn Démarrer la présentation 
+      button.btn(type='button', onclick='demarerPresentation()') Démarrer la présentation 
       
-  div#remplir
-  div#saveEditor
+  button#btnFinPresentation.btn.topleft(type='button', style='display:none', onclick='finPresentation()') Fin présentation
+  
+  div#codeImpress
+    div#impress
     
+      div.step.slide.mini(data-x="-1000", data-y="-1500")
+        p Page 1
+      div.step.slide.mini(data-x="0", data-y="-1500")
+        p Page 2
+      div.step.slide.mini(data-x="1000", data-y="-1500")
+        p Page 3
  
 block acetates
   include acetates
+

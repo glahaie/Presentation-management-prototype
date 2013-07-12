@@ -207,6 +207,25 @@ function activerBtnCreerPartage() {
     }
 }
 
-//Essai pour que les boutons admin n'amènent pas à 404
-function myFunction() {
+var bodyInnerHTML = '';
+
+function demarerPresentation() {
+    var liste = document.getElementsByClassName('step');
+    document.getElementById('btnFinPresentation').style.display = 'inline';
+    
+    for (var i = 0; i < liste.length; i++) {
+        liste[i].className = "step slide full";
+    }
+
+    impress().init();
+    
+}
+
+function finPresentation() {
+    var liste = document.getElementsByClassName('step');
+    document.getElementById('btnFinPresentation').style.display = 'none';
+    
+    for (var i = 0; i < liste.length; i++) {
+        liste[i].className = "step slide mini";
+    }
 }
