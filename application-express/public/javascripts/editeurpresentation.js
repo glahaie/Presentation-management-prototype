@@ -33,7 +33,7 @@ function display(pageID) {
   // Elle devrait être déclenchée par:
   //  * le chargement de l'interface d'édition d'une présentation 
   //    (voir UC-E1-03). OK
-  //  * le onClick des thumbnails de pages. TODO
+  //  * le onClick des thumbnails de pages. OK
   // Lieé aux ucs:
   //  * UC-E3-20 Afficher et modifier le code source
   //  * UC-E3-05 Charger la page choisie
