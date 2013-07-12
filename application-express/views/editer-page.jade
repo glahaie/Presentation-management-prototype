@@ -11,7 +11,7 @@ block contenu
   section#interface-primaire.span6
     ul.breadcrumb
       li
-        a#presentationID(href='') Présentation 2.2
+        a#presentationID(href='') #{presentationTitre}
         span.divider /
       li
         span Page 
@@ -44,8 +44,7 @@ block contenu
         .form-actions
           button#bouton-sauvegarder.btn.btn-primary(type='submit') Sauvegarder
           button.btn(type='button') Annuler
-      #source-presentation !{presentationObj}
-      //#source-presentation(style="display:none") !{presentationObj}
+      #source-presentation(style="display:none") !{presentationObj}
     
   #acetates.span3(style='height: 600px; overflow-y: scroll;')
     include acetates

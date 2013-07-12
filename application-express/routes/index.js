@@ -17,7 +17,12 @@ exports.editPresentation = function(req, res){
   var filepath = path.join(__dirname, '../espace-utilisateur/enseignants/jberger/presentation-demo.html');
   fs.readFile(filepath, 'utf8', function(err, data) {
     if (err) throw err;
+    // le titre (sooooooo hacky, but whatevs)
+    var titre = data.match(/<!-- @titre =.*? -->/g)[0].replace(
+      /^<!-- @titre =\s+/g, '').replace(/\s+-->$/g, '');
+    res.locals.presentationTitre = titre;
     res.locals.presentationObj = data;
+    res.locals.userType = "prof";
     res.render('editer-page', { pretty: true, menuPresentation: true} ); //TODO: reactivate login stuff
   });
   

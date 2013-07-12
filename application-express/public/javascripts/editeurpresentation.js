@@ -2,12 +2,22 @@
 
 $(document).ready(function() {
   display(1);
+  // Configurer la fonctionnalite du bouton-sauvegaruder
   $('#bouton-sauvegarder').click(function(event) {
     event.preventDefault();
     if (!$('#bouton-sauvegarder').hasClass('disabled')) {
       sauvegarder(66);
     }
   });
+  
+  // Faire aparaitre la page dans l'edituer quand on clique sur son thumbnail
+  // (UC-E3-05 Charger la page choisie)
+  $('#thumbnails-pages ul > li').each(function(index) {
+    $(this).dblclick(function() {
+        display(index+1);
+    });
+  });
+  
   // TODO-A ... peut-etre. ici j'éssaie juste de désactiver le bouton 
   // sauvegarde jusqu'à qu'il y a un changement porté à la page, mais ceci ne 
   // fonctionne pas bien, donc je le laisse pour plus tard s'il reste du temps
@@ -24,21 +34,24 @@ function display(pageID) {
   //  * le chargement de l'interface d'édition d'une présentation 
   //    (voir UC-E1-03). OK
   //  * le onClick des thumbnails de pages. TODO
-  // Lieé au UC-E3-20 Afficher et modifier le code source
+  // Lieé aux ucs:
+  //  * UC-E3-20 Afficher et modifier le code source
+  //  * UC-E3-05 Charger la page choisie
   
-  //TODO: extraire le titre et l'inserer quelque part dans l'interface 
+  // le contenu de la page
   var pageHTML = $('#source-presentation > div').eq(pageID-1).html();
   $("#page-id").text(pageID);
   $("#editeur-page").val(pageHTML);
+  
   //$('#bouton-sauvegarder').addClass("disabled"); // TODO-A ... voir en haut
 }
 
 function sauvegarder(pageID) {
-  /* Sauvegarde le contenu de l'éditeur dans le code source de la presentation.
-   * Declenche' par:
-   *   * onClick du bouton sauvegarder TODO
-   * Cas D'utilisation: UC-E3-09 Sauvegarder une présentation ... I guess
-   */
+  // Sauvegarde le contenu de l'éditeur dans le code source de la presentation.
+  // Declenche' par:
+  //   * onClick du bouton sauvegarder TODO
+  // Cas D'utilisation: UC-E3-09 Sauvegarder une présentation ... I guess
+  
   var pageID = $('#page-id').text();
   var pageHTML = $("#editeur-page").val();
   $('#source-presentation > div').eq(pageID-1).html(pageHTML);
