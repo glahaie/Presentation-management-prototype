@@ -4,8 +4,14 @@ var util = require('util');
 var pageID = 3;
 
 $(document).ready(function() {
+  chargerPres();
   update();
 });
+
+function chargerPres() {
+  var presentation = $("#source-presentation").text();
+  $("#presentation").html(presentation);
+}
 
 /*
  * Affiche le code source d'une page dans l'editeur.

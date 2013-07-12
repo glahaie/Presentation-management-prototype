@@ -35,12 +35,13 @@ block contenu
           li: a(href='#'): i.icon-align-justify
           li: a(href='#'): i.icon-align-right
           li: p texte
-        textarea#editeur-page(style='height: 200px; width:100%') #{presentationObj}
+        textarea#editeur-page(style='height: 200px; width:100%')
         p.muted Indice: Drag et drop pour insérer des images.
         .form-actions
           button.btn.btn-primary(type='submit') Sauvegarder
           button.btn(type='button') Annuler
-        #source-presentation.well #{presentationObj}
+      #presentation
+      #source-presentation.well #{presentationObj}
     
   #acetates.span3(style='height: 600px; overflow-y: scroll;')
     include acetates
