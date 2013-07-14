@@ -18,7 +18,7 @@
 }
 #test-popup 
 {
-	position: relative;
+	position: block;
 	width: 100%;
 	height: 600px;
 	display: center;

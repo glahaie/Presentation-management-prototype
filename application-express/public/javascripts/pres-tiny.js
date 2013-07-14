@@ -17,7 +17,6 @@
 		$('.open-popup-link').magnificPopup({
   		  type:'inline',
 		    gallery: {
-				// options for gallery
 				enabled: true
 			  }
 		});

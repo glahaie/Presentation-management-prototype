@@ -12,13 +12,13 @@ var ident = $('#presentationID').text();
         success: function(response) {
 		R = '<div id="tiny-pres" class="white-popup" >'+response+'</div>';
 		$('#saveEditor').html('<div id="tiny-pres" class="white-popup" >'+response+'</div>');
-          console.log($('#test-popup').html()); 
+          console.log($('#test-popup').html());
         }
     };
     
     $.ajax(ajaxObject);
      
-	$('.open-popup-link').magnificPopup({
+    $('.open-popup-link').magnificPopup({
 		type:'inline',
 		callbacks:{
 			beforeOpen: function() {
