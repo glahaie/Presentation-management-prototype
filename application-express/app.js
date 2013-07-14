@@ -42,6 +42,7 @@ app.get('/logout', routes.logout);
 app.get('/profil', routes.profil);
 app.get('/repertoire', routes.getContenuRepertoire);
 app.get('/repertoire/root', routes.root);
+app.get('/repertoire/precedent', routes.repertoirePrecedent);
 app.get('/creer-repertoire', routes.creerRepertoire);
 app.get('/creer-fichier', routes.creerFichier);
 app.get('/supprimer-repertoire', routes.supprimerRepertoire);

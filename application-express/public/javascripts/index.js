@@ -283,6 +283,22 @@ function setRepertoireRacine() {
     request.send();
 }
 
+function repertoirePrecedent() {
+    if (request === null) {
+        creerObjetRequest();
+    }
+  
+    request.open('GET', '/repertoire/precedent', true);
+    request.onreadystatechange = function() {
+
+        if (request.readyState === 4 && request.status === 200) {
+            document.getElementById('fichiers').innerHTML = creerArborescence(JSON.parse(request.responseText));
+        }
+    };
+    
+    request.send();
+}
+
 function creerRepertoire() {
     if (request === null) {
         creerObjetRequest();
@@ -301,7 +317,7 @@ function creerRepertoire() {
                 // refresh l'arborescence
                 repertoireElem.value = '';
             } else {
-                afficherErreurArborescence('Une erreur est survenue lors de la création du répertoire.');
+                afficherErreur('erreurArborescence', 'Une erreur est survenue lors de la création du répertoire.');
             }
         }
     };
@@ -327,7 +343,7 @@ function creerFichier() {
                 // refresh l'arborescence
                 fichierElem.value = '';
             } else {
-                afficherErreurArborescence('Une erreur est survenue lors de la création du fichier.');
+                afficherErreur('erreurArborescence', 'Une erreur est survenue lors de la création du fichier.');
             }
         }
     };
@@ -335,16 +351,16 @@ function creerFichier() {
     request.send();
 }
 
-function afficherErreurArborescence(message) {
+function afficherErreur(id, message) {
     str = "<div class='alert alert-error', style='margin-top: 10px;'>" +
-              "<button type='button' class='close' onclick='retirerErreurArborescence()'>&times;</button>" +
+              "<button type='button' class='close' onclick='retirerErreur()'>&times;</button>" +
           "<span id='msgErreur'>" + message + "</span></div>"
 
-    document.getElementById("erreurArborescence").innerHTML = str;
+    document.getElementById(id).innerHTML = str;
 }
 
-function retirerErreurArborescence() {
-    document.getElementById("erreurArborescence").innerHTML = '';
+function retirerErreur(id) {
+    document.getElementById(id).innerHTML = '';
 }
 
 function updateSupprimerRepModal(nom) {
@@ -372,7 +388,7 @@ function supprimerRepertoire(repertoire) {
             if (reponse.success) {
                 // refresh l'arborescence
             } else {
-                afficherErreurArborescence('Une erreur est survenue, le répertoire ne sera pas supprimé.');
+                afficherErreur('erreurArborescence', 'Une erreur est survenue, le répertoire ne sera pas supprimé.');
             }
         }
     };
@@ -394,7 +410,7 @@ function supprimerFichier(fichier) {
             if (reponse.success) {
                 // refresh l'arborescence
             } else {
-                afficherErreurArborescence('Une erreur est survenue, le fichier ne sera pas supprimé.');
+                afficherErreur('erreurArborescence', 'Une erreur est survenue, le fichier ne sera pas supprimé.');
             }
         }
     };
@@ -424,7 +440,7 @@ function renomerFichier() {
             if (reponse.success) {
                 // refresh l'arborescence
             } else {
-                afficherErreurArborescence('Une erreur est survenue, le fichier ne sera pas renomé.');
+                afficherErreur('erreurArborescence', 'Une erreur est survenue, le fichier ne sera pas renomé.');
             }
         }
     };

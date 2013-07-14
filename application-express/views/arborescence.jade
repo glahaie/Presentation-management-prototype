@@ -63,8 +63,8 @@ if userType === 'prof'
     div.btn-group
       a.btn(href='#', onclick='setRepertoireRacine()')
         i.icon-home
-      a.btn(href='#')
-        i.icon-arrow-left
+      a.btn(href='#', onclick='repertoirePrecedent()')
+        i.icon-step-backward
       a.btn(href='#creerRepertoireModal', role='button', data-toggle='modal')
         i.icon-folder-close
       a.btn(href='#creerFichierModal', role='button', data-toggle='modal')
@@ -111,11 +111,7 @@ else if userType === 'etudiant'
 
   div.btn-toolbar
     div.btn-group
-      a.btn(href='#')
+      a.btn(href='#', onclick='setRepertoireRacine()')
         i.icon-home
-      a.btn(href='#')
-        i.icon-arrow-left
-      a.btn(href='#')
-        i.icon-folder-close
-      a.btn(href='#')
-        i.icon-file
+      a.btn(href='#', onclick='repertoirePrecedent()')
+        i.icon-step-backward

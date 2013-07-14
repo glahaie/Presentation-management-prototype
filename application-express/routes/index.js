@@ -226,6 +226,32 @@ exports.root = function(req, res) {
     }
 }
 
+exports.repertoirePrecedent = function(req, res) {
+    var user = req.session.userType;
+    var repertoire = req.session.repertoire;
+    var root = '';
+    
+    if (user === 'prof') {
+        root = repJacques;
+    } else {
+        //a faire;
+        root = '';
+    }
+
+    if (repertoire !== root) {
+        var index = repertoire.lastIndexOf('/');
+        repertoire = repertoire.substring(0, index);
+        req.session.repertoire = repertoire;
+        
+        getFichiers(repertoire, function(err, files) {
+            res.json(files);
+        });
+    } else {
+        res.render('404.jade', { pretty: true});
+    }
+
+}
+
 exports.creerRepertoire = function(req, res) {
     var repertoire = req.session.repertoire + '/' + req.query.rep;
     

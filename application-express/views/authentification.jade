@@ -8,11 +8,13 @@ if userType !== 'prof' && userType !== 'etudiant' && userType !== 'admin'
       input(type='password', placeholder='Mot de Passe', name='password')
       br
       button.btn(type='submit') Connecter  
+      br
       if logginError
-        br
-        span(style='color:red') Informations invalides
-      br
-      br
-      a(href='#') Oubliez votre mot de passe?
-      br
-      p(style='text-align:justify') Entrez votre identifiant et cliquer sur le lien, un courriel contenant le mot de passe sera envoyé à l'adresse courriel reliée au compte.
+        div#authMsgErreur
+          div.alert.alert-error(style='margin-top: 10px;')
+            button.close(type='button', onclick="retirerErreur('authMsgErreur')")&times;
+            span Informations Invalides
+           
+      div(style='margin-top: 15px;')
+        a(href='#') Oubliez votre mot de passe?
+        p(style='text-align:justify') Entrez votre identifiant et cliquer sur le lien, un courriel contenant le mot de passe sera envoyé à l'adresse courriel reliée au compte.
