@@ -194,8 +194,6 @@ function getFichiers(repertoire, callback) {
                     listeFichiers.push(obj);
                 }
             }
-
-            console.log(obj);
         }
         
         callback(err, listeFichiers);
@@ -218,8 +216,6 @@ exports.root = function(req, res) {
     req.session.repertoire = repJacques;
     var repertoire = req.session.repertoire;
     
-    console.log(repertoire);
-    
     if (user === 'prof') {
         getFichiers(repertoire, function(err, files) {
             res.json(files);
@@ -232,13 +228,13 @@ exports.root = function(req, res) {
 
 exports.creerRepertoire = function(req, res) {
     var repertoire = req.session.repertoire + '/' + req.query.rep;
-    console.log(repertoire);
     
     fs.mkdir(repertoire, function(err) {
         if (err) {
             console.log(err);
             res.json({success: false});
         } else {
+            console.log(repertoire + ' créé');
             res.json({success: true});
         }
     });
@@ -246,13 +242,13 @@ exports.creerRepertoire = function(req, res) {
 
 exports.creerFichier = function(req, res) {
     var fichier = req.session.repertoire + '/' + req.query.fichier + '.html';
-    console.log(fichier);
     
     fs.writeFile(fichier, '', 'utf8', function(err) {
         if (err) {
             console.log(err);
             res.json({success: false});
         } else {
+            console.log(fichier + ' créé');
             res.json({success: true});
         }
     });
@@ -260,13 +256,14 @@ exports.creerFichier = function(req, res) {
 
 exports.supprimerFichier = function(req, res) {
     var fichier = req.session.repertoire + '/' + req.query.fichier;
-    console.log(fichier);
+
     
-    fs.writeFile(fichier, '', 'utf8', function(err) {
+    fs.unlink(fichier, function(err) {
         if (err) {
             console.log(err);
             res.json({success: false});
         } else {
+            console.log(fichier + ' supprimé');
             res.json({success: true});
         }
     });
@@ -274,13 +271,44 @@ exports.supprimerFichier = function(req, res) {
 
 exports.supprimerRepertoire = function(req, res) {
     var repertoire = req.session.repertoire + '/' + req.query.rep;
-    console.log(repertoire);
-    
+
     fs.rmdir(repertoire, function(err) {
         if (err) {
             console.log(err);
             res.json({success: false});
         } else {
+            console.log(repertoire + ' supprimé');
+            res.json({success: true});
+        }
+    });
+}
+
+exports.renomerFichier = function(req, res) {
+    var ancientNom = req.query.ancient;
+    var nouveauNom = req.query.nouveau;
+    var extAncient = getExtensionFichier(ancientNom);
+    var extNouveau = getExtensionFichier(nouveauNom);
+    
+    if (extAncient === 'html' && extNouveau !== 'html') {
+        var index = nouveauNom.lastIndexOf('.');
+        
+        if (index > -1) {
+            var temp = nouveauNom.substring(0, index + 1);
+            nouveauNom = temp + 'html';
+        } else {
+            nouveauNom += '.html';
+        }
+    }
+    
+    var ancient = req.session.repertoire + '/' + ancientNom;
+    var nouveau = req.session.repertoire + '/' + nouveauNom;
+
+    fs.rename(ancient, nouveau, function(err) {
+        if (err) {
+            console.log(err);
+            res.json({success: false});
+        } else {
+            console.log(ancient + ' renomé à ' + nouveau);
             res.json({success: true});
         }
     });

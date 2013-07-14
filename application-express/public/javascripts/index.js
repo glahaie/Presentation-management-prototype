@@ -1,4 +1,5 @@
 var request = null;
+var nomOriginal = '';
 
 $(document).ready(function(){
   
@@ -248,15 +249,16 @@ function creerArborescence(fichiers) {
                     "<li class='disabled'><a href='#'>" + nom + "</a></li>" + 
                     "<li class='divider'></li>" +
                     "<li><a href='#'>Déplacer</a></li>" + 
-                    "<li><a href='#'>Renommer</a></li>" +
-                    "<li><a href='#'>Supprimer</a></li>" + 
-                "</ul>";
-                
+                    '<li><a href="#renomerModal" role="button" data-toggle="modal" onclick="updateRenomerModal(\'' + nom + '\')\">Renomer</a></li>';
+                    
+                    
         if (type === 1) {
-            str += "<i class='icon-folder-close'></i>" + 
+            str += '<li><a href="#supprimerRepertoireModal" role="button" data-toggle="modal" onclick="updateSupprimerRepModal(\'' + nom + '\')\">Supprimer</a></li></ul>' + 
+                   "<i class='icon-folder-close'></i>" + 
                    '<a href="#" onclick="changerRepertoire(\'' + nom + '\')\">' + nom + "</a></li>";
         } else {
-            str += "<i class='icon-file'></i>" + 
+            str += '<li><a href="#supprimerFichierModal" role="button" data-toggle="modal" onclick="updateSupprimerFichierModal(\'' + nom + '\')\">Supprimer</a></li></ul>' + 
+                   "<i class='icon-file'></i>" + 
                    '<a href="#">' + nom + "</a></li>";       
         }
     }
@@ -342,7 +344,90 @@ function afficherErreurArborescence(message) {
 }
 
 function retirerErreurArborescence() {
-        document.getElementById("erreurArborescence").innerHTML = '';
+    document.getElementById("erreurArborescence").innerHTML = '';
 }
 
+function updateSupprimerRepModal(nom) {
+    document.getElementById('nomRepSupprimer').innerHTML = nom;
+    document.getElementById("btnSupprimerRepModal").onclick = function (){supprimerRepertoire(nom);};
+}
 
+function updateSupprimerFichierModal(nom) {
+    document.getElementById('nomFichierModal').innerHTML = nom;
+    document.getElementById("btnSupprimerFichierModal").onclick = function (){supprimerFichier(nom);};
+}
+
+function supprimerRepertoire(repertoire) {
+
+    if (request === null) {
+        creerObjetRequest();
+    }
+
+    request.open('GET', '/supprimer-repertoire?rep=' + repertoire, true);
+    request.onreadystatechange = function() {
+
+        if (request.readyState === 4 && request.status === 200) {
+            reponse = JSON.parse(request.responseText);
+            
+            if (reponse.success) {
+                // refresh l'arborescence
+            } else {
+                afficherErreurArborescence('Une erreur est survenue, le répertoire ne sera pas supprimé.');
+            }
+        }
+    };
+    
+    request.send();
+}
+
+function supprimerFichier(fichier) {
+    if (request === null) {
+        creerObjetRequest();
+    }
+
+    request.open('GET', '/supprimer-fichier?fichier=' + fichier, true);
+    request.onreadystatechange = function() {
+
+        if (request.readyState === 4 && request.status === 200) {
+            reponse = JSON.parse(request.responseText);
+            
+            if (reponse.success) {
+                // refresh l'arborescence
+            } else {
+                afficherErreurArborescence('Une erreur est survenue, le fichier ne sera pas supprimé.');
+            }
+        }
+    };
+    
+    request.send();
+}
+
+function updateRenomerModal(original) {
+    nomOriginal = original;
+    document.getElementById('nouveauNom').value = original;
+}
+
+function renomerFichier() {
+    if (request === null) {
+        creerObjetRequest();
+    }
+    
+    var nouveauNom = document.getElementById('nouveauNom').value;
+    var url = '/renomer-fichier?ancient=' + nomOriginal + '&nouveau=' + nouveauNom;
+    
+    request.open('GET', url, true);
+    request.onreadystatechange = function() {
+
+        if (request.readyState === 4 && request.status === 200) {
+            reponse = JSON.parse(request.responseText);
+            
+            if (reponse.success) {
+                // refresh l'arborescence
+            } else {
+                afficherErreurArborescence('Une erreur est survenue, le fichier ne sera pas renomé.');
+            }
+        }
+    };
+    
+    request.send();
+}

@@ -27,21 +27,38 @@ if userType === 'prof'
       button.close(type="button", data-dismiss="modal", aria-hidden="true")×
       h3#supprimerRepertoireTitre Supprimer un répertoire
     div.modal-body
-      p Voulez vous supprimer le répertoire <nom à mettre> et tout son contenu?
+      p Voulez vous supprimer le répertoire &nbsp
+        b
+          span#nomRepSupprimer (nom à mettre) 
+        span &nbsp et tout son contenu?
     div.modal-footer
       button.btn(data-dismiss="modal", aria-hidden="true") Annuler
-      button.btn.btn-primary(data-dismiss="modal", onclick='supprimerRepertoire()') Supprimer
+      button#btnSupprimerRepModal.btn.btn-primary(data-dismiss="modal", onclick="supprimerRepertoire('')") Supprimer
       
   div#supprimerFichierModal.modal.hide.fade(tabindex="-1", role="dialog", aria-labelledby="supprimerFichierTitre", aria-hidden="true")
     div.modal-header
       button.close(type="button", data-dismiss="modal", aria-hidden="true")×
       h3#supprimerFichierTitre Supprimer une présentation
     div.modal-body
-      p Voulez-vous supprimer la présentation <nom à mettre>?
+      p Voulez-vous supprimer la présentation 
+        b
+          span#nomFichierModal
+        span ?
     div.modal-footer
       button.btn(data-dismiss="modal", aria-hidden="true") Annuler
-      button.btn.btn-primary(data-dismiss="modal", onclick='supprimerFichier()') Supprimer
-        
+      button#btnSupprimerFichierModal.btn.btn-primary(data-dismiss="modal", onclick="supprimerFichier('')") Supprimer
+       
+  div#renomerModal.modal.hide.fade(tabindex="-1", role="dialog", aria-labelledby="renomerTitre", aria-hidden="true")
+    div.modal-header
+      button.close(type="button", data-dismiss="modal", aria-hidden="true")×
+      h3#renomerTitre Renomer
+    div.modal-body
+      p Nouveau nom
+      input#nouveauNom(type='text', style='width: 98%;')
+    div.modal-footer
+      button.btn(data-dismiss="modal", aria-hidden="true") Fermer
+      button.btn.btn-primary(data-dismiss="modal", onclick='renomerFichier()') Renomer
+       
   div.btn-toolbar
     div.btn-group
       a.btn(href='#', onclick='setRepertoireRacine()')
@@ -72,11 +89,16 @@ if userType === 'prof'
             li
               a(href='#') Déplacer
             li
-              a(href='#') Renommer
-            li
-              a(href='#') Supprimer
+              a(href='#renomerModal', role='button', data-toggle='modal', onclick="updateRenomerModal('#{fichier.nom}')") Renommer
+
+            if fichier.type === 1
+              li
+                a(href='#supprimerRepertoireModal', role='button', data-toggle='modal', onclick="updateSupprimerRepModal('#{fichier.nom}')") Supprimer
+            else
+              li
+                a(href='#supprimerFichierModal', role='button', data-toggle='modal', onclick="updateSupprimerFichierModal('#{fichier.nom}')") Supprimer
           
-          if (fichier.type === 1)
+          if fichier.type === 1
             i.icon-folder-close    
             a(href='#', onclick='changerRepertoire("#{fichier.nom}")') #{fichier.nom}
           else
