@@ -1,3 +1,5 @@
+var request = null;
+
 $(document).ready(function(){
   
     // Permettre le click & drag des thumbnails
@@ -6,7 +8,6 @@ $(document).ready(function(){
         $( "#sortable" ).disableSelection();
     }); 
 });
-
 
 function protoRechercheSupprimer() {
     document.getElementById("supprimerNom").value = "Gratton";
@@ -207,6 +208,141 @@ function activerBtnCreerPartage() {
     }
 }
 
-//Essai pour que les boutons admin n'amènent pas à 404
-function myFunction() {
+function changerRepertoire(repertoire) {
+    if (request === null) {
+        creerObjetRequest();
+    }
+  
+    request.open('GET', '/repertoire?rep=' + repertoire, true);
+    request.onreadystatechange = function() {
+
+        if (request.readyState === 4 && request.status === 200) {
+            document.getElementById('fichiers').innerHTML = creerArborescence(JSON.parse(request.responseText));
+        }
+    };
+    
+    request.send();
 }
+
+creerObjetRequest = function() {
+    try {
+        request = new XMLHttpRequest();
+    } catch (err) {
+        request = null;
+    }
+}
+
+function creerArborescence(fichiers) {
+    var str = '';
+
+    for (var i = 0; i < fichiers.length; i++) {
+        nom = fichiers[i].nom;
+        type = fichiers[i].type;
+        
+        str += 
+            "<li class='dropdown'>" +
+                "<a class='dropdown-toggle' data-toggle='dropdown' href='#'>" +
+                    "<i class='icon-chevron-down'></i>" +
+                "</a>" +
+                "<ul class='dropdown-menu'>" + 
+                    "<li class='disabled'><a href='#'>" + nom + "</a></li>" + 
+                    "<li class='divider'></li>" +
+                    "<li><a href='#'>Déplacer</a></li>" + 
+                    "<li><a href='#'>Renommer</a></li>" +
+                    "<li><a href='#'>Supprimer</a></li>" + 
+                "</ul>";
+                
+        if (type === 1) {
+            str += "<i class='icon-folder-close'></i>" + 
+                   '<a href="#" onclick="changerRepertoire(\'' + nom + '\')\">' + nom + "</a></li>";
+        } else {
+            str += "<i class='icon-file'></i>" + 
+                   '<a href="#">' + nom + "</a></li>";       
+        }
+    }
+
+    return str;
+
+}
+
+function setRepertoireRacine() {
+    if (request === null) {
+        creerObjetRequest();
+    }
+  
+    request.open('GET', '/repertoire/root', true);
+    request.onreadystatechange = function() {
+
+        if (request.readyState === 4 && request.status === 200) {
+            document.getElementById('fichiers').innerHTML = creerArborescence(JSON.parse(request.responseText));
+        }
+    };
+    
+    request.send();
+}
+
+function creerRepertoire() {
+    if (request === null) {
+        creerObjetRequest();
+    }
+    
+    var repertoireElem = document.getElementById('nomRepertoire');
+    var repertoire = repertoireElem.value;
+  
+    request.open('GET', '/creer-repertoire?rep=' + repertoire, true);
+    request.onreadystatechange = function() {
+
+        if (request.readyState === 4 && request.status === 200) {
+            reponse = JSON.parse(request.responseText);
+            
+            if (reponse.success) {
+                // refresh l'arborescence
+                repertoireElem.value = '';
+            } else {
+                afficherErreurArborescence('Une erreur est survenue lors de la création du répertoire.');
+            }
+        }
+    };
+    
+    request.send();
+}
+
+function creerFichier() {
+    if (request === null) {
+        creerObjetRequest();
+    }
+    
+    var fichierElem = document.getElementById('nomFichier');
+    var fichier = fichierElem.value;
+  
+    request.open('GET', '/creer-fichier?fichier=' + fichier, true);
+    request.onreadystatechange = function() {
+
+        if (request.readyState === 4 && request.status === 200) {
+            reponse = JSON.parse(request.responseText);
+            
+            if (reponse.success) {
+                // refresh l'arborescence
+                fichierElem.value = '';
+            } else {
+                afficherErreurArborescence('Une erreur est survenue lors de la création du fichier.');
+            }
+        }
+    };
+    
+    request.send();
+}
+
+function afficherErreurArborescence(message) {
+    str = "<div class='alert alert-error', style='margin-top: 10px;'>" +
+              "<button type='button' class='close' onclick='retirerErreurArborescence()'>&times;</button>" +
+          "<span id='msgErreur'>" + message + "</span></div>"
+
+    document.getElementById("erreurArborescence").innerHTML = str;
+}
+
+function retirerErreurArborescence() {
+        document.getElementById("erreurArborescence").innerHTML = '';
+}
+
+
