@@ -247,7 +247,9 @@ exports.repertoirePrecedent = function(req, res) {
             res.json(files);
         });
     } else {
-        res.render('404.jade', { pretty: true});
+        getFichiers(root, function(err, files) {
+            res.json(files);
+        });
     }
 
 }

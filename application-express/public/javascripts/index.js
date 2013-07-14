@@ -235,7 +235,7 @@ creerObjetRequest = function() {
 
 function creerArborescence(fichiers) {
     var str = '';
-
+    
     for (var i = 0; i < fichiers.length; i++) {
         nom = fichiers[i].nom;
         type = fichiers[i].type;
