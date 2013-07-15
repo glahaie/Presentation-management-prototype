@@ -1,4 +1,8 @@
 ﻿var fs = require('fs');
+var REP_JACQUES = './espace-utilisateur/enseignants/jberger';
+var FICHIER = 0;
+var REPERTOIRE = 1;
+var AUTRE = 2;
 
 exports.index = function(req, res){
   var user = req.session.userType;
@@ -119,7 +123,7 @@ exports.contactez = function(req, res){
 
 };
 
-var repJacques = './espace-utilisateur/enseignants/jberger';
+
 
 exports.login = function(req, res) {
     var login = req.body.login;
@@ -131,8 +135,8 @@ exports.login = function(req, res) {
         res.render('gestion-admin', { pretty: true, menuGestionUtilisateur: true, loggedIn: true, userType: 'admin'})
     } else if (login === 'prof' && password === 'prof') {
         req.session.userType = 'prof';
-        req.session.repertoire = repJacques;
-        getFichiers(repJacques, function(err, fichiers) {
+        req.session.repertoire = REP_JACQUES;
+        getFichiers(REP_JACQUES, function(err, fichiers) {
             res.render('accueil-professeur-layout', { pretty: true, menuAccueil: true, loggedIn: true, userType: 'prof', fichiers: fichiers});
         });        
     } else if (login === 'etudiant' && password === 'etudiant') {
@@ -148,7 +152,7 @@ exports.logout = function(req, res) {
   res.render('accueil-visiteur-layout', { pretty: true, menuAccueil: true })
 };
 
-exports.getContenuRepertoire = function(req, res) {
+exports.concatRepertoire = function(req, res) {
     var user = req.session.userType;
     req.session.repertoire += '/' + req.query.rep;
     var repertoire = req.session.repertoire;
@@ -164,14 +168,31 @@ exports.getContenuRepertoire = function(req, res) {
     }
 }
 
-var FICHIER = 0;
-var REPERTOIRE = 1;
-var AUTRE = 2;
+exports.gotoRepertoire = function(req, res) {
+    var user = req.session.userType;
+    req.session.repertoire = REP_JACQUES + '/' + req.query.rep;
+    var repertoire = req.session.repertoire;
+    console.log(repertoire);
+    
+    if (user === 'prof') {
+        getFichiers(repertoire, function(err, files) {
+            res.json(files);
+        });
+        
+    } else {
+        res.render('404.jade', { pretty: true});
+    }
+}
+
 
 function getFichiers(repertoire, callback) {
     fs.readdir(repertoire, function(err, files){
+        var listeFichiers = [];
+        
         if(err) {
-            throw err;
+            console.log(err);
+            console.log(repertoire);
+            callback(err, listeFichiers);
         }
         
         var listeFichiers = [];
@@ -213,7 +234,7 @@ function getExtensionFichier(fichier) {
 
 exports.root = function(req, res) {
     var user = req.session.userType;
-    req.session.repertoire = repJacques;
+    req.session.repertoire = REP_JACQUES;
     var repertoire = req.session.repertoire;
     
     if (user === 'prof') {
@@ -232,7 +253,7 @@ exports.repertoirePrecedent = function(req, res) {
     var root = '';
     
     if (user === 'prof') {
-        root = repJacques;
+        root = REP_JACQUES;
     } else {
         //a faire;
         root = '';
@@ -252,6 +273,20 @@ exports.repertoirePrecedent = function(req, res) {
         });
     }
 
+}
+
+exports.getContenuRepertoireCourant = function(req, res) {
+    var user = req.session.userType;
+    var repertoire = req.session.repertoire;
+    
+    if (user === 'prof') {
+        getFichiers(repertoire, function(err, files) {
+            res.json(files);
+        });
+        
+    } else {
+        res.render('404.jade', { pretty: true});
+    }
 }
 
 exports.creerRepertoire = function(req, res) {
