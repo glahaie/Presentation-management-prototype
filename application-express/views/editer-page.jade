@@ -10,19 +10,19 @@ block contenu
     ul.breadcrumb
       li
         span Présentation 
-          script(src='/static/javascripts/pres-tiny.js')
+          script(src='/static/javascripts/edit-pres.js')
           a#presentationID(href='') 2.2
     ul.inline
       li
         form(action='/presentation')
           button.btn(type='submit') Mode Consulter
       li
-        a.open-popup-link(href="#test-popup") 
-          button.btn Démarrer la présentation 
+        a(href="#") 
+          button.btn#start_full Démarrer la présentation 
       li
         form(action='/partager-presentation')
           button.btn(type='submit') Partager
-
+    
     div#remplir
       form(action='')
         ul.nav.inline
@@ -38,7 +38,7 @@ block contenu
         .form-actions
           button.btn.btn-primary(type='submit') Sauvegarder
           button.btn(type='button') Annuler
-
+    div#saveEditor 
     
   #acetates.span3(style='height: 600px; overflow-y: scroll;')
     include acetates
