@@ -1,6 +1,7 @@
 ﻿var fs = require('fs');
-var REP_JACQUES = './espace-utilisateur/enseignants/jberger';
-var REP_ERIC = './espace-utilisateur/etudiants/eric';
+var path = require('path');
+var REP_JACQUES = path.join(__dirname, '../espace-utilisateur/enseignants/jberger');
+var REP_ERIC = path.join(__dirname, '../espace-utilisateur/etudiants/eric');
 var FICHIER = 0;
 var REPERTOIRE = 1;
 var AUTRE = 2;
@@ -29,7 +30,6 @@ exports.index = function(req, res){
 
 exports.editPresentation = function(req, res){
   var fs = require('fs');
-  var path = require('path');
   var filepath = path.join(__dirname, '../espace-utilisateur/enseignants/jberger/presentation-demo.html');
   fs.readFile(filepath, 'utf8', function(err, data) {
     if (err) throw err;
@@ -130,7 +130,7 @@ exports.page = function(req, res) {
 exports.ecran = function(req, res){
 	var fs = require('fs');
 	var id = req.params.id;
-	var link = require('path').resolve(__dirname, '../espace-utilisateur/enseignants/maxime/'+id+'.html');
+	var link = path.resolve(__dirname, '../espace-utilisateur/enseignants/maxime/'+id+'.html');
 	console.log(link);
 	fs.readFile(link, 'utf8', function(err, data) {
 		if (err) throw err;
@@ -199,7 +199,6 @@ exports.logout = function(req, res) {
 exports.servicesPresentation = function(req, res) {
   var htmlPres = req.body.htmlPres;
   var fs = require('fs');
-  var path = require('path');
   var filepath = path.join(__dirname, '../espace-utilisateur/enseignants/jberger/presentation-demo.html');
   fs.writeFile(filepath, htmlPres, function (err) {
     if (err) throw err;
