@@ -1,16 +1,5 @@
 var R = "";
 var ident = $('#presentationID').text();
-setTimeout( function(){ iframe = frames['presentation'].window.document;
-$("body").on("keyup", $(iframe).defaultView, (function(e) {
-	if (e.keyCode == 27) {
-		$('#saveEditor, #tiny-iframe').css({
-		     "width": "400px",
-		     "min-width": "350px",
-		     "position": "relative",
-		     "height":"240px"
-		   });
-		$('#saveEditor').hide();
-		}})); }, 2000);
 
 var ajaxObject = {
 	type: "GET",
@@ -41,8 +30,14 @@ var transition = function(){
         
 } 
 
-$.ajax(ajaxObject);
+setInterval(function(){
+    iframe = frames['presentation'].window.document;
+    $("body").on("keyup", $(iframe).defaultView, (function(e) {
+	  if (e.keyCode == 27) { 
+	   $('#saveEditor').hide();
+       }}))}, 2000);
 
+$.ajax(ajaxObject);
 
 
 

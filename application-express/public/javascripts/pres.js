@@ -1,11 +1,12 @@
 var ident = $('#presentationID').text(); 
 var iframe = ""
 
-setTimeout( function(){ iframe = frames['presentation'].window.document;
+setTimeout( function(){
+    iframe = frames['presentation'].window.document;
     $("body").on("keyup", $(iframe).defaultView, (function(e) {
           if (e.keyCode == 27) { 
            $('#saveEditor, #tiny-iframe').css({
-	    "width": "400px",
+	         "width": "400px",
             "min-width": "350px",
             "position": "relative",
             "height":"240px"
@@ -41,5 +42,3 @@ setTimeout( function(){ iframe = frames['presentation'].window.document;
     $('#open-pres').click(function(){
        transition();
      });
-   
-
