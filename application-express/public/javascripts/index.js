@@ -287,7 +287,7 @@ function changerRepertoire(repertoire) {
 }
 
 /**
- * Saute directement au répertoire donné dans l'arborescence.
+ * Sauter directement au répertoire donné dans l'arborescence.
  */
 function gotoRepertoire(repertoire) {
     if (request === null) {
@@ -319,36 +319,54 @@ creerObjetRequest = function() {
 
 /**
  * Créer le code html d'une arborescence de fichier/répertoire.
- * fichiers : Liste des fichiers/répertoires qui se trouvent dans cette arborescence.
- * return   : Le code html.
+ * objFichierUser : Liste des fichiers/répertoires qui se trouvent dans cette arborescence et le
+ *                  type d'usager.
+ * return         : Le code html.
  */
-function creerArborescence(fichiers) {
+function creerArborescence(objFichierUser) {
     var str = '';
+    var fichiers = objFichierUser.files;
+    var userType = objFichierUser.userType;
     
-    for (var i = 0; i < fichiers.length; i++) {
-        nom = fichiers[i].nom;
-        type = fichiers[i].type;
-        
-        str += 
-            "<li class='dropdown'>" +
-                "<a class='dropdown-toggle' data-toggle='dropdown' href='#'>" +
-                    "<i class='icon-chevron-down'></i>" +
-                "</a>" +
-                "<ul class='dropdown-menu'>" + 
-                    "<li class='disabled'><a href='#'>" + nom + "</a></li>" + 
-                    "<li class='divider'></li>" +
-                    "<li><a href='#'>Déplacer</a></li>" + 
-                    '<li><a href="#renomerModal" role="button" data-toggle="modal" onclick="updateRenomerModal(\'' + nom + '\')\">Renomer</a></li>';
-                    
-                    
-        if (type === 1) {
-            str += '<li><a href="#supprimerRepertoireModal" role="button" data-toggle="modal" onclick="updateSupprimerRepModal(\'' + nom + '\')\">Supprimer</a></li></ul>' + 
-                   "<i class='icon-folder-close'></i>" + 
-                   '<a href="#" onclick="changerRepertoire(\'' + nom + '\')\">' + nom + "</a></li>";
-        } else {
-            str += '<li><a href="#supprimerFichierModal" role="button" data-toggle="modal" onclick="updateSupprimerFichierModal(\'' + nom + '\')\">Supprimer</a></li></ul>' + 
-                   "<i class='icon-file'></i>" + 
-                   '<a href="#">' + nom + "</a></li>";       
+    if (userType === 'prof') {
+        for (var i = 0; i < fichiers.length; i++) {
+            nom = fichiers[i].nom;
+            type = fichiers[i].type;
+            
+            str += 
+                "<li class='dropdown'>" +
+                    "<a class='dropdown-toggle' data-toggle='dropdown' href='#'>" +
+                        "<i class='icon-chevron-down'></i>" +
+                    "</a>" +
+                    "<ul class='dropdown-menu'>" + 
+                        "<li class='disabled'><a href='#'>" + nom + "</a></li>" + 
+                        "<li class='divider'></li>" +
+                        "<li><a href='#'>Déplacer</a></li>" + 
+                        '<li><a href="#renomerModal" role="button" data-toggle="modal" onclick="updateRenomerModal(\'' + nom + '\')\">Renomer</a></li>';
+                        
+                        
+            if (type === 1) {
+                str += '<li><a href="#supprimerRepertoireModal" role="button" data-toggle="modal" onclick="updateSupprimerRepModal(\'' + nom + '\')\">Supprimer</a></li></ul>' + 
+                       "<i class='icon-folder-close'></i>" + 
+                       '<a href="#" onclick="changerRepertoire(\'' + nom + '\')\">' + nom + "</a></li>";
+            } else {
+                str += '<li><a href="#supprimerFichierModal" role="button" data-toggle="modal" onclick="updateSupprimerFichierModal(\'' + nom + '\')\">Supprimer</a></li></ul>' + 
+                       "<i class='icon-file'></i>" + 
+                       '<a href="#">' + nom + "</a></li>";       
+            }
+        }
+    } else if (userType === 'etudiant') {
+        for (var i = 0; i < fichiers.length; i++) {
+            nom = fichiers[i].nom;
+            type = fichiers[i].type;
+
+            if (type === 1) {
+                str += "<li><i class='icon-folder-close'></i>" + 
+                       '<a href="#" onclick="changerRepertoire(\'' + nom + '\')\">' + nom + "</a></li>";
+            } else {
+                str += "<li><i class='icon-file'></i>" + 
+                       '<a href="#">' + nom + "</a></li>";       
+            }
         }
     }
 
