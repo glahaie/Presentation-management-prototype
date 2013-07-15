@@ -11,8 +11,7 @@ var ident = $('#presentationID').text();
         },
         success: function(response) {
 		$('#saveEditor').html(response);
-          console.log($('#test-popup').html());
-        }
+	}
     };
     
     $.ajax(ajaxObject);

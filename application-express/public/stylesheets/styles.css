@@ -6,7 +6,8 @@
 	margin-left: -400px;
 }
 
-iframe, #jimpress {
+#tiny-iframe , #jimpress p
+{
         width: 412px;
 	min-width: 350px;
 	height: 240px;
@@ -15,11 +16,7 @@ iframe, #jimpress {
 	border: 10px solid rgba(255, 255, 255, 0.9);
         background: #002E5C;
 	color : white;
-}
-
-p
-{
-   font: 70px "Arial";
+	font-size: 7000px;
 }
 
 #saveEditor
