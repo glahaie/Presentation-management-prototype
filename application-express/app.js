@@ -40,6 +40,7 @@ app.get('/contactez-nous', routes.contactez);
 app.post('/login', routes.login);
 app.get('/logout', routes.logout);
 app.get('/profil', routes.profil);
+app.post('/recherche', routes.recherche);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

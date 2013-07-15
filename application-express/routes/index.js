@@ -121,3 +121,21 @@ exports.logout = function(req, res) {
   req.session.userType = '';
   res.render('accueil-visiteur-layout', { pretty: true, menuAccueil: true })
 };
+
+
+//Recherche: on charge toujours la même page
+exports.recherche = function(req, res) {
+    var login = req.session.userType;
+    var rech = req.body.rech;
+    var msg = "login = ";
+    msg += login;
+    console.log(msg);
+
+    if (login === 'prof') {
+        res.render('recherche-professeur-layout', {pretty:true, menuRecherche:true, loggedIn:true, userType: login, nomRech: rech})
+    } else if (login === 'etudiant') {
+        res.render('recherche-etudiant-layout', {pretty:true, menuRecherche:true, loggedIn:true, userType: login, nomRech:rech})
+    } else {
+        res.render('404.jade', {pretty:true})
+    }
+};
