@@ -49,7 +49,7 @@ app.get('/creer-repertoire', routes.creerRepertoire);
 app.get('/creer-fichier', routes.creerFichier);
 app.get('/supprimer-repertoire', routes.supprimerRepertoire);
 app.get('/supprimer-fichier', routes.supprimerFichier);
-app.get('/renomer-fichier', routes.renomerFichier);
+app.get('/renommer-fichier', routes.renommerFichier);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
