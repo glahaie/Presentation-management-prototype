@@ -479,9 +479,9 @@ function creerFichier() {
  */
 function afficherErreur(id, message) {
     str = "<div class='alert alert-error', style='margin-top: 10px;'>" +
-              "<button type='button' class='close' onclick='retirerErreur()'>&times;</button>" +
+              "<button type='button' class='close' onclick=\"retirerErreur(\'" + id + "\')\">&times;</button>" +
           "<span id='msgErreur'>" + message + "</span></div>"
-
+    
     document.getElementById(id).innerHTML = str;
 }
 
@@ -677,7 +677,6 @@ function updateRepBreadPrecedent() {
     }
     
     var repertoire = listeLi[listeLi.length - 2].getElementsByTagName('a')[0].innerHTML;
-    console.log(repertoire);
     str += '<li id="dernierRepBread" class="active">' + repertoire + "</li>";
     
     ul.innerHTML = str;
