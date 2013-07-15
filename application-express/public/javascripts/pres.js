@@ -10,29 +10,8 @@ var ident = $('#presentationID').text();
             }
         },
         success: function(response) {
-		R = '<div id="tiny-pres" class="white-popup" >'+response+'</div>';
-		$('#saveEditor').html('<div id="tiny-pres" class="white-popup" >'+response+'</div>');
-          console.log($('#test-popup').html()); 
-        }
+		$('#saveEditor').html(response);
+	}
     };
     
     $.ajax(ajaxObject);
-     
-	$('.open-popup-link').magnificPopup({
-		type:'inline',
-		callbacks:{
-			beforeOpen: function() {
-                $('.white-popup').removeAttr('id');
-			    $('.white-popup').attr('id', 'test-popup');
-            },
-		    close: function(){
-			    $('#saveEditor').html("");
-			    $('#saveEditor').html(R);
-				$('.white-popup').removeAttr('id');
-				$('.white-popup').attr('id', 'tiny-pres');
-			}
-		}
-	});
-
-
-			 
