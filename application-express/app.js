@@ -41,6 +41,16 @@ app.get('/logout', routes.logout);
 app.get('/profil', routes.profil);
 app.post('/ajax/presentation', routes.servicesPresentation);
 app.post('/recherche', routes.recherche);
+app.get('/repertoire', routes.concatRepertoire);
+app.get('/repertoire/goto', routes.gotoRepertoire);
+app.get('/repertoire/root', routes.root);
+app.get('/repertoire/precedent', routes.repertoirePrecedent);
+app.get('/repertoire/courant', routes.getContenuRepertoireCourant);
+app.get('/creer-repertoire', routes.creerRepertoire);
+app.get('/creer-fichier', routes.creerFichier);
+app.get('/supprimer-repertoire', routes.supprimerRepertoire);
+app.get('/supprimer-fichier', routes.supprimerFichier);
+app.get('/renommer-fichier', routes.renommerFichier);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
