@@ -413,7 +413,7 @@ exports.supprimerRepertoire = function(req, res) {
     }
 }
 
-exports.renommerFichier = function(req, res) {
+exports.renomerFichier = function(req, res) {
     var user = req.session.userType;
     
     if (user === 'prof') {
@@ -441,7 +441,7 @@ exports.renommerFichier = function(req, res) {
                 console.log(err);
                 res.json({success: false});
             } else {
-                console.log(ancient + ' renommé à ' + nouveau);
+                console.log(ancient + ' renomé à ' + nouveau);
                 res.json({success: true});
             }
         });

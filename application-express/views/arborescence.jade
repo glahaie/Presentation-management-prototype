@@ -48,16 +48,16 @@ if userType === 'prof'
       button.btn(data-dismiss="modal", aria-hidden="true") Annuler
       button#btnSupprimerFichierModal.btn.btn-primary(data-dismiss="modal", onclick="supprimerFichier('')") Supprimer
        
-  div#renommerModal.modal.hide.fade(tabindex="-1", role="dialog", aria-labelledby="renommerTitre", aria-hidden="true")
+  div#renomerModal.modal.hide.fade(tabindex="-1", role="dialog", aria-labelledby="renomerTitre", aria-hidden="true")
     div.modal-header
       button.close(type="button", data-dismiss="modal", aria-hidden="true")×
-      h3#renommerTitre Renommer
+      h3#renomerTitre Renomer
     div.modal-body
       p Nouveau nom
       input#nouveauNom(type='text', style='width: 98%;')
     div.modal-footer
       button.btn(data-dismiss="modal", aria-hidden="true") Fermer
-      button.btn.btn-primary(data-dismiss="modal", onclick='renommerFichier()') Renommer
+      button.btn.btn-primary(data-dismiss="modal", onclick='renomerFichier()') Renomer
        
   div.btn-toolbar
     div.btn-group
@@ -88,7 +88,7 @@ if userType === 'prof'
             li
               a(href='#') Déplacer
             li
-              a(href='#renommerModal', role='button', data-toggle='modal', onclick="updateRenommerModal('#{fichier.nom}')") Renommer
+              a(href='#renomerModal', role='button', data-toggle='modal', onclick="updateRenomerModal('#{fichier.nom}')") Renommer
 
             if fichier.type === 1
               li
