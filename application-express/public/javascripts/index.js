@@ -342,7 +342,7 @@ function creerArborescence(objFichierUser) {
                         "<li class='disabled'><a href='#'>" + nom + "</a></li>" + 
                         "<li class='divider'></li>" +
                         "<li><a href='#'>Déplacer</a></li>" + 
-                        '<li><a href="#renomerModal" role="button" data-toggle="modal" onclick="updateRenomerModal(\'' + nom + '\')\">Renomer</a></li>';
+                        '<li><a href="#renommerModal" role="button" data-toggle="modal" onclick="updateRenommerModal(\'' + nom + '\')\">Renommer</a></li>';
                         
                         
             if (type === 1) {
@@ -565,11 +565,11 @@ function supprimerFichier(fichier) {
 }
 
 /**
- * Avant de renomer un fichier/répertoire, conserver son nom original et mettre comme valeur
+ * Avant de renommer un fichier/répertoire, conserver son nom original et mettre comme valeur
  * par défaut dans la fenêtre modal.
  * original : Le nom original du fichier/repertoire.
  */
-function updateRenomerModal(original) {
+function updateRenommerModal(original) {
     nomOriginal = original;
     document.getElementById('nouveauNom').value = original;
 }
@@ -577,13 +577,13 @@ function updateRenomerModal(original) {
 /**
  * Renommer un fichier/répertoire de l'usager
  */
-function renomerFichier() {
+function renommerFichier() {
     if (request === null) {
         creerObjetRequest();
     }
     
     var nouveauNom = document.getElementById('nouveauNom').value;
-    var url = '/renomer-fichier?ancient=' + nomOriginal + '&nouveau=' + nouveauNom;
+    var url = '/renommer-fichier?ancient=' + nomOriginal + '&nouveau=' + nouveauNom;
     
     request.open('GET', url, true);
     request.onreadystatechange = function() {
@@ -594,7 +594,7 @@ function renomerFichier() {
             if (reponse.success) {
                 updateArborescence();
             } else {
-                afficherErreur('erreurArborescence', 'Une erreur est survenue, le fichier ne sera pas renomé.');
+                afficherErreur('erreurArborescence', 'Une erreur est survenue, le fichier ne sera pas renommé.');
             }
         }
     };
