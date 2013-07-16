@@ -31,7 +31,6 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.get('/presentation', routes.presentation);
 app.get('/presentation/:id', routes.ecran);
-app.get('/presentation/:id/page', routes.page);
 app.get('/editer-presentation', routes.editPresentation);
 app.get('/partager-presentation', routes.partagerPresentation);
 app.get('/admin', routes.admin);

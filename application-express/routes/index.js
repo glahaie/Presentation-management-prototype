@@ -36,10 +36,10 @@ exports.editPresentation = function(req, res){
     // le titre (sooooooo hacky, but whatevs)
     var titre = data.match(/<!-- @titre =.*? -->/g)[0].replace(
       /^<!-- @titre =\s+/g, '').replace(/\s+-->$/g, '');
-    res.locals.presentationTitre = titre;
-    res.locals.presentationObj = data;
-    res.locals.userType = "prof";
-    res.render('editer-page', { pretty: true, menuPresentation: true} );
+    //res.locals.presentationTitre = titre;
+    //res.locals.presentationObj = data;
+    //res.locals.userType = "prof";
+    res.render('editer-page', { pretty: true, menuPresentation: true, userType: "prof", presentationObj : data, presentationTitre : titre} );
   });
   
   //TODO: reactivate login stuff
@@ -108,7 +108,6 @@ exports.presentation = function(req, res) {
     if (user === 'prof') {
     
         getFichiers(repertoire, function(err, fichiers) {
-            res.locals.presentationTitre = "2.2";
             res.render('consulter-presentation', { pretty: true, menuPresentation: true, userType: user, fichiers: fichiers});
         });   
         
@@ -122,10 +121,6 @@ exports.presentation = function(req, res) {
         res.render('404.jade', { pretty: true});
     }
   
-};
-
-exports.page = function(req, res) {
-    res.render('consulter-page', { pretty: true,  menuPresentation: true});
 };
 
 exports.ecran = function(req, res){
