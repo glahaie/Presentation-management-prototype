@@ -1,38 +1,44 @@
-var R = "";
 var ident = $('#presentationID').text(); 
-
+var iframe = ""
+$(document).ready(function(){
+  $('#open-pres').click(function(){ transition();}); 
+  setTimeout( function(){
+    iframe = frames[0].window.document;
+    $("body").on("keyup", $(iframe).defaultView, (function(e) {
+          if (e.keyCode == 27) { 
+           $('#saveEditor, #tiny-iframe').css({
+	         "width": "400px",
+            "min-width": "350px",
+            "position": "relative",
+            "height":"240px"
+	  });
+       }  
+    })); }, 2000);
+     
     var ajaxObject = {
         type: "GET",
-        url: "/presentation/" + ident,
+        url: "/presentation/presentation-demo",
         error: function(error) {
             if (error) {
                 console.log("Erreur");
             }
         },
         success: function(response) {
-		R = '<div id="tiny-pres" class="white-popup" >'+response+'</div>';
-		$('#saveEditor').html('<div id="tiny-pres" class="white-popup" >'+response+'</div>');
-          console.log($('#test-popup').html()); 
-        }
+		$('#saveEditor').html(response);
+        iframeWindow = frames[0];
+	  
+	 }
     };
     
-    $.ajax(ajaxObject);
-     
-	$('.open-popup-link').magnificPopup({
-		type:'inline',
-		callbacks:{
-			beforeOpen: function() {
-                $('.white-popup').removeAttr('id');
-			    $('.white-popup').attr('id', 'test-popup');
-            },
-		    close: function(){
-			    $('#saveEditor').html("");
-			    $('#saveEditor').html(R);
-				$('.white-popup').removeAttr('id');
-				$('.white-popup').attr('id', 'tiny-pres');
-			}
-		}
-	});
-
-
-			 
+    var transition = function(){
+      $('#saveEditor, #tiny-iframe').css(
+		     { "position": "absolute",
+			"top": "0",
+			"left": "0",
+			"width": "100%",
+			"height": "100%"
+			});
+    }
+	
+   $.ajax(ajaxObject);
+});

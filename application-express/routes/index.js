@@ -1,6 +1,7 @@
 ﻿var fs = require('fs');
-var REP_JACQUES = './espace-utilisateur/enseignants/jberger';
-var REP_ERIC = './espace-utilisateur/etudiants/eric';
+var path = require('path');
+var REP_JACQUES = path.join(__dirname, '../espace-utilisateur/enseignants/jberger');
+var REP_ERIC = path.join(__dirname, '../espace-utilisateur/etudiants/eric');
 var FICHIER = 0;
 var REPERTOIRE = 1;
 var AUTRE = 2;
@@ -28,7 +29,21 @@ exports.index = function(req, res){
 };
 
 exports.editPresentation = function(req, res){
-  var user = req.session.userType;
+  var fs = require('fs');
+  var filepath = path.join(__dirname, '../espace-utilisateur/enseignants/jberger/presentation-demo.html');
+  fs.readFile(filepath, 'utf8', function(err, data) {
+    if (err) throw err;
+    // le titre (sooooooo hacky, but whatevs)
+    var titre = data.match(/<!-- @titre =.*? -->/g)[0].replace(
+      /^<!-- @titre =\s+/g, '').replace(/\s+-->$/g, '');
+    //res.locals.presentationTitre = titre;
+    //res.locals.presentationObj = data;
+    //res.locals.userType = "prof";
+    res.render('editer-page', { pretty: true, menuPresentation: true, userType: "prof", presentationObj : data, presentationTitre : titre} );
+  });
+  
+  //TODO: reactivate login stuff
+  /*var user = req.session.userType;
   var repertoire = req.session.repertoire;
   
   if (user === 'prof') {
@@ -37,7 +52,7 @@ exports.editPresentation = function(req, res){
     });
   } else {
     res.render('404.jade', { pretty: true});
-  }
+  }*/
   
 };
 
@@ -93,13 +108,13 @@ exports.presentation = function(req, res) {
     if (user === 'prof') {
     
         getFichiers(repertoire, function(err, fichiers) {
-            res.render('consulter-presentations-professeur-layout', { pretty: true, menuPresentation: true, userType: user, fichiers: fichiers});
+            res.render('consulter-presentation', { pretty: true, menuPresentation: true, userType: user, fichiers: fichiers});
         });   
         
     } else if (user === 'etudiant') {
         
         getFichiers(repertoire, function(err, fichiers) {
-            res.render('consulter-presentations-etudiant-layout', { pretty: true, menuPresentation: true, userType: user, fichiers: fichiers});
+            res.render('consulter-presentation', { pretty: true, menuPresentation: true, userType: user, fichiers: fichiers});
         });   
         
     } else {
@@ -108,20 +123,16 @@ exports.presentation = function(req, res) {
   
 };
 
-exports.page = function(req, res) {
-    res.render('consulter-page', { pretty: true,  menuPresentation: true});
-};
-
 exports.ecran = function(req, res){
 	var fs = require('fs');
 	var id = req.params.id;
-	var link = require('path').resolve(__dirname, '../espace-utilisateur/enseignants/maxime/'+id+'.html');
+	var link = path.resolve(__dirname, '../espace-utilisateur/enseignants/jberger/'+id+'.html');
 	console.log(link);
 	fs.readFile(link, 'utf8', function(err, data) {
 		if (err) throw err;
 		console.log('OK: ' + link);
 		console.log(data);
-		res.send(data);
+		res.send("<iframe id=\"tiny-iframe\" srcdoc=\""+data+"\" name='presentation'> </iframe>");
 	});
 };
 
@@ -181,6 +192,33 @@ exports.logout = function(req, res) {
   res.render('accueil-visiteur-layout', { pretty: true, menuAccueil: true })
 };
 
+exports.servicesPresentation = function(req, res) {
+  var htmlPres = req.body.htmlPres;
+  var fs = require('fs');
+  var filepath = path.join(__dirname, '../espace-utilisateur/enseignants/jberger/presentation-demo.html');
+  fs.writeFile(filepath, htmlPres, function (err) {
+    if (err) throw err;
+    res.send(htmlPres);
+  });
+};
+
+//Recherche: on charge toujours la même page
+exports.recherche = function(req, res) {
+    var login = req.session.userType;
+    var rech = req.body.rech;
+    var msg = "login = ";
+    msg += login;
+    console.log(msg);
+
+    if (login === 'prof') {
+        res.render('recherche-professeur-layout', {pretty:true, menuRecherche:true, loggedIn:true, userType: login, nomRech: rech})
+    } else if (login === 'etudiant') {
+        res.render('recherche-etudiant-layout', {pretty:true, menuRecherche:true, loggedIn:true, userType: login, nomRech:rech})
+    } else {
+        res.render('404.jade', {pretty:true})
+    }
+};
+
 exports.concatRepertoire = function(req, res) {
     var user = req.session.userType;
     req.session.repertoire += '/' + req.query.rep;
@@ -195,7 +233,7 @@ exports.concatRepertoire = function(req, res) {
     } else {
         res.render('404.jade', { pretty: true});
     }
-}
+};
 
 exports.gotoRepertoire = function(req, res) {
     var user = req.session.userType;
@@ -218,7 +256,7 @@ exports.gotoRepertoire = function(req, res) {
     } else {
         res.render('404.jade', { pretty: true});
     }
-}
+};
 
 
 function getFichiers(repertoire, callback) {
@@ -290,7 +328,7 @@ exports.root = function(req, res) {
     } else {
         res.render('404.jade', { pretty: true});
     }
-}
+};
 
 exports.repertoirePrecedent = function(req, res) {
     var user = req.session.userType;
@@ -317,7 +355,7 @@ exports.repertoirePrecedent = function(req, res) {
         });
     }
 
-}
+};
 
 exports.getContenuRepertoireCourant = function(req, res) {
     var user = req.session.userType;
@@ -331,7 +369,7 @@ exports.getContenuRepertoireCourant = function(req, res) {
     } else {
         res.render('404.jade', { pretty: true});
     }
-}
+};
 
 exports.creerRepertoire = function(req, res) {
     var user = req.session.userType;
@@ -351,7 +389,7 @@ exports.creerRepertoire = function(req, res) {
     } else {
         res.render('404.jade', { pretty: true});
     }
-}
+};
 
 exports.creerFichier = function(req, res) {
     var user = req.session.userType;
@@ -371,7 +409,7 @@ exports.creerFichier = function(req, res) {
     } else {
         res.render('404.jade', { pretty: true});
     }
-}
+};
 
 exports.supprimerFichier = function(req, res) {
     var user = req.session.userType;
@@ -391,7 +429,7 @@ exports.supprimerFichier = function(req, res) {
     } else {
         res.render('404.jade', { pretty: true});
     }
-}
+};
 
 exports.supprimerRepertoire = function(req, res) {
     var user = req.session.userType;
@@ -411,7 +449,7 @@ exports.supprimerRepertoire = function(req, res) {
     } else {
         res.render('404.jade', { pretty: true});
     }
-}
+};
 
 exports.renommerFichier = function(req, res) {
     var user = req.session.userType;
@@ -448,4 +486,4 @@ exports.renommerFichier = function(req, res) {
     } else {
         res.render('404.jade', { pretty: true});
     }
-}
+};

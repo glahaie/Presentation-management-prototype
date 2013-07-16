@@ -1,6 +1,9 @@
-extends index
 extends navbar-professeur
 // IF-1.3-E :: Interface pour éditer une page
+
+block jsextra
+    script(src='/static/javascripts/editeurpresentation.js')
+    script(src='/static/javascripts/edit-pres.js')
 
 block contenu
   nav#presentations.span3
@@ -9,22 +12,28 @@ block contenu
   section#interface-primaire.span6
     ul.breadcrumb
       li
-        span Présentation 
-          script(src='/static/javascripts/pres-tiny.js')
-          a#presentationID(href='') 2.2
+        a#presentationID(href='') #{presentationTitre}
+        span.divider /
+      li
+        span Page 
+          span#page-id 1
+    
     ul.inline
       li
         form(action='/presentation')
           button.btn(type='submit') Mode Consulter
       li
-        a.open-popup-link(href="#test-popup") 
-          button.btn Démarrer la présentation 
+        a(href="#") 
+          button.btn#start_full Démarrer la présentation 
       li
         form(action='/partager-presentation')
           button.btn(type='submit') Partager
-
+    
     div#remplir
       form(action='')
+        ul.nav.inline
+          button#bouton-ins-avant inserer page avant
+          button#bouton-ins-apres inserer page après
         ul.nav.inline
           li: a(href='#'): i.icon-bold
           li: a(href='#'): i.icon-italic
@@ -33,14 +42,56 @@ block contenu
           li: a(href='#'): i.icon-align-center
           li: a(href='#'): i.icon-align-justify
           li: a(href='#'): i.icon-align-right
-        .well(style='height: 200px;') Hello Jello
-        p.muted Indice: Drag et drop pour insérer des images.
+          li: p(style="font-size:15px") texte
+        textarea#editeur-page(style='height: 200px; width:100%')
+        p.muted(style="font-size:15px") Indice: Drag et drop pour insérer des images.
         .form-actions
-          button.btn.btn-primary(type='submit') Sauvegarder
+          button#bouton-sauvegarder.btn.btn-primary(type='submit') Sauvegarder
           button.btn(type='button') Annuler
-
+      #source-presentation(style="display:none") !{presentationObj}
+    div#saveEditor 
     
   #acetates.span3(style='height: 600px; overflow-y: scroll;')
-    include acetates
-
+    div#thumbnails-pages.presentationEnCours
+      ul.unstyled#sortable
+        li
+          p.nouv-page-lien.avant(style="display:none", href='#'): a inserer page avant
+          a.thumbnail(href='#')
+            img.group1.cboxElement(src='/static/images/1-INF4375-XML.png')
+          p.nouv-page-lien(style="display:none", href='#'): a inserer page après
+        li
+          p.nouv-page-lien.avant(style="display:none", href='#'): a inserer page avant
+          a.thumbnail(href='#')
+            img.group1.cboxElement(src='/static/images/2-INF4375-XML.png')
+          p.nouv-page-lien(style="display:none", href='#'): a inserer page après
+        li
+          p.nouv-page-lien.avant(style="display:none", href='#'): a inserer page avant
+          a.thumbnail(href='#')
+            img.group1.cboxElement(src='/static/images/3-INF4375-XML.png')
+          p.nouv-page-lien(style="display:none", href='#'): a inserer page après
+        li
+          p.nouv-page-lien.avant(style="display:none", href='#'): a inserer page avant
+          a.thumbnail(href='#')
+            img.group1.cboxElement(src='/static/images/4-INF4375-XML.png')
+          p.nouv-page-lien(style="display:none", href='#'): a inserer page après
+        li
+          p.nouv-page-lien.avant(style="display:none", href='#'): a inserer page avant
+          a.thumbnail(href='#')
+            img.group1.cboxElement(src='/static/images/1-INF4375-XML.png')
+          p.nouv-page-lien(style="display:none", href='#'): a inserer page après
+        li
+          p.nouv-page-lien.avant(style="display:none", href='#'): a inserer page avant
+          a.thumbnail(href='#')
+            img.group1.cboxElement(src='/static/images/2-INF4375-XML.png')
+          p.nouv-page-lien(style="display:none", href='#'): a inserer page après
+        li
+          p.nouv-page-lien.avant(style="display:none", href='#'): a inserer page avant
+          a.thumbnail(href='#')
+            img.group1.cboxElement(src='/static/images/3-INF4375-XML.png')
+          p.nouv-page-lien(style="display:none", href='#'): a inserer page après
+        li
+          p.nouv-page-lien.avant(style="display:none", href='#'): a inserer page avant
+          a.thumbnail(href='#')
+            img.group1.cboxElement(src='/static/images/4-INF4375-XML.png')
+          p.nouv-page-lien(style="display:none", href='#'): a inserer page après
 
