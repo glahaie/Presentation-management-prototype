@@ -1,8 +1,9 @@
 var ident = $('#presentationID').text(); 
 var iframe = ""
-
-setTimeout( function(){
-    iframe = frames['presentation'].window.document;
+$(document).ready(function(){
+  $('#open-pres').click(function(){ transition();}); 
+  setTimeout( function(){
+    iframe = frames[0].window.document;
     $("body").on("keyup", $(iframe).defaultView, (function(e) {
           if (e.keyCode == 27) { 
            $('#saveEditor, #tiny-iframe').css({
@@ -13,10 +14,10 @@ setTimeout( function(){
 	  });
        }  
     })); }, 2000);
-
+     
     var ajaxObject = {
         type: "GET",
-        url: "/presentation/" + ident,
+        url: "/presentation/presentation-demo",
         error: function(error) {
             if (error) {
                 console.log("Erreur");
@@ -24,10 +25,11 @@ setTimeout( function(){
         },
         success: function(response) {
 		$('#saveEditor').html(response);
-                iframeWindow = frames['presentation'];
-	}
+        iframeWindow = frames[0];
+	  
+	 }
     };
-   
+    
     var transition = function(){
       $('#saveEditor, #tiny-iframe').css(
 		     { "position": "absolute",
@@ -37,8 +39,6 @@ setTimeout( function(){
 			"height": "100%"
 			});
     }
-
-    $.ajax(ajaxObject);
-    $('#open-pres').click(function(){
-       transition();
-     });
+	
+   $.ajax(ajaxObject);
+});

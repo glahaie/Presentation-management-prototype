@@ -17,8 +17,7 @@ $(document).ready(function() {
   });
   $('#bouton-ins-apres').click( function(e) {
     e.preventDefault();
-    //nouvellePageAvant(parseInt($("#page-id").text()));
-    nouvellePageAvant();
+    nouvellePageAvant(parseInt(parseInt($("#page-id").text())) + 1);
   });
   
   // Faire aparaitre la page dans l'edituer quand on clique sur son thumbnail
@@ -82,15 +81,15 @@ function ordonne(pageID, page) {
    */
 }
 
-function nouvellePageAvant(pageID=0) {
+function nouvellePageAvant(pageID) {
   // pageAvant = 0 si inserer a la fin debut
   var nX, nY;
   var pageIndex = pageID - 1;
-  var pageRef = pageID === 0 ? 
+  var pageRef = pageID > $('#source-presentation > div').length ? 
     $('#source-presentation > div:last-of-type') :
     $('#source-presentation > div').eq(pageIndex);
   
-  if (pageID === 0) {
+  if (pageID > $('#source-presentation > div').length) {
     nX = parseInt(pageRef.attr('data-x')) + 1000;
     nY = parseInt(pageRef.attr('data-y'));
     pageRef.after(

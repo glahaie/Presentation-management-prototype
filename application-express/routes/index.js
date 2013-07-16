@@ -126,7 +126,7 @@ exports.presentation = function(req, res) {
 exports.ecran = function(req, res){
 	var fs = require('fs');
 	var id = req.params.id;
-	var link = path.resolve(__dirname, '../espace-utilisateur/enseignants/maxime/'+id+'.html');
+	var link = path.resolve(__dirname, '../espace-utilisateur/enseignants/jberger/'+id+'.html');
 	console.log(link);
 	fs.readFile(link, 'utf8', function(err, data) {
 		if (err) throw err;
