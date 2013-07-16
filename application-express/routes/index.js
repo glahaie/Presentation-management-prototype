@@ -136,7 +136,7 @@ exports.ecran = function(req, res){
 		if (err) throw err;
 		console.log('OK: ' + link);
 		console.log(data);
-		res.send("<iframe id=\"tiny-iframe\" srcdoc=\""+data+"\" sandbox='allow-scripts'></iframe>");
+		res.send("<iframe id=\"tiny-iframe\" srcdoc=\""+data+"\" name='presentation'> </iframe>");
 	});
 };
 

@@ -1,5 +1,18 @@
-var R = "";
 var ident = $('#presentationID').text(); 
+var iframe = ""
+
+setTimeout( function(){
+    iframe = frames['presentation'].window.document;
+    $("body").on("keyup", $(iframe).defaultView, (function(e) {
+          if (e.keyCode == 27) { 
+           $('#saveEditor, #tiny-iframe').css({
+	         "width": "400px",
+            "min-width": "350px",
+            "position": "relative",
+            "height":"240px"
+	  });
+       }  
+    })); }, 2000);
 
     var ajaxObject = {
         type: "GET",
@@ -11,7 +24,21 @@ var ident = $('#presentationID').text();
         },
         success: function(response) {
 		$('#saveEditor').html(response);
+                iframeWindow = frames['presentation'];
 	}
     };
-    
+   
+    var transition = function(){
+      $('#saveEditor, #tiny-iframe').css(
+		     { "position": "absolute",
+			"top": "0",
+			"left": "0",
+			"width": "100%",
+			"height": "100%"
+			});
+    }
+
     $.ajax(ajaxObject);
+    $('#open-pres').click(function(){
+       transition();
+     });

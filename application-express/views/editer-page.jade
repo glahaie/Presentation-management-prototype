@@ -16,18 +16,18 @@ block contenu
       li
         span Page 
           span#page-id 1
-          
+    
     ul.inline
       li
         form(action='/presentation')
           button.btn(type='submit') Mode Consulter
       li
-        a.open-popup-link(href="#test-popup") 
-          button.btn Démarrer la présentation 
+        a(href="#") 
+          button.btn#start_full Démarrer la présentation 
       li
         form(action='/partager-presentation')
           button.btn(type='submit') Partager
-
+    
     div#remplir
       form(action='')
         ul.nav.inline
@@ -44,7 +44,11 @@ block contenu
         .form-actions
           button#bouton-sauvegarder.btn.btn-primary(type='submit') Sauvegarder
           button.btn(type='button') Annuler
+<<<<<<< HEAD
       #source-presentation(style="display:none") !{presentationObj}
+=======
+    div#saveEditor 
+>>>>>>> 3ed41047f97ab46c4387861b75702719f885e095
     
   #acetates.span3(style='height: 600px; overflow-y: scroll;')
     include acetates
