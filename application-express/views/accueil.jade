@@ -3,41 +3,24 @@
   include arborescence
 
 .span8
-  .alert.alert-info
-    span
-      h4 Version 0.03
-  p(style='text-align:justify;') Prototype pour le partage est fonctionnel avec code javascript pour simuler le tout.
-  
-  .alert.alert-info
-    span
-      h4 Version 0.02b
-  p(style='text-align:justify;') S'authentifier se fait maintenant dans la barre à la gauche de l'écran, pour permettre plus d'option d'affichage.
-    ul
-      li
-        span Ajout d'un message d'erreur quand un usager est inexistant
-      li
-        span Ajout de l'option "Oublier votre mot de passe?"
-      li
-        span Changer Option Admin pour Gestion Utilisateur dans la page gestion-admin
-      li
-        span Corriger un bug avec le lien de Gestion Utilisateur pour un admin
+
+
+    case userType
+        when 'prof'
+            .alert.alert-info
+                h4 Bienvenue M. Enseignant
+        when 'etudiant'
+            .alert.alert-info
+                h4 Bienvenue M. Étudiant
+        when 'admin'
+            .alert.alert-info
+                h4 Bienvenue M. Admin
+        default
+            .alert.alert-info
+                h4 Bienvenue sur le système de gestion et de partage des présentations
+
+    p.lead Créer, présenter, consulter et partager vos présentations d'un seul endroit!
+
+    p(style='text-align:justify;') Fini l'installation de logiciels pour créer et consulter des présentations de style PowerPoint. Vous pouvez maintenant créer et consulter des présentations directement à partir de notre site, aucune installation de logiciel n'est requis. Les professeurspeuvent créer et partager des présentations aux membres du site, vous avez le contrôle sur l'accès à vos présentations. Les étudiants ont un accès direct à toutes les présentations qui sont partagées avec vous. Vous pouvez aussi laisser des commentaires en lien avec une présentation, afin d'aider vos camarades ou de signaler une erreur!
+
         
-  .alert.alert-info
-    span
-      h4 Version 0.02a
-  p(style='text-align:justify;') L'authetification finalement complétée, ou presque. Tester l'application avec les différents usagers possibles.
-    ul
-      li
-        span admin/admin
-      li
-        span prof/prof
-      li
-        span etudiant/etudiant
-        
-  .alert.alert-info
-    span
-      h4 Version 0.01
-  p(style='text-align:justify;') Première version du prototype avec l'authentification.
-  .alert.alert-info
-    h4 Bienvenue
-  p(style='text-align:justify;') Bienvenue sur la page d'accueil de notre nouveau site web. Fini l'installation de logiciel pour créer et consulter des présentations de style power point. Vous pouvez maintenant créer et consulter des présentations directement à partir de notre site, aucune installation de logiciel n'est requis. Pour les professeurs, vous pouvez créer et partager des présentations contenant des notes de cours avec vos étudiants ou d'autre membre, vous avez le contrôle sur l'accès de vos présentations. Pour les étudiants, vous avez un accès direct à toutes les présentations qui sont partagés avec vous.

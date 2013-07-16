@@ -1,38 +1,40 @@
 <!doctype html>
 <html>
 	<head>
-	    <meta name="viewport" content="width=1024"/>   
+	    <meta name='viewport' content='width=1024'/>   
 		<title>Presentation Impress</title>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">	
-        <link href="/static/stylesheets/styles.css" rel="stylesheet" />
+		<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>	
+		<style type="text/css" scoped>	.para {font-size:70px;}
+		</style>
 	</head>
 	<body>	
-	     <div id="jmpress">
-		<div id="impress">
-			<div class="step slide" data-x="0" data-y="0">
-				Premiere acétate!
+	     <div id='jmpress'>
+		  <div id='impress'>
+			<div id='first' class='step ' data-x='0' data-y='0'>
+			 <p class="para">Première acétate. </p>
 			</div>
-			<div class="step slide" data-x="1800" data-y="0">
-				D'une présentation impress.js	
+			<div class='step slide' data-x='1800' data-y='0'>
+			<p class="para">D'une présentation impress.js </p>
 			</div>
-			<div class="step slide" data-x="3600" data-y=0 > 
-				Pour le système de prise de note
+			<div class='step slide' data-x='3600' data-y=0 > 
+			<p class="para">Pour le système de prise de note </p>
 			</div>
-			<div class="step slide" data-x="500" data-y="-800" data-scale="0.5">
-				et on va mettre ceci en fullscreen!
+			<div class='step slide' data-x='500' data-y='-800' data-scale='0.5'>
+			<p class="para">et on va mettre ceci en fullscreen! </p>
 			</div>
-			<div class="step slide" data-x="6000" data-y="-800" data-rotate="45">
-				C'est une rotation 
+			<div class='step slide' data-x='6000' data-y='-800' data-rotate='45'>
+			<p class="para">C'est une rotation  </p>
 			</div>
-			<div class="step slide" data-x="-500" data-y="-800">
-				et une autre rotation...
+			<div class='step slide' data-x='-500' data-y='-800'>
+			<p class="para">et une autre rotation... </p>
 			</div>
-			<div class="step slide" data-x="-550" data-scale="550">
-		             Et de l'accélération! 
+			<div id='last' class='step slide' data-x='-550' data-z='999999200000' data-scale='550'>
+			<p class="para">Accélération! </p>
 			</div>
-		</div>
+	  	  </div>
 	     </div>
-		<script type="text/javascript" src="/static/javascripts/impress.js"></script>
+		 <script type='text/javascript' src='/static/javascripts/impress.js'></script>
+		 <script type='text/javascript' src='/static/javascripts/jquery-1.10.1.min.js'></script>
 		<script>impress().init();</script>
 	</body>
 </html>

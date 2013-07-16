@@ -37,7 +37,7 @@ block navbar
                 a(href='/profil') Profil
               li
                 a(href='/logout') Déconnecter
-        form.navbar-search.form-search.pull-right
+        form.navbar-search.form-search.pull-right(method='post', action='/recherche')
           div.input-append
-            input.search-query.span2(type='text', placeholder='Présentation')
+            input.search-query.span2(type='text', placeholder='Présentation', name='rech')
             button.btn(type'submit') Rechercher
