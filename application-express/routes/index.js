@@ -108,13 +108,14 @@ exports.presentation = function(req, res) {
     if (user === 'prof') {
     
         getFichiers(repertoire, function(err, fichiers) {
-            res.render('consulter-presentations-professeur-layout', { pretty: true, menuPresentation: true, userType: user, fichiers: fichiers});
+            res.locals.presentationTitre = "2.2";
+            res.render('consulter-presentation', { pretty: true, menuPresentation: true, userType: user, fichiers: fichiers});
         });   
         
     } else if (user === 'etudiant') {
         
         getFichiers(repertoire, function(err, fichiers) {
-            res.render('consulter-presentations-etudiant-layout', { pretty: true, menuPresentation: true, userType: user, fichiers: fichiers});
+            res.render('consulter-presentation', { pretty: true, menuPresentation: true, userType: user, fichiers: fichiers});
         });   
         
     } else {

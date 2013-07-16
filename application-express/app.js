@@ -29,9 +29,9 @@ if ('development' == app.get('env')) {
 
 // un cas special pour le js editeurpresentation.js
 app.get('/', routes.index);
+app.get('/presentation', routes.presentation);
 app.get('/presentation/:id', routes.ecran);
 app.get('/presentation/:id/page', routes.page);
-app.get('/presentation', routes.presentation);
 app.get('/editer-presentation', routes.editPresentation);
 app.get('/partager-presentation', routes.partagerPresentation);
 app.get('/admin', routes.admin);

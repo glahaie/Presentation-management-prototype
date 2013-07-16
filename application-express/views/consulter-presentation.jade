@@ -1,10 +1,12 @@
 extends presentations
 
+block jsextra
+  script#toRemove(src='/static/javascripts/pres.js')
+    
 block arborescence
   include arborescence
 
 block breadcrumb
-  script#toRemove(src='/static/javascripts/pres.js')
   ul.breadcrumb
     li
       span Présentation 
