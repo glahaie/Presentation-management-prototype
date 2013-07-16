@@ -4,7 +4,8 @@ extends navbar-professeur
 block jsextra
     script(src='/static/javascripts/editeurpresentation.js')
     script(src='/static/javascripts/edit-pres.js')
-    
+
+
 block contenu
   nav#presentations.span3
     include arborescence
@@ -39,9 +40,9 @@ block contenu
           li: a(href='#'): i.icon-align-center
           li: a(href='#'): i.icon-align-justify
           li: a(href='#'): i.icon-align-right
-          li: p texte
+          li: p(style="font-size:15px") texte
         textarea#editeur-page(style='height: 200px; width:100%')
-        p.muted Indice: Drag et drop pour insérer des images.
+        p.muted(style="font-size:15px") Indice: Drag et drop pour insérer des images.
         .form-actions
           button#bouton-sauvegarder.btn.btn-primary(type='submit') Sauvegarder
           button.btn(type='button') Annuler

@@ -1,9 +1,9 @@
 var R = "";
 var ident = $('#presentationID').text();
-
+  
 var ajaxObject = {
 	type: "GET",
-	url: "/presentation/presentation-demo.html",
+	url: "/presentation/presentation-demo",
 	error: function(error) {
 		if (error) {
 			console.log("Erreur");
@@ -24,6 +24,7 @@ var transition = function(){
 	$('#saveEditor, #tiny-iframe').css({ 
 		"position": "absolute",
 		"left": "0",
+		"top": "0",
 		"width": "100%",
 		"height": "100%"
 		});
@@ -38,6 +39,5 @@ setInterval(function(){
        }}))}, 2000);
 
 $.ajax(ajaxObject);
-
 
 
