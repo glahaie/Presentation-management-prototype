@@ -106,7 +106,7 @@ function nouvellePageAvant(pageID) {
     pageRef.before(
       $('<div class="step slide" data-x="' + nX + '" data-y="' + nY + '">\n<p>nouvelle page</p>\n</div>')
     );
-    // On tasse tout par la gauche ... envoie'
+    // On tasse tout par la gauche ... aweille'
     pageRef.nextAll().add(pageRef).attr('data-x', function(i, val){
       return parseInt(val) + 1000;
     });
