@@ -29,9 +29,9 @@ $(document).ready(function() {
     // Ajouter une nouvelle page partie 2
     $(this).find('.nouv-page-lien').click(function(e) {
       if ($(this).hasClass('avant')) {
-        nouvellePageAvant(index);
-      } else {
         nouvellePageAvant(index + 1);
+      } else {
+        nouvellePageAvant(index + 2);
       }
     });
   });
@@ -83,6 +83,10 @@ function ordonne(pageID, page) {
 
 function nouvellePageAvant(pageID) {
   // pageAvant = 0 si inserer a la fin debut
+  // Déclenché par:
+  //   * boutons inserer avant/après dans l'éditeur de pages
+  //   * botouns inserer avant/après dans thumbnails des pages
+  // Cas d'utilisation: UC-E3-01 Insérer une nouvelle page
   var nX, nY;
   var pageIndex = pageID - 1;
   var pageRef = pageID > $('#source-presentation > div').length ? 
@@ -93,18 +97,21 @@ function nouvellePageAvant(pageID) {
     nX = parseInt(pageRef.attr('data-x')) + 1000;
     nY = parseInt(pageRef.attr('data-y'));
     pageRef.after(
-      $('<div class="step slide" data-x="' + nX + '" data-y="' + nY + '">\n<p>nouvelle page<p>\n</div>\n\n')
+      $('<div class="step slide" data-x="' + nX + '" data-y="' + nY + '">\n<p>nouvelle page</p>\n</div>')
     );
     display($('#source-presentation > div').length);
-    //alert("Inserer 'a la fin! (a' X: " + nX + ", Y:" + nY + ")");
   } else {
-    nX = parseInt(pageRef.attr('data-x')) - 1000;
+    nX = parseInt(pageRef.attr('data-x'));
     nY = parseInt(pageRef.attr('data-y'));
     pageRef.before(
-      $('<div class="step slide" data-x="' + nX + '" data-y="' + nY + '">\n<p>nouvelle page</p>\n</div>\n\n')
+      $('<div class="step slide" data-x="' + nX + '" data-y="' + nY + '">\n<p>nouvelle page</p>\n</div>')
     );
+    // On tasse tout par la gauche ... envoie'
+    pageRef.nextAll().add(pageRef).attr('data-x', function(i, val){
+      return parseInt(val) + 1000;
+    });
+    
     display(pageID);
-    //alert("Inserer avant " + pageID + " (a' X: " + nX + ", Y:" + nY + ")");
   }
   sauvegarderPres();
 }
