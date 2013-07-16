@@ -3,7 +3,7 @@ var ident = $('#presentationID').text();
 
 var ajaxObject = {
 	type: "GET",
-	url: "/presentation/" + ident,
+	url: "/presentation/presentation-demo.html",
 	error: function(error) {
 		if (error) {
 			console.log("Erreur");
@@ -31,7 +31,7 @@ var transition = function(){
 } 
 
 setInterval(function(){
-    iframe = frames['presentation'].window.document;
+    iframe = frames[0].window.document;
     $("body").on("keyup", $(iframe).defaultView, (function(e) {
 	  if (e.keyCode == 27) { 
 	   $('#saveEditor').hide();

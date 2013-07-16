@@ -143,7 +143,7 @@ function supprimerMembrePartage(textId, textareaId) {
 }
 
 /**
- * Ajouter un nouveau grouep de partage qui vient d'être créé
+ * Ajouter un nouveau groupe de partage qui vient d'être créé
  */
 function ajouterGroupePartage() {
     var groupe = document.getElementById('nomGroupeCreer').value;
@@ -160,6 +160,7 @@ function ajouterGroupePartage() {
 /**
  * Reset le formulaire pour créer un groupe de partage.
  */
+ 
 function resetCreerGroupePartage() {
     document.getElementById('nomGroupeCreer').value = "";
     document.getElementById('ajoutMembre').value = "";
@@ -169,6 +170,7 @@ function resetCreerGroupePartage() {
 /**
  * Afficher le formulaire pour créer un groupe de partage.
  */
+ 
 function afficherCreerGroupe() {
     document.getElementById('creerGroupe').style.setProperty("display", "inline");
     document.getElementById('modifierGroupe').style.setProperty("display", "none");
@@ -180,6 +182,7 @@ function afficherCreerGroupe() {
 /**
  * Afficher le formulaire pour modifier un groupe de partage.
  */
+ 
 function afficherModifierGroupe() {
     document.getElementById('modifierGroupe').style.setProperty("display", "inline");
     document.getElementById('creerGroupe').style.setProperty("display", "none");
@@ -196,6 +199,7 @@ function afficherModifierGroupe() {
 /**
  * Afficher le formulaire pour supprimer un groupe de partage.
  */
+ 
 function afficherSupprimerGroupe() {
     document.getElementById('supprimerGroupe').style.setProperty("display", "inline");
     document.getElementById('creerGroupe').style.setProperty("display", "none");
