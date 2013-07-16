@@ -10,18 +10,45 @@ $(document).ready(function() {
     }
   });
   
+  // Ajouter une nouvelle page partie 1
+  $('#bouton-ins-avant').click( function(e) {
+    e.preventDefault();
+    nouvellePageAvant(parseInt($("#page-id").text()));
+  });
+  $('#bouton-ins-apres').click( function(e) {
+    e.preventDefault();
+    //nouvellePageAvant(parseInt($("#page-id").text()));
+    nouvellePageAvant();
+  });
+  
   // Faire aparaitre la page dans l'edituer quand on clique sur son thumbnail
   // (UC-E3-05 Charger la page choisie)
   $('#thumbnails-pages ul > li').each(function(index) {
     $(this).dblclick(function() {
-        display(index+1);
+        display(index + 1);
+    });
+    // Ajouter une nouvelle page partie 2
+    $(this).find('.nouv-page-lien').click(function(e) {
+      if ($(this).hasClass('avant')) {
+        nouvellePageAvant(index);
+      } else {
+        nouvellePageAvant(index + 1);
+      }
     });
   });
   
+  $('#thumbnails-pages ul > li').on({
+    mouseenter : function(e) {
+      $(this).find('.nouv-page-lien').show();
+    },
+    mouseleave : function(e) {
+      $(this).find('.nouv-page-lien').hide();
+    }
+  });
+   
   // TODO-A ... peut-etre. ici j'éssaie juste de désactiver le bouton 
   // sauvegarde jusqu'à qu'il y a un changement porté à la page, mais ceci ne 
   // fonctionne pas bien, donc je le laisse pour plus tard s'il reste du temps
-  
   //$("#editeur-page").change(function() {
   //  $('#bouton-sauvegarder').removeClass("disabled");
   //});
@@ -46,6 +73,43 @@ function display(pageID) {
   //$('#bouton-sauvegarder').addClass("disabled"); // TODO-A ... voir en haut
 }
 
+function ordonne(pageID, page) {
+  /* 
+   * Change l'ordonnencement d'une page dans le doc source de la presentation
+   * Déclenché par:
+   *   * glissement du thumbnail de la page dans la liste des pages.
+   * UC-E3-06 Changer l’ordre d’une page dans la présentation
+   */
+}
+
+function nouvellePageAvant(pageID=0) {
+  // pageAvant = 0 si inserer a la fin debut
+  var nX, nY;
+  var pageIndex = pageID - 1;
+  var pageRef = pageID === 0 ? 
+    $('#source-presentation > div:last-of-type') :
+    $('#source-presentation > div').eq(pageIndex);
+  
+  if (pageID === 0) {
+    nX = parseInt(pageRef.attr('data-x')) + 1000;
+    nY = parseInt(pageRef.attr('data-y'));
+    pageRef.after(
+      $('<div class="step slide" data-x="' + nX + '" data-y="' + nY + '">\n<p>nouvelle page<p>\n</div>\n\n')
+    );
+    display($('#source-presentation > div').length);
+    //alert("Inserer 'a la fin! (a' X: " + nX + ", Y:" + nY + ")");
+  } else {
+    nX = parseInt(pageRef.attr('data-x')) - 1000;
+    nY = parseInt(pageRef.attr('data-y'));
+    pageRef.before(
+      $('<div class="step slide" data-x="' + nX + '" data-y="' + nY + '">\n<p>nouvelle page</p>\n</div>\n\n')
+    );
+    display(pageID);
+    //alert("Inserer avant " + pageID + " (a' X: " + nX + ", Y:" + nY + ")");
+  }
+  sauvegarderPres();
+}
+
 function sauvegarder(pageID) {
   // Sauvegarde le contenu de l'éditeur dans le code source de la presentation.
   // Declenche' par:
@@ -56,6 +120,10 @@ function sauvegarder(pageID) {
   var pageHTML = $("#editeur-page").val();
   $('#source-presentation > div').eq(pageID-1).html(pageHTML);
   $('#bouton-sauvegarder').addClass("disabled");
+  sauvegarderPres();
+}
+
+function sauvegarderPres() {
   // Envoyer nouveau code presentation au serveur pour sauvegarder
   var request = $.ajax({
     url : "/ajax/presentation",
@@ -71,15 +139,6 @@ function sauvegarder(pageID) {
     alert("Request failed: " + textStatus );
   });
   $('#bouton-sauvegarder').removeClass("disabled");
-}
-
-function ordonne(pageID, page) {
-  /* 
-   * Change l'ordonnencement d'une page dans le doc source de la presentation
-   * Déclenché par:
-   *   * glissement du thumbnail de la page dans la liste des pages.
-   * UC-E3-06 Changer l’ordre d’une page dans la présentation
-   */
 }
 
 // NOTES pour plus tards peut-etre.

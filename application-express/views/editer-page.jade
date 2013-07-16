@@ -3,7 +3,7 @@ extends navbar-professeur
 
 block jsextra
     script(src='/static/javascripts/editeurpresentation.js')
-    script(src='/static/javascripts/edit-pres.js')
+    //script(src='/static/javascripts/edit-pres.js')
     
 block contenu
   nav#presentations.span3
@@ -32,6 +32,9 @@ block contenu
     div#remplir
       form(action='')
         ul.nav.inline
+          button#bouton-ins-avant inserer page avant
+          button#bouton-ins-apres inserer page après
+        ul.nav.inline
           li: a(href='#'): i.icon-bold
           li: a(href='#'): i.icon-italic
           li: a(href='#'): i.icon-font
@@ -49,6 +52,46 @@ block contenu
     div#saveEditor 
     
   #acetates.span3(style='height: 600px; overflow-y: scroll;')
-    include acetates
-
+    div#thumbnails-pages.presentationEnCours
+      ul.unstyled#sortable
+        li
+          p.nouv-page-lien.avant(style="display:none", href='#'): a inserer page avant
+          a.thumbnail(href='#')
+            img.group1.cboxElement(src='/static/images/1-INF4375-XML.png')
+          p.nouv-page-lien(style="display:none", href='#'): a inserer page après
+        li
+          p.nouv-page-lien.avant(style="display:none", href='#'): a inserer page avant
+          a.thumbnail(href='#')
+            img.group1.cboxElement(src='/static/images/2-INF4375-XML.png')
+          p.nouv-page-lien(style="display:none", href='#'): a inserer page après
+        li
+          p.nouv-page-lien.avant(style="display:none", href='#'): a inserer page avant
+          a.thumbnail(href='#')
+            img.group1.cboxElement(src='/static/images/3-INF4375-XML.png')
+          p.nouv-page-lien(style="display:none", href='#'): a inserer page après
+        li
+          p.nouv-page-lien.avant(style="display:none", href='#'): a inserer page avant
+          a.thumbnail(href='#')
+            img.group1.cboxElement(src='/static/images/4-INF4375-XML.png')
+          p.nouv-page-lien(style="display:none", href='#'): a inserer page après
+        li
+          p.nouv-page-lien.avant(style="display:none", href='#'): a inserer page avant
+          a.thumbnail(href='#')
+            img.group1.cboxElement(src='/static/images/1-INF4375-XML.png')
+          p.nouv-page-lien(style="display:none", href='#'): a inserer page après
+        li
+          p.nouv-page-lien.avant(style="display:none", href='#'): a inserer page avant
+          a.thumbnail(href='#')
+            img.group1.cboxElement(src='/static/images/2-INF4375-XML.png')
+          p.nouv-page-lien(style="display:none", href='#'): a inserer page après
+        li
+          p.nouv-page-lien.avant(style="display:none", href='#'): a inserer page avant
+          a.thumbnail(href='#')
+            img.group1.cboxElement(src='/static/images/3-INF4375-XML.png')
+          p.nouv-page-lien(style="display:none", href='#'): a inserer page après
+        li
+          p.nouv-page-lien.avant(style="display:none", href='#'): a inserer page avant
+          a.thumbnail(href='#')
+            img.group1.cboxElement(src='/static/images/4-INF4375-XML.png')
+          p.nouv-page-lien(style="display:none", href='#'): a inserer page après
 
