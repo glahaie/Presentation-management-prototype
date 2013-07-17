@@ -127,11 +127,8 @@ exports.ecran = function(req, res){
 	var fs = require('fs');
 	var id = req.params.id;
 	var link = path.resolve(__dirname, '../espace-utilisateur/enseignants/jberger/'+id+'.html');
-	console.log(link);
 	fs.readFile(link, 'utf8', function(err, data) {
 		if (err) throw err;
-		console.log('OK: ' + link);
-		console.log(data);
 		res.send("<iframe id=\"tiny-iframe\" srcdoc=\""+data+"\" name='presentation'> </iframe>");
 	});
 };
@@ -208,7 +205,6 @@ exports.recherche = function(req, res) {
     var rech = req.body.rech;
     var msg = "login = ";
     msg += login;
-    console.log(msg);
 
     if (login === 'prof') {
         res.render('recherche-professeur-layout', {pretty:true, menuRecherche:true, loggedIn:true, userType: login, nomRech: rech})
@@ -223,7 +219,6 @@ exports.concatRepertoire = function(req, res) {
     var user = req.session.userType;
     req.session.repertoire += '/' + req.query.rep;
     var repertoire = req.session.repertoire;
-    console.log(repertoire);
     
     if (user === 'prof' || user === 'etudiant') {
         getFichiers(repertoire, function(err, files) {
@@ -237,7 +232,6 @@ exports.concatRepertoire = function(req, res) {
 
 exports.gotoRepertoire = function(req, res) {
     var user = req.session.userType;
-    console.log(req.session.repertoire);
     
     if (user === 'prof') {
         req.session.repertoire = REP_JACQUES + '/' + req.query.rep;
@@ -264,8 +258,6 @@ function getFichiers(repertoire, callback) {
         var listeFichiers = [];
         
         if(err) {
-            console.log(err);
-            console.log(repertoire);
             callback(err, listeFichiers);
         }
         
@@ -379,10 +371,8 @@ exports.creerRepertoire = function(req, res) {
         
         fs.mkdir(repertoire, function(err) {
             if (err) {
-                console.log(err);
                 res.json({success: false});
             } else {
-                console.log(repertoire + ' créé');
                 res.json({success: true});
             }
         });
@@ -399,10 +389,8 @@ exports.creerFichier = function(req, res) {
     
         fs.writeFile(fichier, '', 'utf8', function(err) {
             if (err) {
-                console.log(err);
                 res.json({success: false});
             } else {
-                console.log(fichier + ' créé');
                 res.json({success: true});
             }
         });
@@ -419,10 +407,8 @@ exports.supprimerFichier = function(req, res) {
 
         fs.unlink(fichier, function(err) {
             if (err) {
-                console.log(err);
                 res.json({success: false});
             } else {
-                console.log(fichier + ' supprimé');
                 res.json({success: true});
             }
         });
@@ -439,10 +425,8 @@ exports.supprimerRepertoire = function(req, res) {
 
         fs.rmdir(repertoire, function(err) {
             if (err) {
-                console.log(err);
                 res.json({success: false});
             } else {
-                console.log(repertoire + ' supprimé');
                 res.json({success: true});
             }
         });
@@ -476,10 +460,8 @@ exports.renommerFichier = function(req, res) {
 
         fs.rename(ancient, nouveau, function(err) {
             if (err) {
-                console.log(err);
                 res.json({success: false});
             } else {
-                console.log(ancient + ' renommé à ' + nouveau);
                 res.json({success: true});
             }
         });
