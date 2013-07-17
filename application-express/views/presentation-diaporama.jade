@@ -2,7 +2,7 @@
 !!!
 html
   head
-    meta(name='viewport', content='width=1024')
+    meta(name='viewport', content='width=370')
     meta(http-equiv='Content-Type', content='text/html ', charset='UTF-8')
     title Présentation Impress
     link(href='/static/stylesheets/styles.css', rel='stylesheet', media='screen')
@@ -15,5 +15,6 @@ html
     //    | by impress.js, so you are presented with a simplified version of this presentation.
     div#jmpress
       div#impress !{ presHtml }
+    #bouton-fermer-diapo(style="display: none;"): a(href="#", style="position:absolute; right: 5%; top: 5%;") x
     script(type='text/javascript', src='/static/javascripts/impress.js')
     script impress().init();
