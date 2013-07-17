@@ -2,7 +2,7 @@ var ident = $('#presentationID').text();
 var iframe = ""
 $(document).ready(function(){
   $('#open-pres').click(function(){ transition();}); 
-  setTimeout( function(){
+  /*setTimeout( function(){
     iframe = frames[0].window.document;
     $("body").on("keyup", $(iframe).defaultView, (function(e) {
           if (e.keyCode == 27) { 
@@ -13,9 +13,9 @@ $(document).ready(function(){
             "height":"240px"
 	  });
        }  
-    })); }, 2000);
+    })); }, 2000);*/
      
-    var ajaxObject = {
+    /*var ajaxObject = {
         type: "GET",
         url: "/presentation/presentation-demo",
         error: function(error) {
@@ -28,17 +28,18 @@ $(document).ready(function(){
         iframeWindow = frames[0];
 	  
 	 }
-    };
+    };*/
     
     var transition = function(){
       $('#saveEditor, #tiny-iframe').css(
-		     { "position": "absolute",
+		    { "position": "absolute",
 			"top": "0",
 			"left": "0",
 			"width": "100%",
-			"height": "100%"
+			"height": "100%",
+			"display": "block"
 			});
     }
 	
-   $.ajax(ajaxObject);
+   //$.ajax(ajaxObject);
 });
