@@ -35,9 +35,10 @@ block contenu
     div#remplir
       form(action='')
         ul.nav.inline
-          button#bouton-ins-avant inserer page avant
-          button#bouton-ins-apres inserer page après
-          button#bouton-supprimer supprimer
+          li: a(href='#', title="inserer nouvelle page avant")#bouton-ins-avant: i.icon-plus
+          li: a(href='#', title="consulter page précédente"): i.icon-step-backward
+          li: a(href='#', title="consulter page suivante"): i.icon-step-forward
+          li: a(href='#', title="inserer nouvelle page après")#bouton-ins-apres: i.icon-plus
         ul.nav.inline
           li: a(href='#'): i.icon-bold
           li: a(href='#'): i.icon-italic
@@ -47,6 +48,7 @@ block contenu
           li: a(href='#'): i.icon-align-justify
           li: a(href='#'): i.icon-align-right
           li: p(style="font-size:15px") texte
+          li: a#bouton-supprimer(href='#', title="Supprimer cette page"): i.icon-trash
         textarea#editeur-page(style='height: 200px; width:100%')
         p.muted(style="font-size:15px") Indice: Drag et drop pour insérer des images.
         .form-actions
@@ -54,13 +56,13 @@ block contenu
           button.btn(type='button') Annuler
       #source-presentation(style="display:none") !{presentationObj}
     div#saveEditor 
-    div#dialog-supprimer(title="Basic dialog")
+    div#dialog-supprimer(title="Basic dialog", style="display:none")
       p Vous êtes sûr de vouloir supprimer la page 
         span.page-id 1 
         ?
     
-  #acetates.span3(style='height: 600px; overflow-y: scroll;')
-    div#thumbnails-pages.presentationEnCours
+  #acetates.span3
+    div#thumbnails-pages.presentationEnCours(style='height: 600px; overflow-y: scroll;')
       ul.unstyled#sortable
         li
           p.nouv-page-lien.avant(style="display:none", href='#'): a inserer page avant

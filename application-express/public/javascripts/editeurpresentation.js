@@ -20,6 +20,11 @@ $(document).ready(function() {
     nouvellePageAvant(parseInt($("#page-id").text()) + 1);
   });
   
+  // Liés la fonctionnalité de consultation de pages adjacentes pour les UCs:
+  //   * UC-E3-03 Charger la page suivante
+  //   * UC-E3-04 Charger la page précédente
+  
+  
   // Faire aparaitre la page dans l'edituer quand on clique sur son thumbnail
   // (UC-E3-05 Charger la page choisie)
   $('#thumbnails-pages ul > li').each(function(index) {
