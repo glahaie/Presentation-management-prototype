@@ -17,7 +17,7 @@ $(document).ready(function() {
   });
   $('#bouton-ins-apres').click( function(e) {
     e.preventDefault();
-    nouvellePageAvant(parseInt(parseInt($("#page-id").text())) + 1);
+    nouvellePageAvant(parseInt($("#page-id").text()) + 1);
   });
   
   // Faire aparaitre la page dans l'edituer quand on clique sur son thumbnail
@@ -44,7 +44,33 @@ $(document).ready(function() {
       $(this).find('.nouv-page-lien').hide();
     }
   });
-   
+  
+  // supprimer la page avec bouton
+  $('#bouton-supprimer').click( function(e) {
+    e.preventDefault();
+    $('#dialog-supprimer').dialog({
+      title: 'Confirmation de suppression',
+      width: 300,
+      height: 200,
+      modal: true,
+      resizable: false,
+      draggable: false,
+      buttons: [{
+        text: 'Supprimer',
+        click: function(){
+          supprimer($("#page-id").text());
+          $(this).dialog('close');
+        }
+      },
+      {
+        text: 'Non',
+        click: function() {
+          $(this).dialog('close');
+        }
+      }]
+    });
+  });
+  
   // TODO-A ... peut-etre. ici j'éssaie juste de désactiver le bouton 
   // sauvegarde jusqu'à qu'il y a un changement porté à la page, mais ceci ne 
   // fonctionne pas bien, donc je le laisse pour plus tard s'il reste du temps
@@ -66,14 +92,15 @@ function display(pageID) {
   
   // le contenu de la page
   var pageHTML = $('#source-presentation > div').eq(pageID-1).html();
-  $("#page-id").text(pageID);
+  $(".page-id").text(pageID);
+  $("#page-compte").text($('#source-presentation > div').length);
   $("#editeur-page").val(pageHTML);
   
   //$('#bouton-sauvegarder').addClass("disabled"); // TODO-A ... voir en haut
 }
 
 function ordonne(pageID, page) {
-  /* 
+  /* TODO
    * Change l'ordonnencement d'une page dans le doc source de la presentation
    * Déclenché par:
    *   * glissement du thumbnail de la page dans la liste des pages.
@@ -86,7 +113,7 @@ function nouvellePageAvant(pageID) {
   // Déclenché par:
   //   * boutons inserer avant/après dans l'éditeur de pages
   //   * botouns inserer avant/après dans thumbnails des pages
-  // Cas d'utilisation: UC-E3-01 Insérer une nouvelle page
+  // Cas d'utilisation: UC-E3-01 Insérer une nouvelle page OK
   var nX, nY;
   var pageIndex = pageID - 1;
   var pageRef = pageID > $('#source-presentation > div').length ? 
@@ -116,10 +143,29 @@ function nouvellePageAvant(pageID) {
   sauvegarderPres();
 }
 
+function supprimer(pageID) {
+  // Supprime une page de la presentation
+  // Declenche' par:
+  //   * clique du bouton supprimer OK
+  // UC-E3-02 Supprimer une page 
+  if ($('#source-presentation > div').length === 1) {
+    alert("!! Une présentation doit avoir au moins une page.");
+    return;
+  }
+  
+  $('#source-presentation > div').eq(pageID - 1).remove();
+  if (pageID > $('#source-presentation > div').length) {
+    display(pageID - 1); 
+  } else { 
+    display(pageID);
+  }
+  sauvegarderPres();
+}
+
 function sauvegarder(pageID) {
   // Sauvegarde le contenu de l'éditeur dans le code source de la presentation.
   // Declenche' par:
-  //   * onClick du bouton sauvegarder TODO
+  //   * onClick du bouton sauvegarder OK
   // Cas D'utilisation: UC-E3-09 Sauvegarder une présentation ... I guess
   
   var pageID = $('#page-id').text();

@@ -4,6 +4,7 @@ extends navbar-professeur
 block jsextra
     script(src='/static/javascripts/editeurpresentation.js')
     script(src='/static/javascripts/edit-pres.js')
+    link(href='/static/stylesheets/jquery-ui.min.css', rel='stylesheet', media='screen')
 
 block contenu
   nav#presentations.span3
@@ -16,7 +17,9 @@ block contenu
         span.divider /
       li
         span Page 
-          span#page-id 1
+          span#page-id.page-id x
+          |  de 
+          span#page-compte X
     
     ul.inline
       li
@@ -34,6 +37,7 @@ block contenu
         ul.nav.inline
           button#bouton-ins-avant inserer page avant
           button#bouton-ins-apres inserer page après
+          button#bouton-supprimer supprimer
         ul.nav.inline
           li: a(href='#'): i.icon-bold
           li: a(href='#'): i.icon-italic
@@ -50,6 +54,10 @@ block contenu
           button.btn(type='button') Annuler
       #source-presentation(style="display:none") !{presentationObj}
     div#saveEditor 
+    div#dialog-supprimer(title="Basic dialog")
+      p Vous êtes sûr de vouloir supprimer la page 
+        span.page-id 1 
+        ?
     
   #acetates.span3(style='height: 600px; overflow-y: scroll;')
     div#thumbnails-pages.presentationEnCours
