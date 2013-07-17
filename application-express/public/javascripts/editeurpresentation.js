@@ -23,7 +23,12 @@ $(document).ready(function() {
   // Liés la fonctionnalité de consultation de pages adjacentes pour les UCs:
   //   * UC-E3-03 Charger la page suivante
   //   * UC-E3-04 Charger la page précédente
-  
+  $('#bouton-pg-precedente').click( function (e) {
+    display(parseInt($("#page-id").text()) - 1);
+  });
+  $('#bouton-pg-suivante').click( function (e) {
+    display(parseInt($("#page-id").text()) + 1);
+  });
   
   // Faire aparaitre la page dans l'edituer quand on clique sur son thumbnail
   // (UC-E3-05 Charger la page choisie)
@@ -101,6 +106,16 @@ function display(pageID) {
   $("#page-compte").text($('#source-presentation > div').length);
   $("#editeur-page").val(pageHTML);
   
+  if(pageID !== 1) {
+    $('#bouton-pg-precedente').show();
+  } else {
+    $('#bouton-pg-precedente').hide();
+  }
+  if(parseInt(pageID) !== $('#source-presentation > div').length) {
+    $('#bouton-pg-suivante').show();
+  } else {
+    $('#bouton-pg-suivante').hide();
+  }
   //$('#bouton-sauvegarder').addClass("disabled"); // TODO-A ... voir en haut
 }
 

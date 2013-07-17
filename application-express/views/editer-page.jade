@@ -35,10 +35,10 @@ block contenu
     div#remplir
       form(action='')
         ul.nav.inline
-          li: a(href='#', title="inserer nouvelle page avant")#bouton-ins-avant: i.icon-plus
-          li: a(href='#', title="consulter page précédente"): i.icon-step-backward
-          li: a(href='#', title="consulter page suivante"): i.icon-step-forward
-          li: a(href='#', title="inserer nouvelle page après")#bouton-ins-apres: i.icon-plus
+          li: a(href='#', title="inserer nouvelle page avant")#bouton-ins-avant: +↩
+          li: a(href='#', title="consulter page précédente", style="display:none")#bouton-pg-precedente: ⎗
+          li: a(href='#', title="consulter page suivante", style="display:none")#bouton-pg-suivante: ⎘
+          li: a(href='#', title="inserer nouvelle page après")#bouton-ins-apres: ↪+
         ul.nav.inline
           li: a(href='#'): i.icon-bold
           li: a(href='#'): i.icon-italic
