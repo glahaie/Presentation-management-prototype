@@ -10,7 +10,6 @@ var ajaxObject = {
 		}
 	},
 	success: function(response) {
-	console.log(response);
 		$('#saveEditor').html(response);
           	$('#saveEditor').hide();
 		$('#start_full').click(function(){
