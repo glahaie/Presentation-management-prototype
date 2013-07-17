@@ -129,7 +129,7 @@ exports.ecran = function(req, res){
 	var link = path.resolve(__dirname, '../espace-utilisateur/enseignants/jberger/'+id+'.html');
 	fs.readFile(link, 'utf8', function(err, data) {
 		if (err) throw err;
-		res.send("<iframe id=\"tiny-iframe\" srcdoc=\""+data+"\" name='presentation'> </iframe>");
+		res.send("<iframe id=\"tiny-iframe\" srcdoc=\'"+data+"\' name='presentation'> </iframe>");
 	});
 };
 
@@ -154,6 +154,7 @@ exports.contactez = function(req, res){
     }
 
 };
+
 
 
 
