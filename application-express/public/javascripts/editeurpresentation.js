@@ -4,7 +4,7 @@ $(document).ready(function() {
   chargerThumbs();
   afficherPage(1);
   
-  // Configurer la fonctionnalite du bouton-sauvegaruder
+  // Configurer la fonctionnalite du bouton-sauveguarder
   $('#bouton-sauvegarder').click(function(event) {
     event.preventDefault();
     if (!$('#bouton-sauvegarder').hasClass('disabled')) {
@@ -35,7 +35,7 @@ $(document).ready(function() {
   
   
   // supprimer la page avec bouton
-  $('#bouton-supprimer').click( function(e) {
+  /*$('#bouton-supprimer').click( function(e) {
     e.preventDefault();
     $('#dialog-supprimer').dialog({
       title: 'Confirmation de suppression',
@@ -58,7 +58,7 @@ $(document).ready(function() {
         }
       }]
     });
-  });
+  });*/
   
   // TODO-A ... peut-etre. ici j'éssaie juste de désactiver le bouton 
   // sauvegarde jusqu'à qu'il y a un changement porté à la page, mais ceci ne 
@@ -198,7 +198,7 @@ function chargerThumbs() {
   
   var html = function(index) {
     // uuuugh! :(
-    var str = "<li><p class='nouv-page-lien avant' style='display:none' href='#'><a href='#'>inserer page avant</a></p><a class='thumbnail' href='#'><img class='group1 cboxElement' src='/static/images/1-INF4375-XML.png'><p class='numero-page'>" + (index+1) + "</p></a><p class='nouv-page-lien' style='display:none'><a href='#'>inserer page après</a></p></li>";
+    var str = "<li style='text-align:center;'><p class='nouv-page-lien avant' style='display:none;margin:0px;padding:0px;' href='#'><a class='btn btn-small' href='#' style='width:50%;'><i class='icon-plus'></i></a></p><a class='thumbnail' href='#'><img class='group1 cboxElement' src='/static/images/1-INF4375-XML.png'><p class='numero-page' style='opacity: 0.35;'>" + (index+1) + "</p></a><p class='nouv-page-lien' style='display:none;margin:0px;padding:0px;'><a class='btn btn-small' href='#' style='width:50%;'><i class='icon-plus'></i></a></p></li>";
     return $( str );
   };
   $('#thumbnails-pages ul').empty();
@@ -230,6 +230,14 @@ function chargerThumbs() {
       $(this).find('.nouv-page-lien').hide();
     }
   });
+}
+
+// Modifier les informations de la page modal en fonction de la page à
+// supprimer.
+function supprimerPageSetModal() {
+    var page = $("#page-id").text();
+    $("#noPageModal").html(page);
+    $('#btnSupprimerPageModal').click(function() {supprimer(page);} );
 }
 
 // NOTES pour plus tards peut-etre.

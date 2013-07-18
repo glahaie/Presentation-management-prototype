@@ -9,24 +9,30 @@ block arborescence
 block breadcrumb
   ul.breadcrumb
     li
-      span Présentation 
-        a#presentationID(href='') 2.2
-     
+      if presentationFichier   
+        span #{presentationFichier}
+      else
+        span Aucune présentation active
+        
 block primaire
-  ul.inline
-    if userType === 'prof'
+  if presentationFichier   
+    ul.inline
+      if userType === 'prof'
+        li
+          form(action='/editer-presentation')
+            button.btn(type='submit') Mode Editeur
+        li
+          form(action='/partager-presentation')
+            button.btn(type='submit') Partager
       li
-        form(action='/editer-presentation')
-          button.btn(type='submit') Mode Editeur
-      li
-        form(action='/partager-presentation')
-          button.btn(type='submit') Partager
-    li
-      a(href="#") 
-        button.btn#open-pres Démarrer la présentation 
-      
-  div#remplir
-  iframe#saveEditor(src="/presentation/2.2")
-  script(src='/static/javascripts/pres.js')
+        a(href="#") 
+          button.btn#open-pres Démarrer la présentation 
+  
+           
+    div#remplir
+    iframe#saveEditor(src="/presentation/2.2")
+    script(src='/static/javascripts/pres.js')
+  
 block acetates
-  include acetates
+  if presentationFichier   
+    include acetates

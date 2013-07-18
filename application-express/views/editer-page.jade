@@ -49,7 +49,7 @@ block contenu
           li: a(href='#'): i.icon-align-justify
           li: a(href='#'): i.icon-align-right
           li: p(style="font-size:15px") texte
-          li: a#bouton-supprimer(href='#', title="Supprimer cette page"): i.icon-trash
+          li: a#bouton-supprimer(href='#supprimerPageModal', title="Supprimer cette page", onclick="supprimerPageSetModal()", role="button", data-toggle="modal"): i.icon-trash
         textarea#editeur-page(style='height: 200px; width:100%')
         p.muted(style="font-size:15px") Indice: Drag et drop pour insérer des images.
         .form-actions
@@ -66,3 +66,15 @@ block contenu
     div#thumbnails-pages.presentationEnCours(style='height: 600px; overflow-y: scroll;')
       ul.unstyled#sortable
         // `li`s sont genere a partir du html qui se trouve dans #source-presentation
+
+  div#supprimerPageModal.modal.hide.fade(tabindex="-1", role="dialog", aria-labelledby="supprimerPageTitre", aria-hidden="true")
+    div.modal-header
+      button.close(type="button", data-dismiss="modal", aria-hidden="true")×
+      h3#supprimerFichierTitre Supprimer une page
+    div.modal-body
+      p Voulez-vous supprimer la page  
+        span#noPageModal
+        span ?
+    div.modal-footer
+      button.btn(data-dismiss="modal", aria-hidden="true") Annuler
+      button#btnSupprimerPageModal.btn.btn-primary(data-dismiss="modal", onclick="supprimer('')") Supprimer

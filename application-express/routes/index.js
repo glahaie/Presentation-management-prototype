@@ -9,57 +9,66 @@ var AUTRE = 2;
 exports.index = function(req, res){
   var user = req.session.userType;
   var repertoire = req.session.repertoire;
+  var presentation = req.session.presentation;
+  var page = '';
   
   if (user === 'prof') {
-  
-    getFichiers(repertoire, function(err, fichiers) {
-        res.render('accueil-professeur-layout', { pretty: true, menuAccueil: true, loggedIn: true, userType: user, fichiers: fichiers});
-    });
-    
+    page = 'accueil-professeur-layout';
   } else if (user === 'etudiant') {
-  
-    getFichiers(repertoire, function(err, fichiers) {
-        res.render('accueil-etudiant-layout', { pretty: true, menuAccueil: true, loggedIn: true, userType: user, fichiers: fichiers});
-    });
-    
+    page = 'accueil-etudiant-layout';
   } else {
     res.render('accueil-visiteur-layout', { pretty: true, menuAccueil: true, loggedIn: false });
+    return;
   }
+
+  getFichiers(repertoire, function(err, fichiers) {
+    var renderObj = {pretty: true, menuAccueil: true, loggedIn: true, userType: user, fichiers: fichiers};
+    if (presentation !== undefined) {
+      renderObj.presentationFichier = presentation;
+    }
+    
+    res.render(page, renderObj);
+  });
   
 };
 
 exports.editPresentation = function(req, res){
-  var fs = require('fs');
-  var filepath = path.join(__dirname, '../espace-utilisateur/enseignants/jberger/presentation-demo.html');
-  fs.readFile(filepath, 'utf8', function(err, data) {
-    if (err) throw err;
-    // le titre (sooooooo hacky, but whatevs)
-    var titre = data.match(/<!-- @titre =.*? -->/g)[0].replace(
-      /^<!-- @titre =\s+/g, '').replace(/\s+-->$/g, '');
-    res.render('editer-page', { pretty: true, menuPresentation: true, userType: "prof", presentationObj : data, presentationTitre : titre} );
-  });
-  
-  //TODO: reactivate login stuff
-  /*var user = req.session.userType;
-  var repertoire = req.session.repertoire;
+  var user = req.session.userType;
+
   
   if (user === 'prof') {
-    getFichiers(repertoire, function(err, fichiers) {
-        res.render('editer-page', { pretty: true, menuPresentation: true, userType: user, fichiers: fichiers});
+    var repertoire = req.session.repertoire;
+    var path =  req.session.pathPresentation;
+    
+    fs.readFile(path, 'utf8', function(err, data) {
+      if (err) console.log(err);
+      // le titre (sooooooo hacky, but whatevs)
+      var titre = data.match(/<!-- @titre =.*? -->/g)[0].replace(
+        /^<!-- @titre =\s+/g, '').replace(/\s+-->$/g, '');
+      
+      getFichiers(repertoire, function(err, fichiers) {
+          res.render('editer-page', { pretty: true, menuPresentation: true, userType: user, fichiers: fichiers, presentationObj : data, presentationTitre : titre});
+      });
     });
   } else {
     res.render('404.jade', { pretty: true});
-  }*/
+  }
   
 };
 
 exports.partagerPresentation = function(req, res){
   var user = req.session.userType;
   var repertoire = req.session.repertoire;
+  var presentation = req.session.presentation;
   
   if (user === 'prof') {
     getFichiers(repertoire, function(err, fichiers) {
-        res.render('partager-presentations-professeur-layout', { pretty: true, menuPresentation: true, userType: user, fichiers: fichiers});
+        var renderObj = { pretty: true, menuPresentation: true, userType: user, fichiers: fichiers};
+        if (presentation !== undefined) {
+            renderObj.presentationFichier = presentation;
+        }
+        
+        res.render('partager-presentations-professeur-layout', renderObj);
     });
   } else {
     res.render('404.jade', { pretty: true});
@@ -76,65 +85,92 @@ exports.admin = function(req, res){
   }
 
 };
-//Tentative d'ajout de la page de compte.
+
 exports.profil = function(req, res) {
     var user = req.session.userType;
     var repertoire = req.session.repertoire;
+    var presentation = req.session.presentation;
     
-    if(user === 'etudiant') {
-    
-        getFichiers(repertoire, function(err, fichiers) {
-            res.render('gestion-profil-etudiant-layout', {pretty:true, menuGestionProfil:true, loggedIn:true, userType: user, fichiers: fichiers});
-        });
-        
-    } else if (user === 'prof') {
-    
-        getFichiers(repertoire, function(err, fichiers) {
-            res.render('gestion-profil-professeur-layout', {pretty:true, menuGestionProfil:true, loggedIn:true, userType: user, fichiers: fichiers});
-        });
-        
+    if (user === 'prof') {
+        page = 'gestion-profil-etudiant-layout';
+    } else if (user === 'etudiant') {
+        page = 'gestion-profil-professeur-layout';
     } else {
         res.render('404.jade', {pretty: true});
+        return;
     }
+
+    getFichiers(repertoire, function(err, fichiers) {
+        var renderObj = {pretty:true, menuGestionProfil:true, loggedIn:true, userType: user, fichiers: fichiers};
+        if (presentation !== undefined) {
+            renderObj.presentationFichier = presentation;
+        }
+        
+        res.render(page, renderObj);
+    });
+
 };
 
 exports.presentation = function(req, res) {
     var user = req.session.userType;
-    var repertoire = req.session.repertoire;
-    var fs = require('fs');
-    var filepath = path.join(__dirname, '../espace-utilisateur/enseignants/jberger/presentation-demo.html');
-    fs.readFile(filepath, 'utf8', function(err, data) {
-        if (err) throw err;
-        // le titre (sooooooo hacky, but whatevs)
-        var titre = data.match(/<!-- @titre =.*? -->/g)[0].replace(
-          /^<!-- @titre =\s+/g, '').replace(/\s+-->$/g, '');
-        res.render('consulter-presentation', { pretty: true, menuPresentation: true, userType: user, presentationObj : data, presentationTitre : titre});
-    });
-    /* TODO: reactiver les affaires login
-    if (user === 'prof') {
+    var page = '';
     
-        getFichiers(repertoire, function(err, fichiers) {
-            res.render('consulter-presentation', { pretty: true, menuPresentation: true, userType: user, fichiers: fichiers});
-        });   
-        
+    if (user === 'prof') {
+        page = 'consulter-presentations-professeur-layout';
     } else if (user === 'etudiant') {
-        
-        getFichiers(repertoire, function(err, fichiers) {
-            res.render('consulter-presentation', { pretty: true, menuPresentation: true, userType: user, fichiers: fichiers});
-        });   
-        
+        page = 'consulter-presentations-etudiant-layout';
     } else {
         res.render('404.jade', { pretty: true});
-    }*/
+        return;
+    }
+    
+    var queryPresentation = req.query.fichier;
+    var repertoire = req.session.repertoire;
+    var presentation = '';
+    
+    if (queryPresentation !== undefined) {
+        presentation = req.query.fichier;
+        req.session.presentation = presentation;
+        req.session.pathPresentation = repertoire + '/' + presentation;
+    } else {
+        presentation = req.session.presentation;
+    }
+    
+    console.log(presentation);
+    
+    if (presentation !== undefined) {
+        var path = req.session.pathPresentation;
+        //req.session.presentation = presentation;
+        //req.session.pathPresentation = path;
+        
+        fs.readFile(path, 'utf8', function(err, data) {
+            if (err) console.log(err);
+            // le titre (sooooooo hacky, but whatevs)
+            var titre = data.match(/<!-- @titre =.*? -->/g)[0].replace(
+              /^<!-- @titre =\s+/g, '').replace(/\s+-->$/g, '');
+            
+            getFichiers(repertoire, function(err, fichiers) {
+                res.render(page, { pretty: true, menuPresentation: true, userType: user, fichiers: fichiers, presentationObj : data, presentationTitre : titre, presentationFichier: presentation});
+            });   
+        });
+    } else {
+    
+        getFichiers(repertoire, function(err, fichiers) {
+           res.render(page, { pretty: true, menuPresentation: true, userType: user, fichiers: fichiers});
+        });  
+        
+    }
   
 };
 
 exports.ecran = function(req, res){
-	var fs = require('fs');
-	var id = req.params.id;
-	var link = path.resolve(__dirname, '../espace-utilisateur/enseignants/jberger/presentation-demo.html');
+    var repertoire = req.session.repertoire;
+    //var presentation = req.session.presentation;
+    var link = req.session.pathPresentation;
+
+	//var id = req.params.id;
 	fs.readFile(link, 'utf8', function(err, data) {
-        if (err) throw err;
+        if (err) console.log(err);
         res.render("presentation-diaporama", { presHtml : data });
         //res.send("<iframe id=\"tiny-iframe\" srcdoc=\'"+data+"\' name='presentation'> </iframe>");
 	});
@@ -143,27 +179,26 @@ exports.ecran = function(req, res){
 exports.contactez = function(req, res){
     var user = req.session.userType;
     var repertoire = req.session.repertoire;
+    var presentation = req.session.presentation;
     
     if (user === 'prof') {
-    
-        getFichiers(repertoire, function(err, fichiers) {
-            res.render('contactez-nous-professeur-layout', { pretty: true, menuContactezNous: true, loggedIn: true, userType: user, fichiers: fichiers});
-        });    
-        
+        page = 'contactez-nous-professeur-layout';
     } else if (user === 'etudiant') {
-    
-        getFichiers(repertoire, function(err, fichiers) {
-            res.render('contactez-nous-etudiant-layout', { pretty: true, menuContactezNous: true, loggedIn: true, userType: user, fichiers: fichiers});
-        });  
-        
+        page = 'contactez-nous-etudiant-layout';
     } else {
         res.render('contactez-nous-visiteur-layout', { pretty: true, menuContactezNous: true, loggedIn: false });
+        return;
     }
 
+    getFichiers(repertoire, function(err, fichiers) {
+        var renderObj = { pretty: true, menuContactezNous: true, loggedIn: true, userType: user, fichiers: fichiers};
+        if (presentation !== undefined) {
+            renderObj.presentationFichier = presentation;
+        }
+        
+        res.render(page, renderObj);
+    });  
 };
-
-
-
 
 exports.login = function(req, res) {
     var login = req.body.login;
@@ -194,33 +229,44 @@ exports.login = function(req, res) {
 
 exports.logout = function(req, res) {
   req.session.userType = '';
+  req.session.repertoire = '';
+  req.session.presentation = undefined;
+  req.session.pathPresentation = '';
   res.render('accueil-visiteur-layout', { pretty: true, menuAccueil: true })
 };
 
 exports.servicesPresentation = function(req, res) {
   var htmlPres = req.body.htmlPres;
-  var fs = require('fs');
-  var filepath = path.join(__dirname, '../espace-utilisateur/enseignants/jberger/presentation-demo.html');
+  var filepath = req.session.pathPresentation;
   fs.writeFile(filepath, htmlPres, function (err) {
-    if (err) throw err;
+    if (err) console.log(err);
     res.send(htmlPres);
   });
 };
 
 //Recherche: on charge toujours la même page
 exports.recherche = function(req, res) {
+    var repertoire = req.session.repertoire;
     var login = req.session.userType;
     var rech = req.body.rech;
     var msg = "login = ";
     msg += login;
 
+    var page = '';
+    var requestObj = {pretty:true, menuRecherche:true, loggedIn:true, userType: login, nomRech: rech, fichiers: fichiers};
+    
     if (login === 'prof') {
-        res.render('recherche-professeur-layout', {pretty:true, menuRecherche:true, loggedIn:true, userType: login, nomRech: rech})
+        page = 'recherche-professeur-layout';
     } else if (login === 'etudiant') {
-        res.render('recherche-etudiant-layout', {pretty:true, menuRecherche:true, loggedIn:true, userType: login, nomRech:rech})
+        page = 'recherche-etudiant-layout';
     } else {
         res.render('404.jade', {pretty:true})
+        return;
     }
+    
+    getFichiers(repertoire, function(err, fichiers) {
+        res.render(page, requestObj);
+    });
 };
 
 exports.concatRepertoire = function(req, res) {
@@ -393,9 +439,11 @@ exports.creerFichier = function(req, res) {
     var user = req.session.userType;
     
     if (user === 'prof') {
-    var fichier = req.session.repertoire + '/' + req.query.fichier + '.html';
+        var fichier = req.session.repertoire + '/' + req.query.fichier + '.html';
+        var data = "<!-- @titre = Présentation impress -->\n\n" + 
+                   "<div class='step slide' data-x='-1000' data-y='-1500'>\n</div>";
     
-        fs.writeFile(fichier, '', 'utf8', function(err) {
+        fs.writeFile(fichier, data, 'utf8', function(err) {
             if (err) {
                 res.json({success: false});
             } else {
