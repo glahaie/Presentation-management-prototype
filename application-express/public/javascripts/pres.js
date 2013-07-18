@@ -1,44 +1,57 @@
 var ident = $('#presentationID').text(); 
 var iframe = ""
 $(document).ready(function(){
-  $('#open-pres').click(function(){ transition();}); 
-  setTimeout( function(){
-    iframe = frames[0].window.document;
-    $("body").on("keyup", $(iframe).defaultView, (function(e) {
-          if (e.keyCode == 27) { 
-           $('#saveEditor, #tiny-iframe').css({
-	         "width": "400px",
-            "min-width": "350px",
-            "position": "relative",
-            "height":"240px"
-	  });
-       }  
-    })); }, 2000);
-     
-    var ajaxObject = {
-        type: "GET",
-        url: "/presentation/presentation-demo",
-        error: function(error) {
-            if (error) {
-                console.log("Erreur");
-            }
-        },
-        success: function(response) {
-		$('#saveEditor').html(response);
-        iframeWindow = frames[0];
-	  
-	 }
-    };
-    
-    var transition = function(){
+  
+  $('#open-pres').click(function(){
+    transition();
+  });
+  
+  $(document).keyup( function(e) {
+    if (e.which == 27) {
+      transitionBack();
+    }
+  });
+	
+	var transitionBack = function() {
+	  $('#saveEditor, #tiny-iframe').css({
+      "width": "400px",
+      "min-width": "350px",
+      "position": "relative",
+      "height":"240px"
+    });
+    $("#bouton-fermer-diapo").remove();
+  }
+  
+  var transition = function(){
       $('#saveEditor, #tiny-iframe').css(
-		     { "position": "absolute",
+		    { "position": "absolute",
 			"top": "0",
 			"left": "0",
 			"width": "100%",
 			"height": "100%"
 			});
+			$('body').append($("<div id='bouton-fermer-diapo' style='display: block; position:absolute; right: 5%; top: 5%;'><a href='#'>x</a></div>" ));
+			$("#bouton-fermer-diapo").click( function(e) {
+			  transitionBack();
+			});
     }
 	
-   $.ajax(ajaxObject);
+});
+
+$('#saveEditor').ready( function () {
+  var html = function(index) {
+    // uuuugh! :(
+    var str = "<li><a class='thumbnail' href='#'><img class='group1 cboxElement' src='/static/images/1-INF4375-XML.png'><p class='numero-page'>" + (index+1) + "</p></a></li>";
+    return $( str );
+  };
+  
+  $('#thumbnails-pages ul').empty();
+  $('#saveEditor').contents().find('.step').each( function(i, e) {
+    $('#thumbnails-pages ul').append(html(i));
+  });
+  
+  // Faire aparaitre la page dans l'edituer quand on clique sur son thumbnail
+  // TODO: use impress.js API
+  // ... $('#thumbnails-pages li').dblClick( .... )
+  
 });

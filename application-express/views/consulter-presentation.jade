@@ -1,7 +1,7 @@
 extends presentations
 
 block jsextra
-  script(src='/static/javascripts/pres.js')
+  
 
 block arborescence
   include arborescence
@@ -26,8 +26,7 @@ block primaire
         button.btn#open-pres Démarrer la présentation 
       
   div#remplir
-  div#saveEditor
-  script#toRemove(src='/static/javascripts/pres.js')
- 
+  iframe#saveEditor(src="/presentation/2.2")
+  script(src='/static/javascripts/pres.js')
 block acetates
   include acetates

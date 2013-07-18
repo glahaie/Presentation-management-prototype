@@ -36,9 +36,6 @@ exports.editPresentation = function(req, res){
     // le titre (sooooooo hacky, but whatevs)
     var titre = data.match(/<!-- @titre =.*? -->/g)[0].replace(
       /^<!-- @titre =\s+/g, '').replace(/\s+-->$/g, '');
-    //res.locals.presentationTitre = titre;
-    //res.locals.presentationObj = data;
-    //res.locals.userType = "prof";
     res.render('editer-page', { pretty: true, menuPresentation: true, userType: "prof", presentationObj : data, presentationTitre : titre} );
   });
   
@@ -104,7 +101,16 @@ exports.profil = function(req, res) {
 exports.presentation = function(req, res) {
     var user = req.session.userType;
     var repertoire = req.session.repertoire;
-    
+    var fs = require('fs');
+    var filepath = path.join(__dirname, '../espace-utilisateur/enseignants/jberger/presentation-demo.html');
+    fs.readFile(filepath, 'utf8', function(err, data) {
+        if (err) throw err;
+        // le titre (sooooooo hacky, but whatevs)
+        var titre = data.match(/<!-- @titre =.*? -->/g)[0].replace(
+          /^<!-- @titre =\s+/g, '').replace(/\s+-->$/g, '');
+        res.render('consulter-presentation', { pretty: true, menuPresentation: true, userType: user, presentationObj : data, presentationTitre : titre});
+    });
+    /* TODO: reactiver les affaires login
     if (user === 'prof') {
     
         getFichiers(repertoire, function(err, fichiers) {
@@ -119,17 +125,18 @@ exports.presentation = function(req, res) {
         
     } else {
         res.render('404.jade', { pretty: true});
-    }
+    }*/
   
 };
 
 exports.ecran = function(req, res){
 	var fs = require('fs');
 	var id = req.params.id;
-	var link = path.resolve(__dirname, '../espace-utilisateur/enseignants/jberger/'+id+'.html');
+	var link = path.resolve(__dirname, '../espace-utilisateur/enseignants/jberger/presentation-demo.html');
 	fs.readFile(link, 'utf8', function(err, data) {
-		if (err) throw err;
-		res.send("<iframe id=\"tiny-iframe\" srcdoc="+data+" name='presentation'> </iframe>");
+        if (err) throw err;
+        res.render("presentation-diaporama", { presHtml : data });
+        //res.send("<iframe id=\"tiny-iframe\" srcdoc=\'"+data+"\' name='presentation'> </iframe>");
 	});
 };
 

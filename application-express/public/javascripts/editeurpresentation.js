@@ -1,7 +1,9 @@
 // le code utilisé pour l'edition des presentations dans le fureteur
 
 $(document).ready(function() {
-  display(1);
+  chargerThumbs();
+  afficherPage(1);
+  
   // Configurer la fonctionnalite du bouton-sauvegaruder
   $('#bouton-sauvegarder').click(function(event) {
     event.preventDefault();
@@ -24,36 +26,13 @@ $(document).ready(function() {
   //   * UC-E3-03 Charger la page suivante
   //   * UC-E3-04 Charger la page précédente
   $('#bouton-pg-precedente').click( function (e) {
-    display(parseInt($("#page-id").text()) - 1);
+    afficherPage(parseInt($("#page-id").text()) - 1);
   });
   $('#bouton-pg-suivante').click( function (e) {
-    display(parseInt($("#page-id").text()) + 1);
+    afficherPage(parseInt($("#page-id").text()) + 1);
   });
   
-  // Faire aparaitre la page dans l'edituer quand on clique sur son thumbnail
-  // (UC-E3-05 Charger la page choisie)
-  $('#thumbnails-pages ul > li').each(function(index) {
-    $(this).dblclick(function() {
-        display(index + 1);
-    });
-    // Ajouter une nouvelle page partie 2
-    $(this).find('.nouv-page-lien').click(function(e) {
-      if ($(this).hasClass('avant')) {
-        nouvellePageAvant(index + 1);
-      } else {
-        nouvellePageAvant(index + 2);
-      }
-    });
-  });
   
-  $('#thumbnails-pages ul > li').on({
-    mouseenter : function(e) {
-      $(this).find('.nouv-page-lien').show();
-    },
-    mouseleave : function(e) {
-      $(this).find('.nouv-page-lien').hide();
-    }
-  });
   
   // supprimer la page avec bouton
   $('#bouton-supprimer').click( function(e) {
@@ -90,7 +69,7 @@ $(document).ready(function() {
   
 });
 
-function display(pageID) {
+function afficherPage (pageID) {
   // Affiche le code source d'une page dans l'editeur.
   // Elle devrait être déclenchée par:
   //  * le chargement de l'interface d'édition d'une présentation 
@@ -146,7 +125,7 @@ function nouvellePageAvant(pageID) {
     pageRef.after(
       $('<div class="step slide" data-x="' + nX + '" data-y="' + nY + '">\n<p>nouvelle page</p>\n</div>')
     );
-    display($('#source-presentation > div').length);
+    afficherPage($('#source-presentation > div').length);
   } else {
     nX = parseInt(pageRef.attr('data-x'));
     nY = parseInt(pageRef.attr('data-y'));
@@ -158,7 +137,7 @@ function nouvellePageAvant(pageID) {
       return parseInt(val) + 1000;
     });
     
-    display(pageID);
+    afficherPage(pageID);
   }
   sauvegarderPres();
 }
@@ -175,9 +154,9 @@ function supprimer(pageID) {
   
   $('#source-presentation > div').eq(pageID - 1).remove();
   if (pageID > $('#source-presentation > div').length) {
-    display(pageID - 1); 
+    afficherPage(pageID - 1); 
   } else { 
-    display(pageID);
+    afficherPage(pageID);
   }
   sauvegarderPres();
 }
@@ -206,11 +185,51 @@ function sauvegarderPres() {
   request.done(function(data) {
     $("#source-presentation").html( data );
     alert("Page sauvegardée");
+    chargerThumbs();
   });
   request.fail(function(jqXHR, textStatus) {
     alert("Request failed: " + textStatus );
   });
   $('#bouton-sauvegarder').removeClass("disabled");
+}
+
+// TODO: Mettre ce code dans `consulter presentation` et autres places o'u c'est necessaire.
+function chargerThumbs() {
+  
+  var html = function(index) {
+    // uuuugh! :(
+    var str = "<li><p class='nouv-page-lien avant' style='display:none' href='#'><a href='#'>inserer page avant</a></p><a class='thumbnail' href='#'><img class='group1 cboxElement' src='/static/images/1-INF4375-XML.png'><p class='numero-page'>" + (index+1) + "</p></a><p class='nouv-page-lien' style='display:none'><a href='#'>inserer page après</a></p></li>";
+    return $( str );
+  };
+  $('#thumbnails-pages ul').empty();
+  $('#source-presentation > div').each( function(i, e) {
+    $('#thumbnails-pages ul').append(html(i));
+  });
+  
+  // Faire aparaitre la page dans l'edituer quand on clique sur son thumbnail
+  // (UC-E3-05 Charger la page choisie)
+  $('#thumbnails-pages ul > li').each( function(i) {
+    $(this).dblclick(function() {
+      afficherPage(i + 1);
+    });
+  });
+  // Ajouter une nouvelle page avec boutons des thumbs
+  $('#thumbnails-pages ul > li').find('.nouv-page-lien').click(function(e) {
+    if ($(this).hasClass('avant')) {
+      nouvellePageAvant(index + 1);
+    } else {
+      nouvellePageAvant(index + 2);
+    }
+  });
+  // Montrer et cacher les boutons pour creer nouvelle pages
+  $('#thumbnails-pages ul > li').on({
+    mouseenter : function(e) {
+      $(this).find('.nouv-page-lien').show();
+    },
+    mouseleave : function(e) {
+      $(this).find('.nouv-page-lien').hide();
+    }
+  });
 }
 
 // NOTES pour plus tards peut-etre.
