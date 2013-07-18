@@ -1,6 +1,7 @@
 var ident = $('#presentationID').text(); 
 var iframe = ""
 $(document).ready(function(){
+  
   $('#open-pres').click(function(){
     transition();
   });
@@ -35,5 +36,22 @@ $(document).ready(function(){
 			});
     }
 	
-   //$.ajax(ajaxObject);
+});
+
+$('#saveEditor').ready( function () {
+  var html = function(index) {
+    // uuuugh! :(
+    var str = "<li><a class='thumbnail' href='#'><img class='group1 cboxElement' src='/static/images/1-INF4375-XML.png'><p class='numero-page'>" + (index+1) + "</p></a></li>";
+    return $( str );
+  };
+  
+  $('#thumbnails-pages ul').empty();
+  $('#saveEditor').contents().find('.step').each( function(i, e) {
+    $('#thumbnails-pages ul').append(html(i));
+  });
+  
+  // Faire aparaitre la page dans l'edituer quand on clique sur son thumbnail
+  // TODO: use impress.js API
+  // ... $('#thumbnails-pages li').dblClick( .... )
+  
 });
