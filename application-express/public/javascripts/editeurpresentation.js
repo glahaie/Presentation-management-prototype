@@ -68,6 +68,12 @@ function afficherPage (pageID) {
   $(".page-id").text(pageID);
   $("#page-compte").text($('#source-presentation > div').length);
   $("#editeur-page").val(pageHTML);
+
+  //Pour le wysiwyg
+  $('.wysithml5-toolbar').remove();
+  $('.wysihtm5-sandbox').remove();
+  $('#editeur-page').css('display','block');
+  $('#editeur-page').wysihtml5();
   
   if(pageID !== 1) {
     $('#bouton-pg-precedente').show();
