@@ -6,9 +6,11 @@ block arborescence
 block breadcrumb
   ul.breadcrumb
     li
-      span Présentation 
-        a#presentationID(href='') 2.2
-  
+      if presentationFichier
+        span #{presentationFichier}
+      else
+        span Aucune présentation active
+        
 block primaire 
   ul.inline
     li

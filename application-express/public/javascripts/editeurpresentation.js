@@ -4,12 +4,12 @@ $(document).ready(function() {
   chargerThumbs();
   afficherPage(1);
   
-  // Configurer la fonctionnalite du bouton-sauvegaruder
+  // Configurer la fonctionnalite du bouton-sauveguarder
   $('#bouton-sauvegarder').click(function(event) {
     event.preventDefault();
-    if (!$('#bouton-sauvegarder').hasClass('disabled')) {
-      sauvegarder(66);
-    }
+    //if (!$('#bouton-sauvegarder').hasClass('disabled')) {
+    sauvegarder(parseInt($("#page-id").text()));
+    //}
   });
   
   // Ajouter une nouvelle page partie 1
@@ -35,29 +35,13 @@ $(document).ready(function() {
   
   
   // supprimer la page avec bouton
-  $('#bouton-supprimer').click( function(e) {
-    e.preventDefault();
-    $('#dialog-supprimer').dialog({
-      title: 'Confirmation de suppression',
-      width: 300,
-      height: 200,
-      modal: true,
-      resizable: false,
-      draggable: false,
-      buttons: [{
-        text: 'Supprimer',
-        click: function(){
-          supprimer($("#page-id").text());
-          $(this).dialog('close');
-        }
-      },
-      {
-        text: 'Non',
-        click: function() {
-          $(this).dialog('close');
-        }
-      }]
-    });
+  // Modifier les informations de la page modal en fonction de la page à
+  // supprimer.
+  $('#btnSupprimerPageModal').click( function() { 
+    supprimer( parseInt($("#page-id").text()) );
+  });
+  $('#bouton-supprimer').click(function () {
+    $("#noPageModal").text($("#page-id").text());
   });
   
   // TODO-A ... peut-etre. ici j'éssaie juste de désactiver le bouton 
@@ -184,7 +168,7 @@ function sauvegarderPres() {
   });
   request.done(function(data) {
     $("#source-presentation").html( data );
-    alert("Page sauvegardée");
+    alert("La présentation à était mise à jour");
     chargerThumbs();
   });
   request.fail(function(jqXHR, textStatus) {
@@ -198,7 +182,7 @@ function chargerThumbs() {
   
   var html = function(index) {
     // uuuugh! :(
-    var str = "<li><p class='nouv-page-lien avant' style='display:none' href='#'><a href='#'>inserer page avant</a></p><a class='thumbnail' href='#'><img class='group1 cboxElement' src='/static/images/1-INF4375-XML.png'><p class='numero-page'>" + (index+1) + "</p></a><p class='nouv-page-lien' style='display:none'><a href='#'>inserer page après</a></p></li>";
+    var str = "<li style='text-align:center;'><p class='nouv-page-lien avant' style='display:none;margin:0px;padding:0px;' href='#'><a class='btn btn-small' href='#' style='width:50%;'><i class='icon-plus'></i></a></p><a class='thumbnail' href='#'><img class='group1 cboxElement' src='/static/images/1-INF4375-XML.png'><p class='numero-page' style='opacity: 0.35;'>" + (index+1) + "</p></a><p class='nouv-page-lien' style='display:none;margin:0px;padding:0px;'><a class='btn btn-small' href='#' style='width:50%;'><i class='icon-plus'></i></a></p></li>";
     return $( str );
   };
   $('#thumbnails-pages ul').empty();
@@ -212,15 +196,16 @@ function chargerThumbs() {
     $(this).dblclick(function() {
       afficherPage(i + 1);
     });
+    $(this).find('.nouv-page-lien').click(function(e) {
+      if ($(this).hasClass('avant')) {
+        nouvellePageAvant(i + 1);
+      } else {
+        nouvellePageAvant(i + 2);
+      }
+    });
   });
   // Ajouter une nouvelle page avec boutons des thumbs
-  $('#thumbnails-pages ul > li').find('.nouv-page-lien').click(function(e) {
-    if ($(this).hasClass('avant')) {
-      nouvellePageAvant(index + 1);
-    } else {
-      nouvellePageAvant(index + 2);
-    }
-  });
+  
   // Montrer et cacher les boutons pour creer nouvelle pages
   $('#thumbnails-pages ul > li').on({
     mouseenter : function(e) {
@@ -231,6 +216,7 @@ function chargerThumbs() {
     }
   });
 }
+
 
 // NOTES pour plus tards peut-etre.
 // https://github.com/fb55/htmlparser2 ou

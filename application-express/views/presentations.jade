@@ -1,4 +1,4 @@
-extends navbar-professeur
+extends index
 
 block contenu
   nav#presentations.span3
@@ -8,6 +8,7 @@ block contenu
     block breadcrumb
 
     block primaire
-    
-  #acetates.span3(style='height: 600px; overflow-y: scroll;')
-    block acetates
+  
+  if presentationFichier  
+    acetates.span3(style='height: 600px; overflow-y: scroll;')
+      block acetates

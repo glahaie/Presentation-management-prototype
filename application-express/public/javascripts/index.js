@@ -12,6 +12,24 @@ $(document).ready(function(){
 });
 
 /**
+ * Simuler la création d'un utilisateur
+ */
+function protoActiverCreerBtn() {
+    var nom = document.getElementById('creerNom').value;
+    var prenom = document.getElementById('creerPrenom').value;
+    var courriel = document.getElementById('creerCourriel').value;
+    var identifiant = document.getElementById('creerIdentifiant').value;
+    var typeProfesseur = document.getElementById('creerProfesseur').checked;
+    var typeEtudiant = document.getElementById('creerEtudiant').checked;
+    
+    if (nom.length > 0 && prenom.length > 0 && courriel.length > 0 && identifiant.length > 0 && (typeProfesseur || typeEtudiant)) {
+        document.getElementById('btnCreerUtilisateur').disabled = false;
+    } else {
+        document.getElementById('btnCreerUtilisateur').disabled = true;
+    }
+}
+
+/**
  * Simuler la recherche d'un utilisateur à supprimer.
  */
 function protoRechercheSupprimer() {
@@ -356,7 +374,7 @@ function creerArborescence(objFichierUser) {
             } else {
                 str += '<li><a href="#supprimerFichierModal" role="button" data-toggle="modal" onclick="updateSupprimerFichierModal(\'' + nom + '\')\">Supprimer</a></li></ul>' + 
                        "<i class='icon-file'></i>" + 
-                       '<a href="#">' + nom + "</a></li>";       
+                       '<a href="/presentation?fichier=' + nom + '">' + nom + "</a></li>";       
             }
         }
     } else if (userType === 'etudiant') {
@@ -369,7 +387,7 @@ function creerArborescence(objFichierUser) {
                        '<a href="#" onclick="changerRepertoire(\'' + nom + '\')\">' + nom + "</a></li>";
             } else {
                 str += "<li><i class='icon-file'></i>" + 
-                       '<a href="#">' + nom + "</a></li>";       
+                       '<a href="/presentation?fichier=' + nom + '">' + nom + "</a></li>";       
             }
         }
     }

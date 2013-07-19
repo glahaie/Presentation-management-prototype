@@ -27,10 +27,10 @@ if userType === 'prof'
       button.close(type="button", data-dismiss="modal", aria-hidden="true")×
       h3#supprimerRepertoireTitre Supprimer un répertoire
     div.modal-body
-      p Voulez vous supprimer le répertoire &nbsp
+      p Voulez vous supprimer le répertoire&nbsp
         b
-          span#nomRepSupprimer (nom à mettre) 
-        span &nbsp et tout son contenu?
+          span#nomRepSupprimer 
+        span ?
     div.modal-footer
       button.btn(data-dismiss="modal", aria-hidden="true") Annuler
       button#btnSupprimerRepModal.btn.btn-primary(data-dismiss="modal", onclick="supprimerRepertoire('')") Supprimer
@@ -102,7 +102,7 @@ if userType === 'prof'
             a(href='#', onclick='changerRepertoire("#{fichier.nom}")') #{fichier.nom}
           else
             i.icon-file    
-            a(href='#', onclick='') #{fichier.nom}
+            a(href='/presentation?fichier=#{fichier.nom}', onclick='') #{fichier.nom}
             
   div#erreurArborescence
   
@@ -129,4 +129,4 @@ else if userType === 'etudiant'
             a(href='#', onclick='changerRepertoire("#{fichier.nom}")') #{fichier.nom}
           else
             i.icon-file    
-            a(href='#', onclick='') #{fichier.nom}
+            a(href='/presentation?fichier=#{fichier.nom}', onclick='') #{fichier.nom}
