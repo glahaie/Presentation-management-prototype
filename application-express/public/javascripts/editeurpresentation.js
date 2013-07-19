@@ -7,9 +7,9 @@ $(document).ready(function() {
   // Configurer la fonctionnalite du bouton-sauveguarder
   $('#bouton-sauvegarder').click(function(event) {
     event.preventDefault();
-    if (!$('#bouton-sauvegarder').hasClass('disabled')) {
-      sauvegarder(66);
-    }
+    //if (!$('#bouton-sauvegarder').hasClass('disabled')) {
+    sauvegarder(parseInt($("#page-id").text()));
+    //}
   });
   
   // Ajouter une nouvelle page partie 1
@@ -35,30 +35,14 @@ $(document).ready(function() {
   
   
   // supprimer la page avec bouton
-  /*$('#bouton-supprimer').click( function(e) {
-    e.preventDefault();
-    $('#dialog-supprimer').dialog({
-      title: 'Confirmation de suppression',
-      width: 300,
-      height: 200,
-      modal: true,
-      resizable: false,
-      draggable: false,
-      buttons: [{
-        text: 'Supprimer',
-        click: function(){
-          supprimer($("#page-id").text());
-          $(this).dialog('close');
-        }
-      },
-      {
-        text: 'Non',
-        click: function() {
-          $(this).dialog('close');
-        }
-      }]
-    });
-  });*/
+  // Modifier les informations de la page modal en fonction de la page à
+  // supprimer.
+  $('#btnSupprimerPageModal').click( function() { 
+    supprimer( parseInt($("#page-id").text()) );
+  });
+  $('#bouton-supprimer').click(function () {
+    $("#noPageModal").text($("#page-id").text());
+  });
   
   // TODO-A ... peut-etre. ici j'éssaie juste de désactiver le bouton 
   // sauvegarde jusqu'à qu'il y a un changement porté à la page, mais ceci ne 
@@ -232,13 +216,6 @@ function chargerThumbs() {
   });
 }
 
-// Modifier les informations de la page modal en fonction de la page à
-// supprimer.
-function supprimerPageSetModal() {
-    var page = $("#page-id").text();
-    $("#noPageModal").html(page);
-    $('#btnSupprimerPageModal').click(function() {supprimer(page);} );
-}
 
 // NOTES pour plus tards peut-etre.
 // https://github.com/fb55/htmlparser2 ou

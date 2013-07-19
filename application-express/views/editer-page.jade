@@ -5,8 +5,7 @@ block jsextra
     //script(src='/static/javascripts/presentation.js')
     script(src='/static/javascripts/editeurpresentation.js')
     //script(src='/static/javascripts/edit-pres.js')
-    link(href='/static/stylesheets/jquery-ui.min.css', rel='stylesheet', media='screen')
-
+    
 block contenu
   nav#presentations.span3
     include arborescence
@@ -49,7 +48,7 @@ block contenu
           li: a(href='#'): i.icon-align-justify
           li: a(href='#'): i.icon-align-right
           li: p(style="font-size:15px") texte
-          li: a#bouton-supprimer(href='#supprimerPageModal', title="Supprimer cette page", onclick="supprimerPageSetModal()", role="button", data-toggle="modal"): i.icon-trash
+          li: a#bouton-supprimer(href='#supprimerPageModal', title="Supprimer cette page", role="button", data-toggle="modal"): i.icon-trash
         textarea#editeur-page(style='height: 200px; width:100%')
         p.muted(style="font-size:15px") Indice: Drag et drop pour insérer des images.
         .form-actions
@@ -77,4 +76,4 @@ block contenu
         span ?
     div.modal-footer
       button.btn(data-dismiss="modal", aria-hidden="true") Annuler
-      button#btnSupprimerPageModal.btn.btn-primary(data-dismiss="modal", onclick="supprimer('')") Supprimer
+      button#btnSupprimerPageModal.btn.btn-primary(data-dismiss="modal") Supprimer
