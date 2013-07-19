@@ -70,8 +70,8 @@ function afficherPage (pageID) {
   $("#editeur-page").val(pageHTML);
 
   //Pour le wysiwyg
-  $('.wysithml5-toolbar').remove();
-  $('.wysihtm5-sandbox').remove();
+  $('.wysihtml5-toolbar').remove();
+  $('.wysihtml5-sandbox').remove();
   $('#editeur-page').css('display','block');
   $('#editeur-page').wysihtml5();
   
