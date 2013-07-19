@@ -1,7 +1,5 @@
 extends presentations
 
-block jsextra
-  script(src='/static/javascripts/pres.js')
 
 block arborescence
   include arborescence
@@ -31,7 +29,9 @@ block primaire
            
     div#remplir
     iframe#saveEditor(src="/presentation/2.2")
+    script(src='/static/javascripts/pres.js')
   
 block acetates
   if presentationFichier   
-    include acetates
+    div#thumbnails-pages.presentationEnCours
+      ul.unstyled#sortable

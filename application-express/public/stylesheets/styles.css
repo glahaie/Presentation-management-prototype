@@ -15,10 +15,12 @@
     border: 10px solid #fff;
     border: 10px solid rgba(255, 255, 255, 0.9);
     background: white;
+    z-index:20;
 }
 
 #thumbnails-pages a.thumbnail {
     position: relative;
+    z-index: 10;
 }
 
 #thumbnails-pages a.thumbnail .numero-page {

@@ -28,7 +28,7 @@ $(document).ready(function(){
 			"width": "100%",
 			"height": "100%"
 			});
-			$('body').append($("<div id='bouton-fermer-diapo' style='display: block; position:absolute; right: 5%; top: 5%;'><a href='#'>x</a></div>" ));
+			$('body').append($("<div id='bouton-fermer-diapo' style='display: block; position:absolute; right: 5%; top: 5%; z-index:21;'><a href='#'>x</a></div>" ));
 			$("#bouton-fermer-diapo").click( function(e) {
 			  transitionBack();
 			});
@@ -36,7 +36,7 @@ $(document).ready(function(){
 	
 });
 
-$('#saveEditor').ready( function () {
+$( window ).load( function () {
   var html = function(index) {
     // uuuugh! :(
     var str = "<li><a class='thumbnail' href='#'><img class='group1 cboxElement' src='/static/images/1-INF4375-XML.png'><p class='numero-page'>" + (index+1) + "</p></a></li>";
