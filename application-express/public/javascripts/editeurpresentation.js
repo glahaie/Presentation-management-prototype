@@ -89,7 +89,16 @@ function afficherPage (pageID) {
   $('.wysihtml5-toolbar').remove();
   $('.wysihtml5-sandbox').remove();
   $('#editeur-page').css('display','block');
-  $('#editeur-page').wysihtml5();
+  $('#editeur-page').wysihtml5({
+      	"font-styles": true,
+	    "emphasis": true, 
+        "bold": true,
+	    "lists": true,
+	    "html": true,
+	    "link": true, 
+	    "image": true,
+	    "color": false //Button to change color of font 
+  });
   
   if(pageID !== 1) {
     $('#bouton-pg-precedente').show();
