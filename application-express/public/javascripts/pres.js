@@ -1,5 +1,3 @@
-var ident = $('#presentationID').text(); 
-var iframe = ""
 $(document).ready(function(){
   
   $('#open-pres').click(function(){
