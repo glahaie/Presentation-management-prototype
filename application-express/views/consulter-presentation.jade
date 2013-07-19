@@ -13,6 +13,35 @@ block breadcrumb
         span Aucune présentation active
         
 block primaire
+
+  //Pour exporter
+
+  div#exporterPresentation.modal.hide.fade(tabindex="-1", role="dialog", aria-labelledby="exporterPresentation", aria-hidden="true")
+    div.modal-header
+      button.close(type="button", data-dismiss="modal", aria-hidden="true")×
+      h3#afficherCommentairesTitre Exporter la présentation
+    div.modal-body
+        p.lead Choisir le format d'exportation
+        form
+          label.radio PDF
+            input#choisirFormat(type='radio', name='type', value='PDF')
+          label.radio OpenDocument
+            input#choisirFormat(type='radio', name='type', value='ODF')
+          label.radio PPT
+            input#choisirFormat(type='radio', name='type', value='PPT')
+          label.radio PPTX
+            input#choisirFormat(type='radio', name='type', value='PPTX')
+          label.radio HTML
+            input#choisirFormat(type='radio', name='type', value='HTML')
+          label.radio TXT
+            input#choisirFormat(type='radio', name='type', value='TXT')
+          input#nomFichier(type='text', placeholder='Nom du fichier')
+        
+    div.modal-footer
+      button.btn(data-dismiss="modal", aria-hidden="true") Fermer
+      button.btn.btn-primary(onclick='return false;') Exporter
+
+
   if presentationFichier   
     ul.inline
       if userType === 'prof'
@@ -25,11 +54,15 @@ block primaire
       li
         a(href="#") 
           button.btn#open-pres Démarrer la présentation 
+      li
+        a.btn(href='#exporterPresentation', role='button', data-toggle='modal') Exporter la présentation
   
            
     div#remplir
     iframe#saveEditor(src="/presentation/2.2")
     script(src='/static/javascripts/pres.js')
+
+    include commentaires
   
 block acetates
   if presentationFichier   
