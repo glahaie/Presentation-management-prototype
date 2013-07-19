@@ -168,7 +168,7 @@ function sauvegarderPres() {
   });
   request.done(function(data) {
     $("#source-presentation").html( data );
-    alert("Page sauvegardée");
+    alert("La présentation à était mise à jour");
     chargerThumbs();
   });
   request.fail(function(jqXHR, textStatus) {
