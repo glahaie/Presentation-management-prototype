@@ -196,15 +196,16 @@ function chargerThumbs() {
     $(this).dblclick(function() {
       afficherPage(i + 1);
     });
+    $(this).find('.nouv-page-lien').click(function(e) {
+      if ($(this).hasClass('avant')) {
+        nouvellePageAvant(i + 1);
+      } else {
+        nouvellePageAvant(i + 2);
+      }
+    });
   });
   // Ajouter une nouvelle page avec boutons des thumbs
-  $('#thumbnails-pages ul > li').find('.nouv-page-lien').click(function(e) {
-    if ($(this).hasClass('avant')) {
-      nouvellePageAvant(index + 1);
-    } else {
-      nouvellePageAvant(index + 2);
-    }
-  });
+  
   // Montrer et cacher les boutons pour creer nouvelle pages
   $('#thumbnails-pages ul > li').on({
     mouseenter : function(e) {
