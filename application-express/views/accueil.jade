@@ -4,23 +4,60 @@
 
 .span8
 
-
     case userType
         when 'prof'
             .alert.alert-info
                 h4 Bienvenue M. Enseignant
+
+            p.lead Dernières présentations consultées ou modifiées.
+            
+            table(class="table")
+                thead
+                    tr
+                        th Titre
+                tbody
+                    tr
+                        td 
+                            a(href="#") INF4170 MultiCycle
+                    tr.info
+                        td 
+                            a(href="#") INF4375 Node
+                    tr
+                        td 
+                            a(href="#") INF2005 JS2
+
         when 'etudiant'
             .alert.alert-info
-                h4 Bienvenue M. Étudiant
-        when 'admin'
+                h4 Bienvenue M. Etudiant
+
+            p.lead Dernières présentations consultées.
+    
+        
+            table(class="table")
+                thead
+                    tr
+                        th Titre
+                tbody
+                    tr
+                        td 
+                            a(href="#") INF4170 MultiCycle
+                    tr.info
+                        td 
+                            a(href="#") INF4375 Node
+                    tr
+                        td 
+                            a(href="#") INF2005 JS2
+
+        when 'admin'        
             .alert.alert-info
                 h4 Bienvenue M. Admin
-        default
+
+        default            
             .alert.alert-info
                 h4 Bienvenue sur le système de gestion et de partage des présentations
 
-    p.lead Créer, présenter, consulter et partager vos présentations d'un seul endroit!
+            p.lead Créer, présenter, consulter et partager vos présentations d'un seul endroit!
 
-    p(style='text-align:justify;') Fini l'installation de logiciels pour créer et consulter des présentations de style PowerPoint. Vous pouvez maintenant créer et consulter des présentations directement à partir de notre site, aucune installation de logiciel n'est requis. Les professeurspeuvent créer et partager des présentations aux membres du site, vous avez le contrôle sur l'accès à vos présentations. Les étudiants ont un accès direct à toutes les présentations qui sont partagées avec vous. Vous pouvez aussi laisser des commentaires en lien avec une présentation, afin d'aider vos camarades ou de signaler une erreur!
+            p(style='text-align:justify;') Fini l'installation de logiciels pour créer et consulter des présentations de style PowerPoint. Vous pouvez maintenant créer et consulter des présentations directement à partir de notre site, aucune installation de logiciel n'est requis. Les professeurspeuvent créer et partager des présentations aux membres du site, vous avez le contrôle sur l'accès à vos présentations. Les étudiants ont un accès direct à toutes les présentations qui sont partagées avec vous. Vous pouvez aussi laisser des commentaires en lien avec une présentation, afin d'aider vos camarades ou de signaler une erreur!
 
         
