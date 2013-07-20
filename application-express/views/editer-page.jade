@@ -29,6 +29,8 @@ block contenu
       li
         form(action='/partager-presentation')
           button.btn(type='submit') Partager
+      li
+        a.btn(href='#choisirGabarit', role='button', data-toggle='modal') Choisir le gabarit
     
     div#remplir
       form(action='')
@@ -37,15 +39,6 @@ block contenu
           li: a(href='#', title="consulter page précédente", style="display:none")#bouton-pg-precedente: ⎗
           li: a(href='#', title="consulter page suivante", style="display:none")#bouton-pg-suivante: ⎘
           li: a(href='#', title="inserer nouvelle page après")#bouton-ins-apres: ↪+
-        ul.nav.inline
-          li: a(href='#'): i.icon-bold
-          li: a(href='#'): i.icon-italic
-          li: a(href='#'): i.icon-font
-          li: a(href='#'): i.icon-align-left
-          li: a(href='#'): i.icon-align-center
-          li: a(href='#'): i.icon-align-justify
-          li: a(href='#'): i.icon-align-right
-          li: p(style="font-size:15px") texte
           li: a#bouton-supprimer(href='#supprimerPageModal', title="Supprimer cette page", role="button", data-toggle="modal"): i.icon-trash
         textarea#editeur-page(style='height: 200px; width:100%')
         p.muted(style="font-size:15px") Indice: Drag et drop pour insérer des images.
@@ -75,3 +68,24 @@ block contenu
     div.modal-footer
       button.btn(data-dismiss="modal", aria-hidden="true") Annuler
       button#btnSupprimerPageModal.btn.btn-primary(data-dismiss="modal") Supprimer
+
+  div#choisirGabarit.modal.hide.fade(tabindex="-1", role="dialog", aria-labelledby="choisirGabarit", aria-hidden="true")
+    div.modal-header
+      button.close(type="button", data-dismiss="modal", aria-hidden="true")×
+      h3#renommerTitre Choisir le gabarit
+    div.modal-body
+      form
+        label.radio 
+          img(src='/static/images/template/template1.png', style='margin:5px;')
+          input#choisirFormat(type='radio', name='type', value='1')
+        label.radio 
+          img(src='/static/images/template/template2.png', style='margin:5px;')
+          input#choisirFormat(type='radio', name='type', value='2')
+        label.radio 
+          img(src='/static/images/template/template3.png', style='margin:5px;')
+          input#choisirFormat(type='radio', name='type', value='3')
+
+    div.modal-footer
+      button.btn(data-dismiss="modal", aria-hidden="true") Fermer
+      button.btn.btn-primary(data-dismiss="modal", onclick='return false;') Choisir
+

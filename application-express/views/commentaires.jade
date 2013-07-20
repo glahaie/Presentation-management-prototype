@@ -1,0 +1,66 @@
+div#afficherCommentaires.modal.hide.fade(tabindex="-1", role="dialog", aria-labelledby="afficherCommentaires", aria-hidden="true")
+    div.modal-header
+      button.close(type="button", data-dismiss="modal", aria-hidden="true")×
+      h3#afficherCommentairesTitre Commentaires
+    div.modal-body
+        table(class='table')
+            thead
+                tr
+                    th Utilisateur
+                    th Commentaire
+            tbody
+                tr
+                    td
+                        p 
+                            b Bob Gratton
+                        p
+                            i Publié le 2013/07/17
+                    td Eux-autres les amaricains, ils l'ont l'affaire!
+                    if userType === 'prof'
+                        td
+                            form
+                                input#btnSupCom.btn(type='submit', value='Supprimer', onclick='return false;')
+                tr.info
+                    td
+                        p 
+                            b Guillaume Lahaie
+                        p
+                            i Publié le 2013/07/18
+                    td Je ne comprends pas, c'est quoi une variable?
+                    if userType === 'prof'
+                        td
+                            form
+                                input#btnSupCom.btn(type='submit', value='Supprimer', onclick='return false;')
+                tr
+                    td
+                        p 
+                            b Jacques Berger
+                        p
+                            i Publié le 2013/07/19
+                    td S'il vous plait utiliser les commentaires seulement pour discuter de la présentation.
+                    if userType === 'prof'
+                        td
+                            form
+                                input#btnSupCom.btn(type='submit', value='Supprimer', onclick='return false;')
+
+    div.modal-footer
+      button.btn(data-dismiss="modal", aria-hidden="true") Fermer
+
+div#redigerCommentaire.modal.hide.fade(tabindex="-1", role="dialog", aria-labelledby="redigerCommentaire", aria-hidden="true")
+    div.modal-header
+      button.close(type="button", data-dismiss="modal", aria-hidden="true")×
+      h3#afficherCommentairesTitre Rédiger un commentaire
+    div.modal-body
+        div.span6
+            textarea.field.span6(style='height:100px; resize:none;', placeholder='Écrivez votre commentaire.')
+    div.modal-footer
+      button.btn(data-dismiss="modal", aria-hidden="true") Fermer
+      button.btn.btn-primary(data-dismiss="modal", onclick='return false;') Publier
+
+
+div(style='padding-top:25px; width:95%;')
+    a.btn(href='#afficherCommentaires', role='button', data-toggle='modal', style='float:right;') Afficher les commentaires
+    a.btn(href='#redigerCommentaire', role='button', data-toggle='modal', style='float:left;') Rédiger un commentaire
+
+
+

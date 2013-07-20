@@ -58,17 +58,41 @@ if userType === 'prof'
     div.modal-footer
       button.btn(data-dismiss="modal", aria-hidden="true") Fermer
       button.btn.btn-primary(data-dismiss="modal", onclick='renommerFichier()') Renommer
+   
+   div#importerFichierModal.modal.hide.fade(tabindex="-1", role="dialog", aria-labelledby="importerFichier", aria-hidden="true")
+    div.modal-header
+      button.close(type="button", data-dismiss="modal", aria-hidden="true")×
+      h3#renommerTitre Importer une présentation
+    div.modal-body
+      p.lead Choisir le format d'importation
+      form
+        label.radio OpenDocument
+          input#choisirFormat(type='radio', name='type', value='ODF')
+        label.radio PPT
+          input#choisirFormat(type='radio', name='type', value='PPT')
+        label.radio PPTX
+          input#choisirFormat(type='radio', name='type', value='PPTX')
+        label.radio HTML
+          input#choisirFormat(type='radio', name='type', value='HTML')
+        input#nomFichier(type='file', placeholder='Nom du fichier')
+
+    div.modal-footer
+      button.btn(data-dismiss="modal", aria-hidden="true") Fermer
+      button.btn.btn-primary(data-dismiss="modal", onclick='return false;') Importer
+
        
   div.btn-toolbar
     div.btn-group
-      a.btn(href='#', onclick='setRepertoireRacine()')
+      a.btn(href='#', onclick='setRepertoireRacine()', title='Répertoire racine')
         i.icon-home
-      a.btn(href='#', onclick='repertoirePrecedent()')
+      a.btn(href='#', onclick='repertoirePrecedent()', title='Répertoire précédent')
         i.icon-step-backward
-      a.btn(href='#creerRepertoireModal', role='button', data-toggle='modal')
+      a.btn(href='#creerRepertoireModal', role='button', data-toggle='modal', title='Créer un nouveau répertoire')
         i.icon-folder-close
-      a.btn(href='#creerFichierModal', role='button', data-toggle='modal')
+      a.btn(href='#creerFichierModal', role='button', data-toggle='modal', title='Créer un nouveau fichier')
         i.icon-file
+      a.btn(href='#importerFichierModal', role='button', data-toggle='modal', title='Importer une présentation')
+        i.icon-upload
         
   ul#repBreadcrumb.breadcrumb(style='padding:0px 3px 0px 3px; margin:0px 0px 10px 0px;')
     li#dernierRepBread.active jberger

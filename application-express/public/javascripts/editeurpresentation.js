@@ -68,6 +68,12 @@ function afficherPage (pageID) {
   $(".page-id").text(pageID);
   $("#page-compte").text($('#source-presentation > div').length);
   $("#editeur-page").val(pageHTML);
+
+  //Pour le wysiwyg
+  $('.wysihtml5-toolbar').remove();
+  $('.wysihtml5-sandbox').remove();
+  $('#editeur-page').css('display','block');
+  $('#editeur-page').wysihtml5();
   
   if(pageID !== 1) {
     $('#bouton-pg-precedente').show();
@@ -182,7 +188,7 @@ function chargerThumbs() {
   
   var html = function(index) {
     // uuuugh! :(
-    var str = "<li style='text-align:center;'><p class='nouv-page-lien avant' style='display:none;margin:0px;padding:0px;' href='#'><a class='btn btn-small' href='#' style='width:50%;'><i class='icon-plus'></i></a></p><a class='thumbnail' href='#'><img class='group1 cboxElement' src='/static/images/1-INF4375-XML.png'><p class='numero-page' style='opacity: 0.35;'>" + (index+1) + "</p></a><p class='nouv-page-lien' style='display:none;margin:0px;padding:0px;'><a class='btn btn-small' href='#' style='width:50%;'><i class='icon-plus'></i></a></p></li>";
+    var str = "<li style='text-align:center;'><p class='nouv-page-lien avant' style='display:none;' href='#'><a href='#' title='inserer page ici'><i class='icon-plus'></i></a></p><a class='thumbnail' href='#'><img class='group1 cboxElement' src='/static/images/1-INF4375-XML.png'><p class='numero-page' style='opacity: 0.35;'>" + (index+1) + "</p></a><p class='nouv-page-lien' style='display:none;'><a href='#' title='inserer page ici'><i class='icon-plus'></i></a></p></li>";
     return $( str );
   };
   $('#thumbnails-pages ul').empty();
