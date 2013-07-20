@@ -39,6 +39,9 @@ exports.editPresentation = function(req, res){
   if (user === 'prof') {
     var repertoire = req.session.repertoire;
     var path =  req.session.pathPresentation;
+    var nomFichier = req.session.presentation;
+
+    console.log('stuff');
     
     fs.readFile(path, 'utf8', function(err, data) {
       if (err) console.log(err);
@@ -47,7 +50,7 @@ exports.editPresentation = function(req, res){
         /^<!-- @titre =\s+/g, '').replace(/\s+-->$/g, '');
       
       getFichiers(repertoire, function(err, fichiers) {
-          res.render('editer-page', { pretty: true, menuPresentation: true, userType: user, fichiers: fichiers, presentationObj : data, presentationTitre : titre});
+          res.render('editer-page', { pretty: true, menuPresentation: true, userType: user, fichiers: fichiers, presentationObj : data, presentationTitre : titre, presentationFichier: nomFichier});
       });
     });
   } else {
@@ -59,7 +62,7 @@ exports.editPresentation = function(req, res){
 exports.partagerPresentation = function(req, res){
   var user = req.session.userType;
   var repertoire = req.session.repertoire;
-  var presentation = req.session.presentation;
+  var presentation = req.query.fichier;
   
   if (user === 'prof') {
     getFichiers(repertoire, function(err, fichiers) {

@@ -73,7 +73,14 @@ function afficherPage (pageID) {
   $('.wysihtml5-toolbar').remove();
   $('.wysihtml5-sandbox').remove();
   $('#editeur-page').css('display','block');
-  $('#editeur-page').wysihtml5();
+  $('#editeur-page').wysihtml5({
+      "font-styles":true,
+      "emphasis":true,
+      "lists":true,
+      "html":true,
+      "link":true,
+      "image":true
+  });
   
   if(pageID !== 1) {
     $('#bouton-pg-precedente').show();

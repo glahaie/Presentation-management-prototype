@@ -11,7 +11,7 @@ block contenu
   section#interface-primaire.span6
     ul.breadcrumb
       li
-        a#presentationID(href='') #{presentationTitre}
+        a#presentationID(href='#') #{presentationTitre}
         span.divider /
       li
         span Page 
@@ -23,9 +23,6 @@ block contenu
       li
         form(action='/presentation')
           button.btn(type='submit') Mode Consulter
-      li
-        a(href="#") 
-          button.btn#start_full Démarrer la présentation 
       li
         form(action='/partager-presentation')
           button.btn(type='submit') Partager
