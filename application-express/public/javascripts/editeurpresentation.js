@@ -21,16 +21,22 @@ $(document).ready(function() {
     e.preventDefault();
     nouvellePageAvant(parseInt($("#page-id").text()) + 1);
   });
-  
+
+
+//Modif pour que le bouton des pages précédentes / suivantes soient toujours présents,
+//Mais soient désactivés s'il n'y a rien à faire.  
   // Liés la fonctionnalité de consultation de pages adjacentes pour les UCs:
   //   * UC-E3-03 Charger la page suivante
   //   * UC-E3-04 Charger la page précédente
-  $('#bouton-pg-precedente').click( function (e) {
-    afficherPage(parseInt($("#page-id").text()) - 1);
-  });
-  $('#bouton-pg-suivante').click( function (e) {
-    afficherPage(parseInt($("#page-id").text()) + 1);
-  });
+//  $('#bouton-pg-precedente').click( function (e) {
+//    afficherPage(parseInt($("#page-id").text()) - 1);
+//  });
+
+  if($('#source-presentation > div').length > 1) {
+    $('#bouton-pg-suivante').click( function (e) {
+        afficherPage(parseInt($("#page-id").text()) + 1);
+    });
+  }
   
   
   
@@ -79,18 +85,29 @@ function afficherPage (pageID) {
       "lists":true,
       "html":true,
       "link":true,
-      "image":true
+      "image":true,
+      "bold":true
   });
   
-  if(pageID !== 1) {
-    $('#bouton-pg-precedente').show();
-  } else {
-    $('#bouton-pg-precedente').hide();
+  if(pageID === 1) {
+    $('#bouton-pg-precedente').addClass('disabled');
+    $('#bouton-pg-precedente').unbind('click');
   }
-  if(parseInt(pageID) !== $('#source-presentation > div').length) {
-    $('#bouton-pg-suivante').show();
-  } else {
-    $('#bouton-pg-suivante').hide();
+  if(parseInt(pageID) === $('#source-presentation > div').length) {
+    $('#bouton-pg-suivante').addClass('disabled');
+    $('#bouton-pg-suivante').unbind('click');
+  }
+  if(pageID !== 1 && $('#bouton-pg-precedente').hasClass('disabled')) {
+    $('#bouton-pg-precedente').removeClass('disabled');
+    $('#bouton-pg-precedente').click( function (e) {
+        afficherPage(parseInt($("#page-id").text()) - 1);
+    });
+  }
+  if(parseInt(pageID) !== $('#source-presentation > div').length && $('#bouton-pg-suivante').hasClass('disabled')) {
+    $('#bouton-pg-suivante').removeClass('disabled');
+    $('#bouton-pg-suivante').click( function (e) {
+        afficherPage(parseInt($("#page-id").text()) + 1);
+    });
   }
   //$('#bouton-sauvegarder').addClass("disabled"); // TODO-A ... voir en haut
 }
@@ -181,7 +198,7 @@ function sauvegarderPres() {
   });
   request.done(function(data) {
     $("#source-presentation").html( data );
-    alert("La présentation à était mise à jour");
+    alert("La présentation à été mise à jour");
     chargerThumbs();
   });
   request.fail(function(jqXHR, textStatus) {
@@ -230,8 +247,15 @@ function chargerThumbs() {
   });
 }
 
+function disableLink(e) {
+    e.preventDefault();
+
+    return false;
+}
+
 
 // NOTES pour plus tards peut-etre.
 // https://github.com/fb55/htmlparser2 ou
 // https://github.com/tautologistics/node-htmlparser 
 // live htmlparser2 demo: https://github.com/ForbesLindesay/htmlparser-demo
+

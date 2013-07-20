@@ -19,24 +19,17 @@ block contenu
           |  de 
           span#page-compte X
     
-    ul.inline
-      li
-        form(action='/presentation')
-          button.btn(type='submit') Mode Consulter
-      li
-        form(action='/partager-presentation')
-          button.btn(type='submit') Partager
-      li
-        a.btn(href='#choisirGabarit', role='button', data-toggle='modal') Choisir le gabarit
     
     div#remplir
       form(action='')
-        ul.nav.inline
-          li: a(href='#', title="inserer nouvelle page avant")#bouton-ins-avant: +↩
-          li: a(href='#', title="consulter page précédente", style="display:none")#bouton-pg-precedente: ⎗
-          li: a(href='#', title="consulter page suivante", style="display:none")#bouton-pg-suivante: ⎘
-          li: a(href='#', title="inserer nouvelle page après")#bouton-ins-apres: ↪+
-          li: a#bouton-supprimer(href='#supprimerPageModal', title="Supprimer cette page", role="button", data-toggle="modal"): i.icon-trash
+        //ul.nav.inline
+        div.btn-toolbar
+            div.btn-group
+                a.btn(href='#', title="inserer nouvelle page avant", style="color:black; font-weight:bold;")#bouton-ins-avant: +↩
+                a.btn(href='#', title="consulter page précédente")#bouton-pg-precedente: i.icon-chevron-left
+                a.btn(href='#', title="consulter page suivante")#bouton-pg-suivante: i.icon-chevron-right
+                a.btn(href='#', title="inserer nouvelle page après", style="color:black;font-weight:bold;")#bouton-ins-apres: ↪+
+                a#bouton-supprimer.btn(href='#supprimerPageModal', title="Supprimer cette page", role="button", data-toggle="modal"): i.icon-trash
         textarea#editeur-page(style='height: 200px; width:100%')
         p.muted(style="font-size:15px") Indice: Drag et drop pour insérer des images.
         .form-actions
@@ -49,6 +42,17 @@ block contenu
         span.page-id 1 
         ?
     
+    ul.inline
+      li
+        form(action='/presentation')
+          button.btn(type='submit') Mode Consulter
+      li
+        form(action='/partager-presentation')
+          button.btn(type='submit') Partager
+      li
+        a.btn(href='#choisirGabarit', role='button', data-toggle='modal') Choisir le gabarit
+
+
   #acetates.span3
     div#thumbnails-pages.presentationEnCours(style='height: 600px; overflow-y: scroll;')
       ul.unstyled#sortable
@@ -85,4 +89,5 @@ block contenu
     div.modal-footer
       button.btn(data-dismiss="modal", aria-hidden="true") Fermer
       button.btn.btn-primary(data-dismiss="modal", onclick='return false;') Choisir
+
 
