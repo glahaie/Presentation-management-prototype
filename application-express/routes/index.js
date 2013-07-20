@@ -253,7 +253,6 @@ exports.recherche = function(req, res) {
     msg += login;
 
     var page = '';
-    var requestObj = {pretty:true, menuRecherche:true, loggedIn:true, userType: login, nomRech: rech, fichiers: fichiers};
     
     if (login === 'prof') {
         page = 'recherche-professeur-layout';
@@ -265,7 +264,7 @@ exports.recherche = function(req, res) {
     }
     
     getFichiers(repertoire, function(err, fichiers) {
-        res.render(page, requestObj);
+        res.render(page, {pretty:true, menuRecherche:true, loggedIn:true, userType: login, nomRech: rech, fichiers: fichiers});
     });
 };
 
