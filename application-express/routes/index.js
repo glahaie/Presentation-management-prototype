@@ -40,9 +40,12 @@ exports.editPresentation = function(req, res){
     var repertoire = req.session.repertoire;
     var path =  req.session.pathPresentation;
     var nomFichier = req.session.presentation;
-
-    console.log('stuff');
     
+    console.log("Le nom du fichier est ");
+    console.log(nomFichier);
+    console.log(" ou encore ");
+    console.log(req.session.presentation);
+
     fs.readFile(path, 'utf8', function(err, data) {
       if (err) console.log(err);
       // le titre (sooooooo hacky, but whatevs)
@@ -62,7 +65,7 @@ exports.editPresentation = function(req, res){
 exports.partagerPresentation = function(req, res){
   var user = req.session.userType;
   var repertoire = req.session.repertoire;
-  var presentation = req.query.fichier;
+  var presentation = req.session.presentation;
   
   if (user === 'prof') {
     getFichiers(repertoire, function(err, fichiers) {

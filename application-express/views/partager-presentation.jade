@@ -21,7 +21,7 @@ block primaire
         button.btn(type='submit') Mode Éditer
         
   form
-    label.radio Priver
+    label.radio Privé
       input(type='radio', name='partage', value='priver', onclick='enableGroupeSelect("priver")', checked)
     label.radio Groupe
       input(type='radio', name='partage', value='groupe', onclick='enableGroupeSelect("groupe")')
@@ -94,6 +94,7 @@ block primaire
       textarea#modifierTextarea.span3(style='resize: none', rows='10', readonly) Bob Gratton
       
       div.form-inline
+        button.btn(type='button') Importer Liste
         button#btnModifierGroupe.btn.btn-primary(type='button', onclick='modifierGroupePartage()', disabled) Modifier Groupe
         
     div#supprimerGroupe(style='display:none')
