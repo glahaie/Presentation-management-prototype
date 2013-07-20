@@ -30,7 +30,7 @@ block navbar
         ul.nav.pull-right
           li.dropdown
             a.dropdown-toggle(data-toggle='dropdown', href='#')
-              | Mr. Enseignant
+              | M. Enseignant
               b.caret
             ul.dropdown-menu
               li
@@ -39,5 +39,16 @@ block navbar
                 a(href='/logout') Déconnecter
         form.navbar-search.form-search.pull-right(method='post', action='/recherche')
           div.input-append
-            input.search-query.span2(type='text', placeholder='Présentation', name='rech')
-            button.btn(type'submit') Rechercher
+            input.search-query.span2#rech(type='text', placeholder='Présentation', name='rech')
+            button.btn#rechercheSubmit(type'submit') Rechercher
+            
+            //Vérifie que au moins un caractère a été entré pour faire la recherche.
+            |<script type='text/javascript'>
+            |   $('#rechercheSubmit').click(function(e) {
+            |       if(!$('#rech').val()) {
+            |           return false;
+            |       }
+            |       return true;
+            |});
+            |</script>  
+
