@@ -39,7 +39,7 @@ $(document).ready(function(){
 $( window ).load( function () {
   var html = function(index) {
     // uuuugh! :(
-    var str = "<li><a class='thumbnail' href='#'><img class='group1 cboxElement' src='/static/images/1-INF4375-XML.png'><p class='numero-page'>" + (index+1) + "</p></a></li>";
+    var str = "<li><a class='thumbnail' href='#'><img class='group1 cboxElement' src='/static/images/1-INF4375-XML.png'><p class='numero-page' style='opacity: 0.35;'></p></a></li>";
     return $( str );
   };
   

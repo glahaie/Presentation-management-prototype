@@ -95,7 +95,20 @@ if userType === 'prof'
         i.icon-upload
         
   ul#repBreadcrumb.breadcrumb(style='padding:0px 3px 0px 3px; margin:0px 0px 10px 0px;')
-    li#dernierRepBread.active jberger
+    if listeRep
+      each rep, i in listeRep
+        if i === 0 && i === listeRep.length - 1
+          li#dernierRepBread.active #{rep}
+        else if i === 0
+          li 
+            a(href='#', onclick='setRepertoireRacine()') #{rep}
+            span.divider /
+        else if i === listeRep.length - 1
+          li#dernierRepBread.active #{rep}
+        else
+          li 
+            a(href='#', onclick="gotoRepertoire('#{rep}')") #{rep}
+            span.divider /
 
   ul#fichiers.nav-list(style='list-style-type: none; padding:0; margin:0;')
   
@@ -140,7 +153,20 @@ else if userType === 'etudiant'
         i.icon-step-backward
         
   ul#repBreadcrumb.breadcrumb(style='padding:0px 3px 0px 3px; margin:0px 0px 10px 0px;')
-    li#dernierRepBread.active eric
+    if listeRep
+      each rep, i in listeRep
+        if i === 0 && i === listeRep.length - 1
+          li#dernierRepBread.active #{rep}
+        else if i === 0
+          li 
+            a(href='#', onclick='setRepertoireRacine()') #{rep}
+            span.divider /
+        else if i === listeRep.length - 1
+          li#dernierRepBread.active #{rep}
+        else
+          li 
+            a(href='#', onclick="gotoRepertoire('#{rep}')") #{rep}
+            span.divider /
 
   ul#fichiers.nav-list(style='list-style-type: none; padding:0; margin:0;')
   

@@ -1,7 +1,9 @@
 ﻿var fs = require('fs');
 var path = require('path');
 var REP_JACQUES = path.join(__dirname, '../espace-utilisateur/enseignants/jberger');
+var ROOT_JACQUES = 'jberger';
 var REP_ERIC = path.join(__dirname, '../espace-utilisateur/etudiants/eric');
+var ROOT_ERIC = 'eric';
 var FICHIER = 0;
 var REPERTOIRE = 1;
 var AUTRE = 2;
@@ -11,18 +13,21 @@ exports.index = function(req, res){
   var repertoire = req.session.repertoire;
   var presentation = req.session.presentation;
   var page = '';
+  var listeRep;
   
   if (user === 'prof') {
     page = 'accueil-professeur-layout';
+    listeRep = splitPath(ROOT_JACQUES, repertoire);
   } else if (user === 'etudiant') {
     page = 'accueil-etudiant-layout';
+    listeRep = splitPath(ROOT_ERIC, repertoire);
   } else {
     res.render('accueil-visiteur-layout', { pretty: true, menuAccueil: true, loggedIn: false });
     return;
   }
-
+  
   getFichiers(repertoire, function(err, fichiers) {
-    var renderObj = {pretty: true, menuAccueil: true, loggedIn: true, userType: user, fichiers: fichiers};
+    var renderObj = {pretty: true, menuAccueil: true, loggedIn: true, userType: user, fichiers: fichiers, listeRep: listeRep};
     if (presentation !== undefined) {
       renderObj.presentationFichier = presentation;
     }
@@ -53,7 +58,7 @@ exports.editPresentation = function(req, res){
         /^<!-- @titre =\s+/g, '').replace(/\s+-->$/g, '');
       
       getFichiers(repertoire, function(err, fichiers) {
-          res.render('editer-page', { pretty: true, menuPresentation: true, userType: user, fichiers: fichiers, presentationObj : data, presentationTitre : titre, presentationFichier: nomFichier});
+          res.render('editer-page', { pretty: true, menuPresentation: true, userType: user, fichiers: fichiers, presentationObj : data, presentationTitre : titre, presentationFichier: nomFichier, listeRep: splitPath(ROOT_JACQUES, repertoire)});
       });
     });
   } else {
@@ -69,7 +74,7 @@ exports.partagerPresentation = function(req, res){
   
   if (user === 'prof') {
     getFichiers(repertoire, function(err, fichiers) {
-        var renderObj = { pretty: true, menuPresentation: true, userType: user, fichiers: fichiers};
+        var renderObj = { pretty: true, menuPresentation: true, userType: user, fichiers: fichiers, listeRep: splitPath(ROOT_JACQUES, repertoire)};
         if (presentation !== undefined) {
             renderObj.presentationFichier = presentation;
         }
@@ -96,18 +101,21 @@ exports.profil = function(req, res) {
     var user = req.session.userType;
     var repertoire = req.session.repertoire;
     var presentation = req.session.presentation;
+    var listeRep;
     
     if (user === 'prof') {
         page = 'gestion-profil-etudiant-layout';
+        listeRep = splitPath(ROOT_JACQUES, repertoire);
     } else if (user === 'etudiant') {
         page = 'gestion-profil-professeur-layout';
+        listeRep = splitPath(ROOT_ERIC, repertoire);
     } else {
         res.render('404.jade', {pretty: true});
         return;
     }
 
     getFichiers(repertoire, function(err, fichiers) {
-        var renderObj = {pretty:true, menuGestionProfil:true, loggedIn:true, userType: user, fichiers: fichiers};
+        var renderObj = {pretty:true, menuGestionProfil:true, loggedIn:true, userType: user, fichiers: fichiers, listeRep: listeRep};
         if (presentation !== undefined) {
             renderObj.presentationFichier = presentation;
         }
@@ -119,19 +127,23 @@ exports.profil = function(req, res) {
 
 exports.presentation = function(req, res) {
     var user = req.session.userType;
+    var repertoire = req.session.repertoire;
     var page = '';
+    var listeRep;
+    
     
     if (user === 'prof') {
         page = 'consulter-presentations-professeur-layout';
+        listeRep = splitPath(ROOT_JACQUES, repertoire);
     } else if (user === 'etudiant') {
         page = 'consulter-presentations-etudiant-layout';
+        listeRep = splitPath(ROOT_ERIC, repertoire);
     } else {
         res.render('404.jade', { pretty: true});
         return;
     }
     
     var queryPresentation = req.query.fichier;
-    var repertoire = req.session.repertoire;
     var presentation = '';
     
     if (queryPresentation !== undefined) {
@@ -156,13 +168,13 @@ exports.presentation = function(req, res) {
               /^<!-- @titre =\s+/g, '').replace(/\s+-->$/g, '');
             
             getFichiers(repertoire, function(err, fichiers) {
-                res.render(page, { pretty: true, menuPresentation: true, userType: user, fichiers: fichiers, presentationObj : data, presentationTitre : titre, presentationFichier: presentation});
+                res.render(page, { pretty: true, menuPresentation: true, userType: user, fichiers: fichiers, presentationObj : data, presentationTitre : titre, presentationFichier: presentation, listeRep: listeRep});
             });   
         });
     } else {
     
         getFichiers(repertoire, function(err, fichiers) {
-           res.render(page, { pretty: true, menuPresentation: true, userType: user, fichiers: fichiers});
+           res.render(page, { pretty: true, menuPresentation: true, userType: user, fichiers: fichiers, listeRep: listeRep});
         });  
         
     }
@@ -186,18 +198,21 @@ exports.contactez = function(req, res){
     var user = req.session.userType;
     var repertoire = req.session.repertoire;
     var presentation = req.session.presentation;
+    var listeRep;
     
     if (user === 'prof') {
         page = 'contactez-nous-professeur-layout';
+        listeRep = splitPath(ROOT_JACQUES, repertoire);
     } else if (user === 'etudiant') {
         page = 'contactez-nous-etudiant-layout';
+        listeRep = splitPath(ROOT_ERIC, repertoire);
     } else {
         res.render('contactez-nous-visiteur-layout', { pretty: true, menuContactezNous: true, loggedIn: false });
         return;
     }
 
     getFichiers(repertoire, function(err, fichiers) {
-        var renderObj = { pretty: true, menuContactezNous: true, loggedIn: true, userType: user, fichiers: fichiers};
+        var renderObj = { pretty: true, menuContactezNous: true, loggedIn: true, userType: user, fichiers: fichiers, listeRep: listeRep};
         if (presentation !== undefined) {
             renderObj.presentationFichier = presentation;
         }
@@ -218,14 +233,14 @@ exports.login = function(req, res) {
         req.session.userType = 'prof';
         req.session.repertoire = REP_JACQUES;
         getFichiers(REP_JACQUES, function(err, fichiers) {
-            res.render('accueil-professeur-layout', { pretty: true, menuAccueil: true, loggedIn: true, userType: 'prof', fichiers: fichiers});
+            res.render('accueil-professeur-layout', { pretty: true, menuAccueil: true, loggedIn: true, userType: 'prof', fichiers: fichiers, listeRep: splitPath(ROOT_JACQUES, REP_JACQUES)});
         });        
         
     } else if (login === 'etudiant' && password === 'etudiant') {
         req.session.userType = 'etudiant';
         req.session.repertoire = REP_ERIC;
         getFichiers(REP_ERIC, function(err, fichiers) {
-            res.render('accueil-etudiant-layout', { pretty: true, menuAccueil: true, loggedIn: true, userType: 'etudiant', fichiers: fichiers})
+            res.render('accueil-etudiant-layout', { pretty: true, menuAccueil: true, loggedIn: true, userType: 'etudiant', fichiers: fichiers, listeRep: splitPath(ROOT_ERIC, REP_ERIC)})
         });
         
     } else {
@@ -259,18 +274,21 @@ exports.recherche = function(req, res) {
     msg += login;
 
     var page = '';
+    var listeRep;
     
     if (login === 'prof') {
         page = 'recherche-professeur-layout';
+        listeRep = splitPath(ROOT_JACQUES, repertoire);
     } else if (login === 'etudiant') {
         page = 'recherche-etudiant-layout';
+        listeRep = splitPath(ROOT_ERIC, repertoire);
     } else {
         res.render('404.jade', {pretty:true})
         return;
     }
     
     getFichiers(repertoire, function(err, fichiers) {
-        res.render(page, {pretty:true, menuRecherche:true, loggedIn:true, userType: login, nomRech: rech, fichiers: fichiers});
+        res.render(page, {pretty:true, menuRecherche:true, loggedIn:true, userType: login, nomRech: rech, fichiers: fichiers, listeRep: listeRep});
     });
 };
 
@@ -446,7 +464,7 @@ exports.creerFichier = function(req, res) {
     if (user === 'prof') {
         var fichier = req.session.repertoire + '/' + req.query.fichier + '.html';
         var data = "<!-- @titre = Présentation impress -->\n\n" + 
-                   "<div class='step slide' data-x='-1000' data-y='-1500'>\n</div>";
+                   "<div class='step slide' data-x='-1000' data-y='-1500'></div>";
     
         fs.writeFile(fichier, data, 'utf8', function(err) {
             if (err) {
@@ -530,3 +548,8 @@ exports.renommerFichier = function(req, res) {
         res.render('404.jade', { pretty: true});
     }
 };
+
+function splitPath(rep, path) {
+    var index = path.indexOf(rep);
+    return path.substring(index).split('/');
+}

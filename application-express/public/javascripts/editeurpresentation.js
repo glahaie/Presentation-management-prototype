@@ -162,7 +162,8 @@ function supprimer(pageID) {
   //   * clique du bouton supprimer OK
   // UC-E3-02 Supprimer une page 
   if ($('#source-presentation > div').length === 1) {
-    alert("!! Une présentation doit avoir au moins une page.");
+    //alert("!! Une présentation doit avoir au moins une page.");
+    afficherMsg('Une présentation doit avoir au moins une page.', 'alert-error');
     return;
   }
   
@@ -198,21 +199,23 @@ function sauvegarderPres() {
   });
   request.done(function(data) {
     $("#source-presentation").html( data );
-    alert("La présentation à été mise à jour");
+    //alert("La présentation à été mise à jour");
+    afficherMsg('Présentation Sauvegardée', 'alert-success');
     chargerThumbs();
   });
   request.fail(function(jqXHR, textStatus) {
-    alert("Request failed: " + textStatus );
+    //alert("Request failed: " + textStatus );
+    afficherMsg("Une erreur est survenue lors de la sauvegard. La présentation n'a pas été saugardée.", 'alert-error');
   });
   $('#bouton-sauvegarder').removeClass("disabled");
 }
 
-// TODO: Mettre ce code dans `consulter presentation` et autres places o'u c'est necessaire.
+// TODO: Mettre ce code dans `consulter presentation` et autres places ou c'est necessaire.
 function chargerThumbs() {
   
   var html = function(index) {
     // uuuugh! :(
-    var str = "<li style='text-align:center;'><p class='nouv-page-lien avant' style='display:none;' href='#'><a href='#' title='inserer page ici'><i class='icon-plus'></i></a></p><a class='thumbnail' href='#'><img class='group1 cboxElement' src='/static/images/1-INF4375-XML.png'><p class='numero-page' style='opacity: 0.35;'>" + (index+1) + "</p></a><p class='nouv-page-lien' style='display:none;'><a href='#' title='inserer page ici'><i class='icon-plus'></i></a></p></li>";
+    var str = "<li style='text-align:center;'><p class='nouv-page-lien avant' style='display:none;margin:0px;padding:0px;' href='#'><a class='btn btn-small' href='#' title='Inserer une page' style='width:50%;'><i class='icon-plus'></i></a></p><a class='thumbnail' href='#'><img class='group1 cboxElement' src='/static/images/1-INF4375-XML.png'><p class='numero-page' style='opacity: 0.35;'>" + (index+1) + "</p></a><p class='nouv-page-lien' style='display:none;margin:0px;padding:0px;'><a class='btn btn-small' href='#' title='Inserer une page' style='width:50%'><i class='icon-plus'></i></a></p></li>";
     return $( str );
   };
   $('#thumbnails-pages ul').empty();
@@ -253,6 +256,24 @@ function disableLink(e) {
     return false;
 }
 
+
+/**
+ * Afficher un message que l'utilisateur peut fermer.
+ */
+function afficherMsg(msg, alertclass) {
+    str = "<div class='alert " + alertclass + "' style='margin-top: 10px;'>" +
+              "<button type='button' class='close' onclick='retirerMsg()'>&times;</button>" +
+          "<span>" + msg + "</span></div>"
+    
+    $('#msgEditeur').html(str);
+}
+
+/**
+ * Retirer le message d'information
+ */
+function retirerMsg() {
+    $('#msgEditeur').html('');
+}
 
 // NOTES pour plus tards peut-etre.
 // https://github.com/fb55/htmlparser2 ou
