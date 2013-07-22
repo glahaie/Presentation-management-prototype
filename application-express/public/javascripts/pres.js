@@ -32,6 +32,7 @@ $(document).ready(function(){
 			$("#bouton-fermer-diapo").click( function(e) {
 			  transitionBack();
 			});
+			$('#saveEditor').focus();
     }
 	
 });
