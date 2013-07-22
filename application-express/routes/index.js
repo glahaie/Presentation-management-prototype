@@ -184,7 +184,7 @@ exports.presentation = function(req, res) {
 exports.ecran = function(req, res){
     var repertoire = req.session.repertoire;
     //var presentation = req.session.presentation;
-    var link = req.session.pathPresentation;
+    var link = req.session.pathPresentation || path.join(REP_JACQUES, 'presentation-demo-backup.html');
 
 	//var id = req.params.id;
 	fs.readFile(link, 'utf8', function(err, data) {

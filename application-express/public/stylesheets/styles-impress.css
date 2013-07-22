@@ -429,6 +429,7 @@ table {
 
 .impress-enabled .step {
     margin: 0;
+    text-align: center;
     opacity: 0.3;
 
     -webkit-transition: opacity 1s;
@@ -443,3 +444,5 @@ table {
 .impress-enabled .step .footnote{
     font-size: 20px;
 }
+
+.impress-enabled .step.gauche { text-align:left; }
