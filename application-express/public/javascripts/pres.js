@@ -1,39 +1,23 @@
 $(document).ready(function(){
   
   $('#open-pres').click(function(){
-    transition();
-  });
-  
-  $(document).keyup( function(e) {
-    if (e.which == 27) {
-      transitionBack();
-    }
-  });
-	
-	var transitionBack = function() {
-	  $('#saveEditor, #tiny-iframe').css({
-      "width": "400px",
-      "min-width": "350px",
-      "position": "relative",
-      "height":"240px"
+    $('#saveEditor').removeClass("ecran-mini");
+    $('#saveEditor').addClass("ecran-plein");
+    $('body').append($("<div id='bouton-fermer-diapo'><a href='#'>x</a></div>" ));
+    $("#bouton-fermer-diapo").click( function(e) {
+      $('#saveEditor').removeClass("ecran-plein");
+      $('#saveEditor').addClass("ecran-mini");
+      $("#bouton-fermer-diapo").remove();
     });
-    $("#bouton-fermer-diapo").remove();
-  }
+    $('#saveEditor').focus();
+  });
   
-  var transition = function(){
-      $('#saveEditor, #tiny-iframe').css(
-		    { "position": "absolute",
-			"top": "0",
-			"left": "0",
-			"width": "100%",
-			"height": "100%"
-			});
-			$('body').append($("<div id='bouton-fermer-diapo' style='display: block; position:absolute; right: 5%; top: 5%; z-index:21;'><a href='#'>x</a></div>" ));
-			$("#bouton-fermer-diapo").click( function(e) {
-			  transitionBack();
-			});
-			$('#saveEditor').focus();
+  $('#saveEditor').keyup( function(e) {
+    if (e.which == 27) {
+      $('#saveEditor').removeClass("ecran-plein");
+      $('#saveEditor').addClass("ecran-mini");
     }
+  });
 	
 });
 

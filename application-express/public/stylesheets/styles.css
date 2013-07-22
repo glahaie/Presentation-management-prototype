@@ -8,14 +8,35 @@
 
 #saveEditor
 {
+    overflow: hidden;
+    background: white;
+    z-index:20;
+}
+
+.ecran-mini {
     width: 412px;
     min-width: 350px;
     height: 240px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, .2);
     border: 10px solid #fff;
     border: 10px solid rgba(255, 255, 255, 0.9);
-    background: white;
-    z-index:20;
+}
+
+.ecran-plein {
+    display: block;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top:0;
+    left:0;
+    border: 0;
+}
+
+#bouton-fermer-diapo {
+    display: block;
+    position:absolute;
+    right: 5%; top: 5%;
+    z-index:21;
 }
 
 #thumbnails-pages a.thumbnail {
