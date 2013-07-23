@@ -20,10 +20,22 @@ Description : Logiciel qui génère des présentations (acétates) à partir de 
 
 Comment installer le prototype
 
-il faut avoir node et npm installés sur votre ordi
+Il faut avoir node et npm installés sur votre ordi
 
 * $ cd application-express
 * $ npm install
 * $ node app.js
 
 ou l'equivalent sur windows
+
+------------------------------------------------------------------------------------------------------------------------
+
+Accès au prototype:
+
+Il est possible d'accéder au prototype de n'importe quel navigateur internet, en entrant l'adresse suivante: localhost:3000
+
+------------------------------------------------------------------------------------------------------------------------
+
+Problème connu:
+
+- Problème de compatibilité entre l'éditeur wywiwyg et les navigateurs de la famille chrome. L'éditeur enlève certaines fois des attributs des tags html d'une page de présentation.
