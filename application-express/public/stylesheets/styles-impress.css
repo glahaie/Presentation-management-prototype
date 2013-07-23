@@ -430,7 +430,7 @@ table {
 .impress-enabled .step {
     margin: 0;
     text-align: center;
-    opacity: 0.3;
+    opacity: 0.2;
 
     -webkit-transition: opacity 1s;
     -moz-transition:    opacity 1s;
@@ -439,7 +439,9 @@ table {
     transition:         opacity 1s;
 }
 
-.impress-enabled .step.active { opacity: 1 }
+#html { opacity: 0; }
+
+.impress-enabled .step.active, #html.active { opacity: 1 }
 
 .impress-enabled .step .footnote{
     font-size: 20px;

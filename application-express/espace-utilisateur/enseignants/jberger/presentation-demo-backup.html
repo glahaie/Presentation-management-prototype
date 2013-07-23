@@ -1,12 +1,17 @@
 <!-- @titre = Notes de cours: une présentation recursive -->
 
-<div class="step slide" data-x="-2000" data-y="-1500"><span>On est dans un âge de guerre civile!*<br></span><h6><span>
-    <img title="Image: http://localhost:3000/static/images/gabarit/battaille.png" src="http://localhost:3000/static/images/gabarit/battaille.png" alt=""></span>
-    
-    * Les developpeurs de Notes de cours sont des pacifistes et ne suportent pas l'idée de guerre</h6></div>
+<div class="step slide" data-x="-2000" data-y="-1500">
+    <p>On est dans un âge de guerre civile!<sup>*</sup><br>
+    <img src="/static/images/gabarit/battaille.png"></p>
+    <p></p>
+    <p class="footnote"><sup>*</sup> Les developpeurs de Notes de cours sont des pacifistes et ne suportent pas l'idée de guerre</p>
+</div>
 
-<div class="step slide" data-x="-1000" data-y="-1500"><span>Les Rebelles, armés de<br> logiciels libres...<br>
-    <img title="Image: http://localhost:3000/static/images/gabarit/etudiant-qui-etude.gif" src="http://localhost:3000/static/images/gabarit/etudiant-qui-etude.gif" alt=""></span></div>
+<div class="step slide" data-x="-1000" data-y="-1500">
+    <p>Les Rebelles, armés de<br> logiciels libres...<br>
+    <img src="/static/images/gabarit/etudiant-qui-etude.gif"></p>
+    
+</div>
 
 <div class="step slide" data-x="0" data-y="-1500">
     <p> ... s'opposent aux <br>forces obscures de l'Empire!</p>
@@ -18,46 +23,90 @@
 </div>
 
 <div id="title" class="step" data-x="1000" data-y="0" data-scale="4">
+    <p>Le logiciel</p>
     <h1>Notes de cours</h1>
     <img src="/static/images/gabarit/r2d2-projection.jpg">
 </div>
 
-<div class="step" data-x="1000" data-y="3000"><span>Un système social pour créer et visualiser des présentations.</span></div>
-
-<div class="step" data-x="1000" data-y="4000"><h3>Besoin initial</h3>
-    <ul>
-        <li>Portabilité</li>
-        <li>Facilité d'utilisation<br></li>
-        
-    </ul></div>
-
-<div class="step" data-x="1000" data-y="5000"><h3>But</h3>
-    Pouvoir rédiger les présentations dans un format simple, portable et libre.
-    <h3>Solution</h3>
-    Entre xml et markdown on trouve...</div>
-
-<div id="html" class="step" data-x="1000" data-y="6800" data-z="-6000">
-    <h3></h3>
-    <p></p>
-    <h3>Solution</h3>
-    <h3>HTML</h3>
+<div class="step" data-x="1000" data-y="3000">
+    <p>Un <strong>système social</strong> pour créer et visualiser des présentations.</p>
 </div>
 
-<div class="step gauche" data-x="0" data-y="4000" data-z="-3000"><h3>Fonctionnalités</h3>
+<div class="step" data-x="1000" data-y="4000">
+    <h3>Besoin initial</h3>
     <ul>
-        <li>Pour les soldats de l'Empire (les enseignants)</li><li></li><li></li>
-        </ul></div>
+        <li>Portabilité</li>
+        <li>Facilité d'utilisation</li>
+    </ul>
+</div>
 
-<div class="step gauche" data-x="0" data-y="4000" data-z="-3000"><h3>Fonctionnalités</h3>
-    <ul>
-        <li><br>&nbsp;</li>
-        <li>Pour les rebelles (les étudiants)</li>
-        <li></li>
-    </ul></div>
+<div class="step" data-x="1000" data-y="5000">
+    <h3>Le but</h3>
+    <p>Pouvoir rédiger les présentations dans un format simple, portable et libre.</p>
+    <h3></h3>
+    <p>Entre XML et Markdown on trouve</p>
+</div>
 
-<div class="step gauche" data-x="0" data-y="4000" data-z="-3000"><h3>Fonctionnalités</h3>
+<div id="html" class="step" data-x="1000" data-y="5000" data-z="-1000">
+    <h3></h3>
+    <p></p>
+    <h3><em>La solution</em></h3>
+    <p>HTML</p>
+</div>
+
+<div class="step gauche" data-x="0" data-y="4000" data-z="-3000">
+    <h3>Fonctionnalités</h3>
     <ul>
-        <li><br>&nbsp;</li>
+        <li>Pour les soldats de l'Empire</li>
         <li></li>
-        <li>Pour l'empereur (l'administrateur)</li>
-    </ul></div>
+        <li></li>
+    </ul>
+</div>
+
+<div class="step gauche" data-x="0" data-y="4000" data-z="-3000">
+    <h3>Fonctionnalités</h3>
+    <ul>
+        <li></li>
+        <li>Pour les rebelles</li>
+        <li></li>
+    </ul>
+</div>
+
+<div class="step gauche" data-x="0" data-y="4000" data-z="-3000">
+    <h3>Fonctionnalités</h3>
+    <ul>
+        <li></li>
+        <li></li>
+        <li>Pour l'empereur</li>
+    </ul>
+</div>
+
+<div class="step" data-x="-1000" data-y="4000" data-z="-2000">
+    <h3>L'architecture logicielle</h3>
+    <ul>
+        <li>application Web</li>
+        <li>Client / Serveur</li>
+        <li>Couche de persistance</li>
+    </ul>
+</div>
+
+<div class="step" data-x="-2000" data-y="3000" data-z="-1000">
+    <h3>Les technologies impliquées</h3>
+    <ul>
+        <li>node.js (Express.js)</li>
+        <li>HTML5 (Bootstrap)</li>
+        <li>Javascript (jQuery, <strong>impress.js</strong>)</li>
+    </ul>
+</div>
+
+<div class="step" data-x="-1000" data-y="2000" data-scale="4">
+    <h3>Démonstration du pratotype</h3>
+</div>
+
+<div class="step slide" data-x="-2000" data-y="0">
+    <img src="/static/images/gabarit/deep-thoughts.png">
+</div>
+
+<div class="step slide" data-x="-2000" data-y="-1000" data-scale="0.1">
+    <p>fin</p>
+</div>
