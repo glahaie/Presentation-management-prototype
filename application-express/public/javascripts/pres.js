@@ -19,6 +19,36 @@ $(document).ready(function(){
     }
   });
 	
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	var transitionBack = function() {
+	  $('#saveEditor, #tiny-iframe').css({
+      "width": "400px",
+      "min-width": "350px",
+      "position": "relative",
+      "height":"240px"
+    });
+    $("#bouton-fermer-diapo").remove();
+  }
+  
+  var transition = function(){
+      $('#saveEditor, #tiny-iframe').css(
+		    { "position": "absolute",
+			"top": "0",
+			"left": "0",
+			"width": "100%",
+			"height": "100%"
+			});
+			$('body').append($("<div id='bouton-fermer-diapo' style='display: block; position:absolute; right: 5%; top: 5%; z-index:21;'><a href='#'>x</a></div>" ));
+			$("#bouton-fermer-diapo").click( function(e) {
+			  transitionBack();
+			});
+    }
+	
+>>>>>>> 59f9b59f3d492a12d0a2f2decf494f2b05c31f54
+>>>>>>> ebb6def408d29a37a234801385926175e68fa3af
 });
 
 $( window ).load( function () {
@@ -38,3 +68,29 @@ $( window ).load( function () {
   // ... $('#thumbnails-pages li').dblClick( .... )
   
 });
+
+function transitionBack() {
+  $('#saveEditor, #tiny-iframe').css({
+    "width": "400px",
+    "min-width": "350px",
+    "position": "relative",
+    "height":"240px"
+  });
+  $("#bouton-fermer-diapo").remove();
+}
+
+function transition() {
+  $('#saveEditor, #tiny-iframe').css({ 
+    "position": "absolute",
+	  "top": "0",
+	  "left": "0",
+	  "width": "100%",
+	  "height": "100%"
+	});
+	$('body').append($("<div id='bouton-fermer-diapo' style='display: block; position:absolute; right: 5%; top: 5%;'><a href='#'>x</a></div>" ));
+	$("#bouton-fermer-diapo").click( function(e) {
+	  transitionBack();
+	});
+}
+  
+  
