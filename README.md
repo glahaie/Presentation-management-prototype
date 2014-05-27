@@ -1,5 +1,15 @@
-INM5151
+Online powerpoint management prototype
 =======
+
+This was a group project where the objective was to analyse and modelise
+an application. We chose an application that could help students and
+teachers manage the powerpoint-like presentations for their classes.
+
+This is the prototype we realised for this project. The prototype can
+display presentations, and edit them. There are also options to create new
+presentations and folders. 
+
+***
 
 Membres
 -------
